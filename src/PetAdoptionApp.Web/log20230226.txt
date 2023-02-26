@@ -1,0 +1,371 @@
+2023-02-26 14:38:57.390 +02:00 [INF] Registered 5 endpoints in 440 milliseconds.
+2023-02-26 14:38:57.697 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 14:38:57.871 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 14:38:59.041 +02:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2023-02-26 14:38:59.233 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+        "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+        "Name" TEXT NOT NULL
+);
+2023-02-26 14:38:59.235 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Projects" (
+        "Id" INTEGER NOT NULL CONSTRAINT "PK_Projects" PRIMARY KEY AUTOINCREMENT,
+        "Name" TEXT NOT NULL,
+        "Priority" INTEGER NOT NULL
+);
+2023-02-26 14:38:59.235 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ToDoItems" (
+        "Id" INTEGER NOT NULL CONSTRAINT "PK_ToDoItems" PRIMARY KEY AUTOINCREMENT,
+        "Title" TEXT NOT NULL,
+        "Description" TEXT NOT NULL,
+        "ContributorId" INTEGER NULL,
+        "IsDone" INTEGER NOT NULL,
+        "ProjectId" INTEGER NULL,
+        CONSTRAINT "FK_ToDoItems_Projects_ProjectId" FOREIGN KEY ("ProjectId") REFERENCES "Projects" ("Id")
+);
+2023-02-26 14:38:59.236 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_ToDoItems_ProjectId" ON "ToDoItems" ("ProjectId");
+2023-02-26 14:38:59.591 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+        SELECT 1
+        FROM "ToDoItems" AS "t")
+2023-02-26 14:38:59.666 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority"
+FROM "Projects" AS "p"
+2023-02-26 14:38:59.674 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."ContributorId", "t"."Description", "t"."IsDone", "t"."ProjectId", "t"."Title"
+FROM "ToDoItems" AS "t"
+2023-02-26 14:38:59.681 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+2023-02-26 14:38:59.989 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (Size = 7)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2023-02-26 14:39:00.026 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2023-02-26 14:39:00.190 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 12), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Projects" ("Name", "Priority")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2023-02-26 14:39:00.205 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Int32), @p3='?' (Size = 31), @p4='?' (DbType = Boolean), @p5='?' (DbType = Int32), @p6='?' (Size = 18)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p2, @p3, @p4, @p5, @p6)
+RETURNING "Id";
+2023-02-26 14:39:00.206 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 81), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 15)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2023-02-26 14:39:00.207 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 59), @p2='?' (DbType = Boolean), @p3='?' (DbType = Int32), @p4='?' (Size = 20)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ToDoItems" ("ContributorId", "Description", "IsDone", "ProjectId", "Title")
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING "Id";
+2023-02-26 14:39:00.524 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 14:39:00.524 +02:00 [INF] Hosting environment: Development
+2023-02-26 14:39:00.524 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 14:39:00.597 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-02-26 14:39:00.698 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 14:39:00.756 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 404 - - 165.1786ms
+2023-02-26 14:42:29.510 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger - -
+2023-02-26 14:42:29.518 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger - - - 301 - - 36.1713ms
+2023-02-26 14:42:29.561 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 14:42:29.840 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 278.9469ms
+2023-02-26 14:42:30.084 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui.css - -
+2023-02-26 14:42:30.086 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-02-26 14:42:30.096 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui-bundle.js - -
+2023-02-26 14:42:30.107 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12006 application/javascript;+charset=utf-8 20.3051ms
+2023-02-26 14:42:30.107 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui-standalone-preset.js - -
+2023-02-26 14:42:30.127 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-02-26 14:42:30.134 +02:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-02-26 14:42:30.136 +02:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-02-26 14:42:30.154 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui.css - - - 200 143943 text/css 70.6178ms
+2023-02-26 14:42:30.226 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui-standalone-preset.js - - - 200 339486 text/javascript 118.9605ms
+2023-02-26 14:42:30.234 +02:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-02-26 14:42:30.311 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger-ui-bundle.js - - - 200 1096145 text/javascript 199.2142ms
+2023-02-26 14:42:30.311 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 184.1218ms
+2023-02-26 14:42:30.588 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2023-02-26 14:42:30.659 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/favicon-32x32.png - -
+2023-02-26 14:42:30.661 +02:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-02-26 14:42:30.661 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/favicon-32x32.png - - - 200 628 image/png 2.2707ms
+2023-02-26 14:42:30.817 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 228.9008ms
+2023-02-26 14:43:45.209 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 14:43:45.259 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 14:43:45.284 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 25.1368ms
+2023-02-26 14:43:45.412 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-02-26 14:43:45.429 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-02-26 14:43:45.456 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12006 application/javascript;+charset=utf-8 43.7292ms
+2023-02-26 14:43:45.597 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 167.5250ms
+2023-02-26 14:43:45.971 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2023-02-26 14:43:45.985 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 13.6921ms
+2023-02-26 14:44:13.453 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:57678/Contributors application/json 22
+2023-02-26 14:44:13.601 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name")
+VALUES (@p0)
+RETURNING "Id";
+2023-02-26 14:44:13.633 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:57678/Contributors application/json 22 - 200 - application/json;+charset=utf-8 180.0130ms
+2023-02-26 14:44:17.944 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Contributors - -
+2023-02-26 14:44:17.979 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+2023-02-26 14:44:17.990 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Contributors - - - 200 - application/json;+charset=utf-8 46.2145ms
+2023-02-26 14:44:28.034 +02:00 [INF] Request starting HTTP/1.1 PUT http://localhost:57678/Contributors application/json 33
+2023-02-26 14:44:28.102 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__p_0
+LIMIT 1
+2023-02-26 14:44:28.109 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 6)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Contributors" SET "Name" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2023-02-26 14:44:28.117 +02:00 [INF] Request finished HTTP/1.1 PUT http://localhost:57678/Contributors application/json 33 - 200 - application/json;+charset=utf-8 83.4101ms
+2023-02-26 14:44:31.447 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Contributors - -
+2023-02-26 14:44:31.449 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+2023-02-26 14:44:31.450 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Contributors - - - 200 - application/json;+charset=utf-8 2.7494ms
+2023-02-26 14:44:39.228 +02:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:57678/Contributors/1 - -
+2023-02-26 14:44:39.241 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__p_0
+LIMIT 1
+2023-02-26 14:44:39.253 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "Contributors"
+WHERE "Id" = @p0
+RETURNING 1;
+2023-02-26 14:44:39.390 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__contributorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."Priority", "t0"."Id", "t0"."ContributorId", "t0"."Description", "t0"."IsDone", "t0"."ProjectId", "t0"."Title"
+FROM "Projects" AS "p"
+LEFT JOIN "ToDoItems" AS "t0" ON "p"."Id" = "t0"."ProjectId"
+WHERE EXISTS (
+        SELECT 1
+        FROM "ToDoItems" AS "t"
+        WHERE "p"."Id" = "t"."ProjectId" AND "t"."ContributorId" = @__contributorId_0)
+ORDER BY "p"."Id"
+2023-02-26 14:44:39.420 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 12), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Projects" SET "Name" = @p0, "Priority" = @p1
+WHERE "Id" = @p2
+RETURNING 1;
+2023-02-26 14:44:39.422 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "ToDoItems" SET "ContributorId" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2023-02-26 14:44:39.422 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "ToDoItems" SET "ContributorId" = @p0
+WHERE "Id" = @p1
+RETURNING 1;
+2023-02-26 14:44:39.426 +02:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:57678/Contributors/1 - - - 204 - - 197.8438ms
+2023-02-26 14:44:44.247 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Contributors/1 - -
+2023-02-26 14:44:44.261 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__contributorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__contributorId_0
+LIMIT 1
+2023-02-26 14:44:44.262 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Contributors/1 - - - 404 - - 15.0392ms
+2023-02-26 14:44:51.673 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Contributors/3 - -
+2023-02-26 14:44:51.677 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__contributorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__contributorId_0
+LIMIT 1
+2023-02-26 14:44:51.678 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Contributors/3 - - - 200 - application/json;+charset=utf-8 4.3141ms
+2023-02-26 14:44:55.897 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Contributors/1 - -
+2023-02-26 14:44:55.899 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__contributorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__contributorId_0
+LIMIT 1
+2023-02-26 14:44:55.900 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Contributors/1 - - - 404 - - 2.4990ms
+2023-02-26 14:44:58.948 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/Contributors/3 - -
+2023-02-26 14:44:58.949 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[@__contributorId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name"
+FROM "Contributors" AS "c"
+WHERE "c"."Id" = @__contributorId_0
+LIMIT 1
+2023-02-26 14:44:58.950 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/Contributors/3 - - - 200 - application/json;+charset=utf-8 2.4427ms
+2023-02-26 14:45:06.062 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 14:45:06.081 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 18.9877ms
+2023-02-26 14:45:06.152 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-02-26 14:45:06.152 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-02-26 14:45:06.154 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12006 application/javascript;+charset=utf-8 2.0976ms
+2023-02-26 14:45:06.187 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 35.1872ms
+2023-02-26 14:45:06.284 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2023-02-26 14:45:06.288 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 4.0689ms
+2023-02-26 17:39:51.602 +02:00 [INF] Registered 5 endpoints in 627 milliseconds.
+2023-02-26 17:39:51.985 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 17:39:52.086 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 17:39:53.399 +02:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2023-02-26 17:39:53.810 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-02-26 17:39:54.002 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 17:39:54.002 +02:00 [INF] Hosting environment: Development
+2023-02-26 17:39:54.003 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 17:39:54.049 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-02-26 17:39:54.207 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 17:39:54.297 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 404 - - 251.9717ms
+2023-02-26 17:44:53.291 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 17:44:53.542 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 250.9998ms
+2023-02-26 17:44:53.852 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-02-26 17:44:53.853 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-02-26 17:44:53.871 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12006 application/javascript;+charset=utf-8 16.6659ms
+2023-02-26 17:44:53.973 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 120.7153ms
+2023-02-26 17:44:54.020 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2023-02-26 17:44:54.193 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 173.3194ms
+2023-02-26 17:45:41.340 +02:00 [INF] Registered 5 endpoints in 298 milliseconds.
+2023-02-26 17:45:41.641 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 17:45:41.685 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 17:45:42.454 +02:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2023-02-26 17:45:42.702 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-02-26 17:45:42.822 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 17:45:42.822 +02:00 [INF] Hosting environment: Development
+2023-02-26 17:45:42.823 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 17:45:42.850 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/ - -
+2023-02-26 17:45:42.939 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 17:45:43.006 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/ - - - 404 - - 158.2638ms
+2023-02-26 17:45:50.016 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 17:45:50.023 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 404 - - 7.1945ms
+2023-02-26 18:01:11.336 +02:00 [INF] Registered 5 endpoints in 1076 milliseconds.
+2023-02-26 18:01:12.128 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 18:01:12.265 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 18:01:14.235 +02:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2023-02-26 18:01:15.006 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-02-26 18:01:15.355 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 18:01:15.355 +02:00 [INF] Hosting environment: Development
+2023-02-26 18:01:15.355 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 18:01:15.452 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/ - -
+2023-02-26 18:01:15.765 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 18:01:15.906 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/ - - - 404 - - 469.4742ms
+2023-02-26 18:01:26.247 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 18:01:26.269 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 404 - - 21.3952ms
+2023-02-26 18:01:33.013 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger - -
+2023-02-26 18:01:33.137 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger - - - 301 - - 124.4508ms
+2023-02-26 18:01:33.191 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger/index.html - -
+2023-02-26 18:01:34.084 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger/index.html - - - 200 - text/html;charset=utf-8 892.3022ms
+2023-02-26 18:01:35.120 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger/swagger-ui.css - -
+2023-02-26 18:01:35.120 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger/swagger-ui-standalone-preset.js - -
+2023-02-26 18:01:35.120 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger/swagger-ui-bundle.js - -
+2023-02-26 18:01:35.150 +02:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2023-02-26 18:01:35.150 +02:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2023-02-26 18:01:35.176 +02:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2023-02-26 18:01:35.182 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger/swagger-ui.css - - - 200 143943 text/css 77.8352ms
+2023-02-26 18:01:35.195 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger/swagger-ui-standalone-preset.js - - - 200 339486 text/javascript 74.9046ms
+2023-02-26 18:01:35.278 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger/swagger-ui-bundle.js - - - 200 1096145 text/javascript 157.4360ms
+2023-02-26 18:01:36.097 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2023-02-26 18:01:36.099 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 404 - - 1.9776ms
+2023-02-26 18:01:36.231 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger/favicon-32x32.png - -
+2023-02-26 18:01:36.234 +02:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-02-26 18:01:36.235 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger/favicon-32x32.png - - - 200 628 image/png 3.9492ms
+2023-02-26 18:19:32.923 +02:00 [INF] Registered 5 endpoints in 478 milliseconds.
+2023-02-26 18:19:33.446 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 18:19:33.557 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 18:19:35.036 +02:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2023-02-26 18:19:35.535 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-02-26 18:19:35.967 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 18:19:35.967 +02:00 [INF] Hosting environment: Development
+2023-02-26 18:19:35.967 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 18:19:36.037 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 18:19:36.223 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 18:19:36.365 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 404 - - 331.1476ms
+2023-02-26 18:19:44.133 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 18:19:44.154 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 404 - - 16.2781ms
+2023-02-26 18:23:52.284 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 18:23:52.290 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 404 - - 3.7611ms
+2023-02-26 18:23:57.646 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/swagger/index.html - -
+2023-02-26 18:23:58.077 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/swagger/index.html - - - 200 - text/html;charset=utf-8 430.7556ms
+2023-02-26 18:23:59.370 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2023-02-26 18:23:59.373 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 404 - - 2.7653ms
+2023-02-26 18:24:59.520 +02:00 [INF] Registered 5 endpoints in 715 milliseconds.
+2023-02-26 18:24:59.952 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 18:25:00.171 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 18:25:01.765 +02:00 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2023-02-26 18:25:02.441 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-02-26 18:25:02.713 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 18:25:02.714 +02:00 [INF] Hosting environment: Development
+2023-02-26 18:25:02.714 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 18:25:02.767 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-02-26 18:25:02.767 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/favicon.ico - -
+2023-02-26 18:25:02.891 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 18:25:02.979 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 0 - - 214.3643ms
+2023-02-26 18:25:02.981 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/favicon.ico - - - 404 - - 218.4190ms
+2023-02-26 18:35:08.153 +02:00 [INF] Registered 5 endpoints in 1079 milliseconds.
+2023-02-26 18:35:08.843 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 18:35:09.005 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 18:35:12.122 +02:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2023-02-26 18:35:13.248 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-02-26 18:35:13.704 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 18:35:13.705 +02:00 [INF] Hosting environment: Development
+2023-02-26 18:35:13.705 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 18:35:13.810 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-02-26 18:35:14.083 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 18:35:14.283 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 0 - - 479.0297ms
+2023-02-26 18:42:23.371 +02:00 [INF] Registered 5 endpoints in 357 milliseconds.
+2023-02-26 18:42:23.585 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 18:42:23.656 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 18:42:24.529 +02:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2023-02-26 18:42:24.904 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-02-26 18:42:25.060 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 18:42:25.060 +02:00 [INF] Hosting environment: Development
+2023-02-26 18:42:25.061 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 18:42:25.090 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/ - -
+2023-02-26 18:42:25.172 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 18:42:25.247 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/ - - - 404 - - 158.7392ms
+2023-02-26 18:42:39.522 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 18:42:39.827 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 305.6361ms
+2023-02-26 18:42:40.020 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-02-26 18:42:40.027 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-02-26 18:42:40.032 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12006 application/javascript;+charset=utf-8 11.4422ms
+2023-02-26 18:42:40.128 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 100.6319ms
+2023-02-26 18:42:40.248 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2023-02-26 18:42:40.508 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 260.1499ms
+2023-02-26 18:43:06.854 +02:00 [INF] Registered 5 endpoints in 283 milliseconds.
+2023-02-26 18:43:07.082 +02:00 [INF] User profile is available. Using 'C:\Users\mihai\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2023-02-26 18:43:07.127 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2023-02-26 18:43:07.952 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2023-02-26 18:43:08.179 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "ToDoItems" AS "t")
+2023-02-26 18:43:08.326 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-02-26 18:43:08.326 +02:00 [INF] Hosting environment: Development
+2023-02-26 18:43:08.326 +02:00 [INF] Content root path: C:\Users\mihai\Source\PetAdoptionApp\src\PetAdoptionApp.Web
+2023-02-26 18:43:08.357 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/index.html - -
+2023-02-26 18:43:08.445 +02:00 [WRN] Failed to determine the https port for redirect.
+2023-02-26 18:43:08.742 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/index.html - - - 200 - text/html;charset=utf-8 387.4311ms
+2023-02-26 18:43:08.851 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_vs/browserLink - -
+2023-02-26 18:43:08.867 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - -
+2023-02-26 18:43:08.879 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_framework/aspnetcore-browser-refresh.js - - - 200 12006 application/javascript;+charset=utf-8 11.5414ms
+2023-02-26 18:43:08.922 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 71.1514ms
+2023-02-26 18:43:09.075 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - -
+2023-02-26 18:43:09.336 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:57678/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 261.0192ms
