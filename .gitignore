@@ -257,3 +257,9 @@ pub/
 
 #Ignore marker-file used to know which docker files we have.
 .eshopdocker_*
+
+#Ignore sqllite database files
+*.sqlite*
+
+#Ignore log files
+log*.txt

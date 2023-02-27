@@ -1,5 +1,4 @@
-﻿using PetAdoptionApp.Web;
-using Xunit;
+﻿using Xunit;
 
 namespace PetAdoptionApp.FunctionalTests.ControllerViews;
 [Collection("Sequential")]
@@ -19,6 +18,6 @@ public class HomeControllerIndex : IClassFixture<CustomWebApplicationFactory<Web
         response.EnsureSuccessStatusCode();
         string stringResponse = await response.Content.ReadAsStringAsync();
 
-        Assert.Contains("PetAdoptionApp.Web", stringResponse);
+        Assert.Contains("PetAdoptionApp.Api", stringResponse);
     }
 }

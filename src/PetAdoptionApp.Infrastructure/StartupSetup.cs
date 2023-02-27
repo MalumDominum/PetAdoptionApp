@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using PetAdoptionApp.Infrastructure.Data;
+using PetAdoptionApp.Infrastructure.DataAccess;
 
 namespace PetAdoptionApp.Infrastructure;
 public static class StartupSetup

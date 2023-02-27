@@ -9,8 +9,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Core\Services\ToDoItemSearchService_GetAllIncompleteItems.cs" />
-        <Compile Remove="Core\Services\ToDoItemSearchService_GetNextIncompleteItem.cs" />
+        <Compile Remove="Application\Services\ToDoItemSearchService_GetAllIncompleteItems.cs" />
+        <Compile Remove="Application\Services\ToDoItemSearchService_GetNextIncompleteItem.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -35,11 +35,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Core\Services\" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <ProjectReference Include="..\..\src\PetAdoptionApp.Core\PetAdoptionApp.Core.csproj" />
+      <ProjectReference Include="..\..\src\PetAdoptionApp.Application\PetAdoptionApp.Application.csproj" />
     </ItemGroup>
 
 </Project>

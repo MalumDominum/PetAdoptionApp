@@ -1,5 +1,4 @@
-﻿using PetAdoptionApp.Core.ProjectAggregate;
-using Xunit;
+﻿using Xunit;
 
 namespace PetAdoptionApp.UnitTests.Core.ProjectAggregate;
 public class ProjectConstructor

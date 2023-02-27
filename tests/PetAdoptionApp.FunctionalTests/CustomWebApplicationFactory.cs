@@ -1,16 +1,9 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PetAdoptionApp.Core.Interfaces;
-using PetAdoptionApp.Infrastructure;
-using PetAdoptionApp.Infrastructure.Data;
-using PetAdoptionApp.UnitTests;
-using PetAdoptionApp.Web;
 
 namespace PetAdoptionApp.FunctionalTests;
 public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class

@@ -1,5 +1,4 @@
-﻿using PetAdoptionApp.Web;
-using Xunit;
+﻿using Xunit;
 
 namespace PetAdoptionApp.FunctionalTests.ControllerApis;
 [Collection("Sequential")]

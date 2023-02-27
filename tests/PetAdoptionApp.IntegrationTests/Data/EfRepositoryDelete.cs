@@ -1,5 +1,4 @@
-﻿using PetAdoptionApp.Core.ProjectAggregate;
-using Xunit;
+﻿using Xunit;
 
 namespace PetAdoptionApp.IntegrationTests.Data;
 public class EfRepositoryDelete : BaseEfRepoTestFixture

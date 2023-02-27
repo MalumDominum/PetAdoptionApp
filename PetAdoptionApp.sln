@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.Core", "src\PetAdoptionApp.Core\PetAdoptionApp.Core.csproj", "{D1CD021E-8B29-4D85-9229-0F4A0C5E8516}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.Api", "src\PetAdoptionApp.Api\PetAdoptionApp.Api.csproj", "{997C1C76-1B71-4BE8-B3C3-08E3E54B0234}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.Application", "src\PetAdoptionApp.Application\PetAdoptionApp.Application.csproj", "{D1CD021E-8B29-4D85-9229-0F4A0C5E8516}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.Infrastructure", "src\PetAdoptionApp.Infrastructure\PetAdoptionApp.Infrastructure.csproj", "{78E38B9C-73BB-4BB0-AA89-3473258B1733}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.SharedKernel", "src\PetAdoptionApp.SharedKernel\PetAdoptionApp.SharedKernel.csproj", "{E868D95A-9B4D-46AC-A366-36A3032A25BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.Domain", "src\PetAdoptionApp.Domain\PetAdoptionApp.Domain.csproj", "{E5DA5AF4-9972-41B8-8EC8-80C305CEF566}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.Web", "src\PetAdoptionApp.Web\PetAdoptionApp.Web.csproj", "{90687E85-3C4F-4912-84ED-E3D931FA975F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.SharedKernel", "src\PetAdoptionApp.SharedKernel\PetAdoptionApp.SharedKernel.csproj", "{E868D95A-9B4D-46AC-A366-36A3032A25BC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.FunctionalTests", "tests\PetAdoptionApp.FunctionalTests\PetAdoptionApp.FunctionalTests.csproj", "{C67C5353-F170-47D3-BA66-EA3B822028F3}"
 EndProject
@@ -25,6 +27,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{997C1C76-1B71-4BE8-B3C3-08E3E54B0234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{997C1C76-1B71-4BE8-B3C3-08E3E54B0234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{997C1C76-1B71-4BE8-B3C3-08E3E54B0234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{997C1C76-1B71-4BE8-B3C3-08E3E54B0234}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D1CD021E-8B29-4D85-9229-0F4A0C5E8516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1CD021E-8B29-4D85-9229-0F4A0C5E8516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1CD021E-8B29-4D85-9229-0F4A0C5E8516}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,14 +39,14 @@ Global
 		{78E38B9C-73BB-4BB0-AA89-3473258B1733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78E38B9C-73BB-4BB0-AA89-3473258B1733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78E38B9C-73BB-4BB0-AA89-3473258B1733}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5DA5AF4-9972-41B8-8EC8-80C305CEF566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5DA5AF4-9972-41B8-8EC8-80C305CEF566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5DA5AF4-9972-41B8-8EC8-80C305CEF566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5DA5AF4-9972-41B8-8EC8-80C305CEF566}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E868D95A-9B4D-46AC-A366-36A3032A25BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E868D95A-9B4D-46AC-A366-36A3032A25BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E868D95A-9B4D-46AC-A366-36A3032A25BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E868D95A-9B4D-46AC-A366-36A3032A25BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90687E85-3C4F-4912-84ED-E3D931FA975F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90687E85-3C4F-4912-84ED-E3D931FA975F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90687E85-3C4F-4912-84ED-E3D931FA975F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90687E85-3C4F-4912-84ED-E3D931FA975F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C67C5353-F170-47D3-BA66-EA3B822028F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C67C5353-F170-47D3-BA66-EA3B822028F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67C5353-F170-47D3-BA66-EA3B822028F3}.Release|Any CPU.ActiveCfg = Release|Any CPU

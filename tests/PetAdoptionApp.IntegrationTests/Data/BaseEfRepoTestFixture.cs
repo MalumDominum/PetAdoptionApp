@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
-using PetAdoptionApp.Core.ProjectAggregate;
-using PetAdoptionApp.Infrastructure.Data;
+using PetAdoptionApp.Infrastructure.DataAccess;
 using PetAdoptionApp.SharedKernel.Interfaces;
 
 namespace PetAdoptionApp.IntegrationTests.Data;

@@ -1,5 +1,4 @@
-﻿using PetAdoptionApp.Core.ProjectAggregate.Events;
-using Xunit;
+﻿using Xunit;
 
 namespace PetAdoptionApp.UnitTests.Core.ProjectAggregate;
 public class ToDoItemMarkComplete

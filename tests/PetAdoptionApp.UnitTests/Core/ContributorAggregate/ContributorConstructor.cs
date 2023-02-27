@@ -1,4 +1,4 @@
-﻿using PetAdoptionApp.Core.ContributorAggregate;
+﻿using PetAdoptionApp.Domain.Aggregates.ContributorAggregate;
 using Xunit;
 
 namespace PetAdoptionApp.UnitTests.Core.ContributorAggregate;

@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
-using PetAdoptionApp.Web;
 using Xunit;
 
 namespace PetAdoptionApp.FunctionalTests.ControllerApis;

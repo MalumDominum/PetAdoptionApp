@@ -1,6 +1,4 @@
-﻿using PetAdoptionApp.Core.ProjectAggregate;
-
-namespace PetAdoptionApp.UnitTests;
+﻿namespace PetAdoptionApp.UnitTests;
 
 public class ToDoItemBuilder
 {

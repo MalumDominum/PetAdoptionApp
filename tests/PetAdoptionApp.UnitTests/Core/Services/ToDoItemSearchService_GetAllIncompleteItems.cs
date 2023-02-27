@@ -1,15 +1,12 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Ardalis.Specification;
-using PetAdoptionApp.Core.ProjectAggregate;
-using PetAdoptionApp.Core.Services;
+﻿using Ardalis.Specification;
+using PetAdoptionApp.Application.Services;
 using PetAdoptionApp.SharedKernel.Interfaces;
 using Moq;
 using Xunit;
 
 namespace PetAdoptionApp.UnitTests.Core.Services
 {
-    public class ToDoItemSearchService_GetAllIncompleteItems
+	public class ToDoItemSearchService_GetAllIncompleteItems
     {
         private Mock<IRepository<ToDoItem>> _mockRepo = new Mock<IRepository<ToDoItem>>();
         private ToDoItemSearchService _searchService;

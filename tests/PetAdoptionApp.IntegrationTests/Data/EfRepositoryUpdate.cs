@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PetAdoptionApp.Core.ProjectAggregate;
 using Xunit;
 
 namespace PetAdoptionApp.IntegrationTests.Data;

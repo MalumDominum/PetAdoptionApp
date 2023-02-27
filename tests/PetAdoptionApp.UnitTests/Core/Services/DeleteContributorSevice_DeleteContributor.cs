@@ -1,10 +1,6 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Ardalis.Specification;
-using MediatR;
+﻿using MediatR;
 using Moq;
-using PetAdoptionApp.Core.ContributorAggregate;
-using PetAdoptionApp.Core.Services;
+using PetAdoptionApp.Application.Services;
 using PetAdoptionApp.SharedKernel.Interfaces;
 using Xunit;
 

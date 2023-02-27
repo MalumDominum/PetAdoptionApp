@@ -1,8 +1,8 @@
 ﻿using Moq;
-using PetAdoptionApp.Core.Interfaces;
-using PetAdoptionApp.Core.ProjectAggregate;
-using PetAdoptionApp.Core.ProjectAggregate.Events;
-using PetAdoptionApp.Core.ProjectAggregate.Handlers;
+using PetAdoptionApp.Domain.Aggregates.ProjectAggregate;
+using PetAdoptionApp.Domain.Aggregates.ProjectAggregate.Events;
+using PetAdoptionApp.Domain.Aggregates.ProjectAggregate.Handlers;
+using PetAdoptionApp.Domain.Interfaces;
 using Xunit;
 
 namespace PetAdoptionApp.UnitTests.Core.Handlers;

@@ -1,6 +1,4 @@
-﻿using PetAdoptionApp.Core.ProjectAggregate;
-using PetAdoptionApp.Core.ProjectAggregate.Specifications;
-using Xunit;
+﻿using Xunit;
 
 namespace PetAdoptionApp.UnitTests.Core.Specifications;
 public class IncompleteItemsSpecificationConstructor

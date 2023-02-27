@@ -1,6 +1,4 @@
 ﻿using Ardalis.HttpClientTestExtensions;
-using PetAdoptionApp.Web;
-using PetAdoptionApp.Web.ApiModels;
 using Xunit;
 
 namespace PetAdoptionApp.FunctionalTests.ControllerApis;

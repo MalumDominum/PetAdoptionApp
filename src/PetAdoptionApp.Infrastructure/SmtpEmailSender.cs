@@ -1,8 +1,9 @@
 ﻿using System.Net.Mail;
 using Microsoft.Extensions.Logging;
-using PetAdoptionApp.Core.Interfaces;
+using PetAdoptionApp.Domain.Interfaces;
 
 namespace PetAdoptionApp.Infrastructure;
+
 public class SmtpEmailSender : IEmailSender
 {
     private readonly ILogger<SmtpEmailSender> _logger;
