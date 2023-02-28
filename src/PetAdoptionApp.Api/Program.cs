@@ -8,35 +8,32 @@ using PetAdoptionApp.Infrastructure.DataAccess;
 using PetAdoptionApp.Application;
 
 var builder = WebApplication.CreateBuilder(args);
+var isDev = builder.Environment.IsDevelopment();
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
-builder.Services.AddPresentation()
-					.AddApplication()
-					.AddInfrastructure(builder.Configuration, builder.Environment.IsDevelopment())
-					.AddSharedKernel();
+builder.Services.AddPresentation(isDev)
+				.AddApplication()
+				.AddInfrastructure(builder.Configuration, isDev)
+				.AddSharedKernel();
 
 var app = builder.Build();
 {
-	if (app.Environment.IsDevelopment())
+	if (isDev)
 	{
-		//app.UseDeveloperExceptionPage(); To see exception details
+		app.UseDeveloperExceptionPage();
 		app.UseShowAllServicesMiddleware();
 	}
 	else
 	{
 		app.UseExceptionHandler("/Error");
+		app.UseHttpsRedirection();
 		app.UseHsts();
 	}
 	app.UseRouting();
 	app.UseFastEndpoints();
 
-	app.UseHttpsRedirection();
-	app.UseStaticFiles();
-	app.UseCookiePolicy();
+	app.UseStaticFiles(); // Remove if will use min.io
 
-	// Enable middleware to serve generated Swagger as a JSON endpoint.
 	app.UseSwagger();
-
-	// Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
 	app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pet Adoption API V1"));
 
 	// Seed Database
@@ -47,7 +44,7 @@ var app = builder.Build();
 		try
 		{
 			var context = services.GetRequiredService<AppDbContext>();
-			//                                        context.Database.Migrate();
+			//context.Database.Migrate();
 			context.Database.EnsureCreated();
 			SeedData.Initialize(services);
 		}
@@ -57,6 +54,5 @@ var app = builder.Build();
 			logger.LogError(ex, "An error occurred seeding the DB. {exceptionMessage}", ex.Message);
 		}
 	}
-
 	app.Run();
 }

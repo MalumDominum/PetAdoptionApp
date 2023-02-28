@@ -20,6 +20,7 @@ public class Create : Endpoint<CreateContributorRequest, CreateContributorRespon
         Options(x => x
             .WithTags("ContributorEndpoints"));
     }
+
     public override async Task HandleAsync(
         CreateContributorRequest request,
         CancellationToken cancellationToken)

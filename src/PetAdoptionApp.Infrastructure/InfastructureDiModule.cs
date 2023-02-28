@@ -1,14 +1,10 @@
-﻿using MediatR.Pipeline;
-using MediatR;
-using System.Reflection;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PetAdoptionApp.Domain.Aggregates.ProjectAggregate;
 using PetAdoptionApp.Domain.Interfaces;
 using PetAdoptionApp.Infrastructure.DataAccess;
 using PetAdoptionApp.SharedKernel.Interfaces;
 using PetAdoptionApp.SharedKernel;
-using PetAdoptionApp.SharedKernel.Interfaces.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace PetAdoptionApp.Infrastructure;
 
@@ -29,8 +25,8 @@ public static class InfastructureDiModule
 	private static IServiceCollection AddDataAccess(this IServiceCollection services,
 		ConfigurationManager configuration)
 	{
-		var connectionString = configuration.GetConnectionString("SqliteConnection");
-		services.AddDbContext(connectionString!);
+		services.AddDbContext<AppDbContext>(options =>
+					options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 		services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 		services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));

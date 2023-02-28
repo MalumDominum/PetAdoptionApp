@@ -8,7 +8,15 @@
         <WebProjectMode>true</WebProjectMode>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+      <UserSecretsId>15d67f47-edfd-40d3-8298-0c18c3dc65d4</UserSecretsId>
+  </PropertyGroup>
+    
+    <ItemGroup>
+      <Compile Remove="logs\**" />
+      <Content Remove="logs\**" />
+      <EmbeddedResource Remove="logs\**" />
+      <None Remove="logs\**" />
+    </ItemGroup>
     
     <ItemGroup>
       <None Remove="database.sqlite" />
@@ -28,9 +36,8 @@
         <PackageReference Include="Mapster" />
         <PackageReference Include="Mapster.DependencyInjection" />
         <PackageReference Include="MediatR" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" PrivateAssets="all" />
         <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" PrivateAssets="All" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" />
         <PackageReference Include="Serilog.Sinks.ApplicationInsights" />
         <PackageReference Include="Swashbuckle.AspNetCore" />
         <PackageReference Include="Serilog.AspNetCore" />

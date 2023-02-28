@@ -19,14 +19,13 @@ public class Update : Endpoint<UpdateContributorRequest, UpdateContributorRespon
         Options(x => x
             .WithTags("ContributorEndpoints"));
     }
+
     public override async Task HandleAsync(
         UpdateContributorRequest request,
         CancellationToken cancellationToken)
     {
         if (request.Name == null)
-        {
             ThrowError("Name is required");
-        }
 
         var existingContributor = await _repository.GetByIdAsync(request.Id, cancellationToken);
         if (existingContributor == null)
@@ -40,8 +39,7 @@ public class Update : Endpoint<UpdateContributorRequest, UpdateContributorRespon
         await _repository.UpdateAsync(existingContributor, cancellationToken);
 
         var response = new UpdateContributorResponse(
-                contributor: new ContributorRecord(existingContributor.Id, existingContributor.Name)
-        );
+                contributor: new ContributorRecord(existingContributor.Id, existingContributor.Name));
 
         await SendAsync(response);
     }
