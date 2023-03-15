@@ -1,24 +1,20 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using PetAdoptionApp.Domain.Interfaces;
 using PetAdoptionApp.Infrastructure.DataAccess;
-using PetAdoptionApp.SharedKernel.Interfaces;
-using PetAdoptionApp.SharedKernel;
 using Microsoft.EntityFrameworkCore;
+using PetAdoptionApp.SharedKernel.DataAccess;
 
 namespace PetAdoptionApp.Infrastructure;
 
-public static class InfastructureDiModule
+public static class InfrastructureDiModule
 {
 	public static IServiceCollection AddInfrastructure(this IServiceCollection services,
 		ConfigurationManager configuration, bool isDevelopment)
 	{
-		if (isDevelopment) services.AddDevelopmentOnlyDependencies();
-		else services.AddProductionOnlyDependencies();
+		//if (isDevelopment) services.AddDevelopmentOnlyDependencies();
+		//else services.AddProductionOnlyDependencies();
 
 		services.AddDataAccess(configuration);
-
-		services.AddScoped<IDomainEventDispatcher, DomainEventDispatcher>();
 		return services;
 	}
 
@@ -33,15 +29,15 @@ public static class InfastructureDiModule
 		return services;
 	}
 
-	private static IServiceCollection AddDevelopmentOnlyDependencies(this IServiceCollection services)
-	{
-		services.AddScoped<IEmailSender, FakeEmailSender>();
-		return services;
-	}
+	//private static IServiceCollection AddDevelopmentOnlyDependencies(this IServiceCollection services)
+	//{
+	//	services.AddScoped<IEmailSender, FakeEmailSender>();
+	//	return services;
+	//}
 
-	private static IServiceCollection AddProductionOnlyDependencies(this IServiceCollection services)
-	{
-		services.AddScoped<IEmailSender, SmtpEmailSender>();
-		return services;
-	}
+	//private static IServiceCollection AddProductionOnlyDependencies(this IServiceCollection services)
+	//{
+	//	services.AddScoped<IEmailSender, SmtpEmailSender>();
+	//	return services;
+	//}
 }

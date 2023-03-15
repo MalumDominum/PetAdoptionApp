@@ -1,22 +1,16 @@
-﻿using FastEndpoints.Swagger.Swashbuckle;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.OpenApi.Models;
-using PetAdoptionApp.Api.ErrorHandling;
+﻿using Microsoft.OpenApi.Models;
 using PetAdoptionApp.Api.Mapping;
-using FastEndpoints.ApiExplorer;
-using FastEndpoints;
 using Ardalis.ListStartupServices;
 
 namespace PetAdoptionApp.Api;
+
 public static class ApiDiModule
 {
 	public static IServiceCollection AddPresentation(this IServiceCollection services, bool isDev)
 	{
-		services.AddSingleton<ProblemDetailsFactory, CustomProblemDetailsFactory>();
+		services.AddControllers();
 		services.AddMapping();
-		services.AddFastEndpoints();
-		services.AddFastEndpointsApiExplorer(); // For supporting Minimal API
-		services.AddSwaggerDocumantation();
+		services.AddSwaggerDocumentation();
 		if (isDev)
 			// add list services page for diagnostic purposes
 			services.Configure<ServiceConfig>(config =>
@@ -28,7 +22,7 @@ public static class ApiDiModule
 		return services;
 	}
 
-	public static IServiceCollection AddSwaggerDocumantation(this IServiceCollection services)
+	public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
 	{
 		services.AddSwaggerGen(c =>
 		{
@@ -36,10 +30,9 @@ public static class ApiDiModule
 			{
 				Title = "Pet Adoption API",
 				Version = "v1",
-				Description = "This is an API for Hand to Paw website"
+				Description = "This is an API for Hand to Paw website",
 			});
 			c.EnableAnnotations();
-			c.OperationFilter<FastEndpointsOperationFilter>();
 		});
 		return services;
 	}

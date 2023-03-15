@@ -24,6 +24,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\src\PetAdoptionApp.Api\PetAdoptionApp.Api.csproj" />
         <ProjectReference Include="..\PetAdoptionApp.UnitTests\PetAdoptionApp.UnitTests.csproj" />
     </ItemGroup>
 

@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using PetAdoptionApp.Domain.Aggregates.ContributorAggregate;
-using PetAdoptionApp.Domain.Aggregates.ProjectAggregate;
-using PetAdoptionApp.SharedKernel;
-using PetAdoptionApp.SharedKernel.Interfaces;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
+using PetAdoptionApp.SharedKernel.DddModelsDefinition;
+using PetAdoptionApp.SharedKernel.Events;
 
 namespace PetAdoptionApp.Infrastructure.DataAccess;
 
@@ -17,9 +16,7 @@ public class AppDbContext : DbContext
 		_dispatcher = dispatcher;
 	}
 
-	public DbSet<ToDoItem> ToDoItems => Set<ToDoItem>();
-	public DbSet<Project> Projects => Set<Project>();
-	public DbSet<Contributor> Contributors => Set<Contributor>();
+	public DbSet<PetProfile> PetProfiles => Set<PetProfile>();
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

@@ -19,6 +19,11 @@ public class NoOpMediator : IMediator
         return Task.FromResult<TResponse>(default!);
     }
 
+    public Task Send<TRequest>(TRequest request, CancellationToken cancellationToken = new()) where TRequest : IRequest
+    {
+	    return Task.FromResult<TRequest>(default!);
+	}
+
     public Task<object?> Send(object request, CancellationToken cancellationToken = default)
     {
         return Task.FromResult<object?>(default);

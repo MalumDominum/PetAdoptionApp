@@ -1,6 +1,5 @@
 ﻿using Ardalis.ListStartupServices;
 using PetAdoptionApp.Infrastructure;
-using FastEndpoints;
 using Serilog;
 using PetAdoptionApp.Api;
 using PetAdoptionApp.SharedKernel;
@@ -29,9 +28,8 @@ var app = builder.Build();
 		app.UseHsts();
 	}
 	app.UseRouting();
-	app.UseFastEndpoints();
 
-	app.UseStaticFiles(); // Remove if will use min.io
+	//app.UseStaticFiles(); Add if will share files
 
 	app.UseSwagger();
 	app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pet Adoption API V1"));
