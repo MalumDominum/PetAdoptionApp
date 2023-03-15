@@ -2,7 +2,8 @@
 
 namespace PetAdoptionApp.Api.Models;
 
-public record PetProfileFiltering(
+public record PetProfilePageRequest(
+	DateTime? FromTime,
 	//Guid? UserId,
-	string NameLike,
-	Gender Gender);
+	string? NameLike,
+	Gender? Gender);

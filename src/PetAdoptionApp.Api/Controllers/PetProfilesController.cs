@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.Api.Models;
-using PetAdoptionApp.Application.PetProfiles.Queries;
+using PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
 namespace PetAdoptionApp.Api.Controllers;
@@ -20,7 +20,7 @@ public class PetProfilesController : ApiControllerBase
 	}
 
 	[HttpGet("{id:int}")]
-	public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
+	public async Task<IActionResult> GetById(int id)
 	{
 		await Task.CompletedTask;
 		return Ok();
@@ -28,7 +28,7 @@ public class PetProfilesController : ApiControllerBase
 
 	[HttpGet]
 	public async Task<IActionResult> GetFilterablePage(
-		[FromQuery] PetProfileFiltering request, CancellationToken cancellationToken)
+		[FromQuery] PetProfilePageRequest request, CancellationToken cancellationToken)
 	{
 		var query = _mapper.Map<FilterablePagePetsQuery>(request);
 		var result = await _mediator.Send(query, cancellationToken);

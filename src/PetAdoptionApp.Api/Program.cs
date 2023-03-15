@@ -28,6 +28,7 @@ var app = builder.Build();
 		app.UseHsts();
 	}
 	app.UseRouting();
+	app.MapControllers();
 
 	//app.UseStaticFiles(); Add if will share files
 

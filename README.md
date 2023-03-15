@@ -83,7 +83,7 @@
 }
 ```
 
-## GET PetProfile?fromDate={statusChangedTime}&filter={value} example 📃🐈🐈🐈
+## GET PetProfile?fromTime={statusChangedTime}&filter={value} example 📃🐈🐈🐈
 
 ##### Filtering options with examples (Maked class for passing this values)
 
