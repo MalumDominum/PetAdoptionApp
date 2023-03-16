@@ -1,4 +1,5 @@
 ﻿using Ardalis.ListStartupServices;
+using Microsoft.EntityFrameworkCore;
 using PetAdoptionApp.Infrastructure;
 using Serilog;
 using PetAdoptionApp.Api;
@@ -44,6 +45,7 @@ var app = builder.Build();
 		{
 			var context = services.GetRequiredService<AppDbContext>();
 			//context.Database.Migrate();
+			context.Database.EnsureDeleted();
 			context.Database.EnsureCreated();
 			SeedData.Initialize(services);
 		}

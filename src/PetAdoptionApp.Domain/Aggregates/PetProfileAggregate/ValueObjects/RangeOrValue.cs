@@ -1,20 +1,35 @@
 ﻿using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
-namespace PetAdoptionApp.Domain.ValueObjects;
+namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
 public class RangeOrValue<T> : ValueObject
 	where T : IComparable
 {
-	public T? Value { get; set; }
+	public T? Value { get; }
 
-	public T? From { get; set; }
+	public T? From { get; }
 
-	public T? To { get; set; }
+	public T? To { get; }
 
+	#region Constructors
+
+	public RangeOrValue(T? value, T? from, T? to)
+	{
+		Value = value;
+		From = from;
+		To = to;
+	}
+
+	public RangeOrValue() { }
+
+	#endregion
 
 	public T ToOrValue => To != null ? To : Value!;
 
 	public T FromOrValue => From != null ? From : Value!;
+
+	public bool Validate() => Value == null && From != null && To != null
+							  || Value != null && From == null && To == null;
 
 	#region Comparing Operators
 

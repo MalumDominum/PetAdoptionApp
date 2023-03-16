@@ -6,6 +6,6 @@ public sealed class PetProfilePaginationSpec : Specification<PetProfile>
 {
 	public PetProfilePaginationSpec(DateTime statusChangedDateTime)
 	{
-		Query.OrderByDescending(p => p.LastUpdateAt);
+		Query.OrderByDescending(p => p.StatusChangedAt);
 	}
 }

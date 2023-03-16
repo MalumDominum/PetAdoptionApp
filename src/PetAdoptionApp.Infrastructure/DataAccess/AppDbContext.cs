@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 using PetAdoptionApp.SharedKernel.Events;
@@ -16,7 +17,9 @@ public class AppDbContext : DbContext
 		_dispatcher = dispatcher;
 	}
 
-	public DbSet<PetProfile> PetProfiles => Set<PetProfile>();
+	//public DbSet<PetProfile> PetProfiles => Set<PetProfile>();
+
+	public DbSet<Color> Colors => Set<Color>();
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

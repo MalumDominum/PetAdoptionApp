@@ -25,7 +25,7 @@ public static class InfrastructureDiModule
 					options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 		services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-		services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+		services.AddScoped(typeof(IReadRepository<>), typeof(EfReadRepository<>));
 		return services;
 	}
 

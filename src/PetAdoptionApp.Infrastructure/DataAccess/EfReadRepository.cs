@@ -4,8 +4,8 @@ using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
 namespace PetAdoptionApp.Infrastructure.DataAccess;
 
-public class EfRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepository<T>
+public class EfReadRepository<T> : RepositoryBase<T>, IReadRepository<T>
 	where T : EntityBase, IAggregateRoot
 {
-	public EfRepository(AppDbContext dbContext) : base(dbContext) { }
+	public EfReadRepository(AppDbContext dbContext) : base(dbContext) { }
 }

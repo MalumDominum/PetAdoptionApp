@@ -6,6 +6,6 @@ public sealed class PetProfileSavedSpec : Specification<PetProfile>
 {
 	public PetProfileSavedSpec(int ownerId)
 	{
-		Query.OrderByDescending(p => p.LastUpdateAt);
+		Query.OrderByDescending(p => p.StatusChangedAt);
 	}
 }

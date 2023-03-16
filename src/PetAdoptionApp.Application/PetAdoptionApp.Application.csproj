@@ -20,5 +20,5 @@
         <ProjectReference Include="..\PetAdoptionApp.Domain\PetAdoptionApp.Domain.csproj" />
         <ProjectReference Include="..\PetAdoptionApp.SharedKernel\PetAdoptionApp.SharedKernel.csproj" />
     </ItemGroup>
-
+	
 </Project>
