@@ -2,7 +2,7 @@
 
 namespace PetAdoptionApp.Domain.Aggregates.StateAggregate;
 
-public class State : EntityBase, IAggregateRoot
+public class State : EntityBase<int>, IAggregateRoot
 {
 	public string Title { get; set; } = null!;
 

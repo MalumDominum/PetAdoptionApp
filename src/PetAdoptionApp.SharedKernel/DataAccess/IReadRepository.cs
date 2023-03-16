@@ -4,4 +4,4 @@ using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 namespace PetAdoptionApp.SharedKernel.DataAccess;
 
 public interface IReadRepository<T> : IReadRepositoryBase<T>
-	where T : EntityBase, IAggregateRoot { }
+	where T : class, IAggregateRoot { }

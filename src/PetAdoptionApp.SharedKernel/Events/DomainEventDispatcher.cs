@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
 namespace PetAdoptionApp.SharedKernel.Events;
 public class DomainEventDispatcher : IDomainEventDispatcher
@@ -11,7 +10,7 @@ public class DomainEventDispatcher : IDomainEventDispatcher
 		_mediator = mediator;
 	}
 
-	public async Task DispatchAndClearEvents(IEnumerable<EntityBase> entitiesWithEvents)
+	public async Task DispatchAndClearEvents(IEnumerable<DomainEventSender> entitiesWithEvents)
 	{
 		foreach (var entity in entitiesWithEvents)
 		{

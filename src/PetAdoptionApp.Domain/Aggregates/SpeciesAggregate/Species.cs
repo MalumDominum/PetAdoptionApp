@@ -2,7 +2,7 @@
 
 namespace PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
 
-public class Species : EntityBase, IAggregateRoot
+public class Species : EntityBase<int>, IAggregateRoot
 {
 	public string Title { get; set; } = null!;
 }

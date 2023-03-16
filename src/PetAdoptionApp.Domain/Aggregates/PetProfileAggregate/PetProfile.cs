@@ -7,7 +7,7 @@ using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 
-public class PetProfile : EntityBase, IAggregateRoot
+public class PetProfile : EntityBase<Guid>, IAggregateRoot
 {
 	public string Name { get; set; } = null!;
 
