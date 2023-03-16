@@ -18,11 +18,11 @@
 		},
 		"colors": [
 			// Sorted by id
-			{ "id": 1, "name": "White", "hexValue": "#fff" },
+			{ "id": 1, "name": "White", "hexValue": "#ffffff" },
 			{ "id": 5, "name": "Gray", "hexValue": "#808080" }
 		]
 	},
-	"height": { "from": 15, "to": 30 },
+	"height": { "id": 1, "title": "Small", "from": 15, "to": 30 },
 	"details": {
 		"breed": { "id": "1", "value": "Unbred" },
 		"neutering": true,

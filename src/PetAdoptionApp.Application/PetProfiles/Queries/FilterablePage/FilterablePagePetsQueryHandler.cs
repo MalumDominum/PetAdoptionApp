@@ -31,7 +31,7 @@ public class FilterablePagePetsQueryHandler
 
 		return result.Count > 0
 			? new FilterablePagePetsQueryResult(_mapper.Map<List<PetProfileListDto>>(result),
-				new PaginationDetails(0, 0, 0, new Uri(""), new Uri(""), new Uri(""), new Uri(""), new Uri(""), new Uri("")))
+				new PaginationDetails(0, 0, 0, new Pages(new Uri("http://x/"), new Uri("http://x/"), new Uri("http://x/"), new Uri("http://x/"), new Uri("http://x/"), new Uri("http://x/"))))
 			: Errors.PetProfile.NoFurtherRecordsError;
 	}
 }

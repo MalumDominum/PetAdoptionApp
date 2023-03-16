@@ -1,8 +1,12 @@
-﻿namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
+﻿using Ardalis.SmartEnum;
 
-public enum Gender
+namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
+
+public class Gender : SmartEnum<Gender, string>
 {
-	Male = 'm',
-	Female = 'f',
-	Unknown = 'u'
+	public static readonly Gender Male = new (nameof(Male), "m");
+	public static readonly Gender Female = new (nameof(Female), "f");
+	public static readonly Gender Unknown = new (nameof(Unknown), "u");
+
+	private Gender(string name, string value) : base(name, value) { }
 }

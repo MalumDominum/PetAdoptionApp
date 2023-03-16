@@ -36,7 +36,6 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 		builder.Property(p => p.Gender)
 			   .HasColumnType("char(1)")
 			   .IsRequired()
-			   .HasConversion(g => g == Gender.Male ? 'm' : g == Gender.Female ? 'f' : 'u', // (char)g possible
-					c => c == 'm' ? Gender.Male : c == 'f' ? Gender.Female : Gender.Unknown);
+			   .HasConversion(g => g.Value, v => Gender.FromValue(v));
 	}
 }

@@ -16,7 +16,7 @@ public class AppDbContext : DbContext
 		_dispatcher = dispatcher;
 	}
 
-	//public DbSet<PetProfile> PetProfiles => Set<PetProfile>();
+	public DbSet<PetProfile> PetProfiles => Set<PetProfile>();
 
 	public DbSet<Color> Colors => Set<Color>();
 

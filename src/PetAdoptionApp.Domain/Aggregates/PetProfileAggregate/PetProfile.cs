@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
+using PetAdoptionApp.Domain.Aggregates.HeightAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Nesting;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
@@ -11,19 +12,18 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 {
 	public string Name { get; set; } = null!;
 
-	public Gender Gender { get; set; }
+	public Gender Gender { get; set; } = null!;
 
 	//public DatePartially BirthDate { get; set; } = null!;
 
 	//public int SpeciesId { get; set; }
 	//public Species Species { get; set; } = null!;
 
-	private readonly List<int>? _colorIds;
-	public IReadOnlyCollection<int>? ColorIds => _colorIds?.AsReadOnly();
+	public List<int>? ColorIds;
 	private readonly List<Color>? _colors;
 	public IReadOnlyCollection<Color>? Colors => _colors?.AsReadOnly();
 
-	//public RangeOrValue<int> Height { get; set; } = null!;
+	//public Height Height { get; set; } = null!;
 
 	//public PetProfileDetails? Details { get; set; }
 
@@ -46,9 +46,8 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 
 	#region Constructors
 
-	public PetProfile(List<string>? photoAndVideoUrls, List<int>? colorIds, List<Color>? colors)
+	public PetProfile(List<string>? photoAndVideoUrls, List<Color>? colors)
 	{
-		_colorIds = colorIds;
 		_colors = colors;
 		//_photoAndVideoUrls = photoAndVideoUrls;
 	}
