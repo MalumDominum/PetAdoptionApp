@@ -18,6 +18,8 @@ public class AppDbContext : DbContext
 
 	public DbSet<PetProfile> PetProfiles => Set<PetProfile>();
 
+	public DbSet<PetColor> PetColors => Set<PetColor>();
+
 	public DbSet<Color> Colors => Set<Color>();
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)

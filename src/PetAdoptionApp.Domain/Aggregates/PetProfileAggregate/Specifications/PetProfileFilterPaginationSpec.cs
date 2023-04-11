@@ -2,10 +2,12 @@
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 
-public sealed class PetProfileFilterSpec : Specification<PetProfile>
+public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 {
-	public PetProfileFilterSpec(PetProfileFilteringValues filter)
+	public PetProfileFilterPaginationSpec(PetProfileFilteringValues filter)
 	{
+		Query.Include(p => p.Colors);
+
 		if (!string.IsNullOrEmpty(filter.NameLike))
 			Query.Where(p => p.Name.Contains(filter.NameLike));
 

@@ -26,11 +26,11 @@ public class FilterablePagePetsQueryHandler
 	public async Task<ErrorOr<FilterablePagePetsQueryResult>> Handle(
 		FilterablePagePetsQuery query, CancellationToken cancellationToken)
 	{
-		var specification = new PetProfilePaginationSpec(new DateTime());
+		var specification = new PetProfileFilterPaginationSpec(_mapper.Map<PetProfileFilteringValues>(query));
 		var result = await _petRepository.ListAsync(specification, cancellationToken);
 
 		return result.Count > 0
-			? new FilterablePagePetsQueryResult(_mapper.Map<List<PetProfileListDto>>(result),
+			? new FilterablePagePetsQueryResult(_mapper.Map<List<PetProfileInListDto>>(result),
 				new PaginationDetails(0, 0, 0, new Pages(new Uri("http://x/"), new Uri("http://x/"), new Uri("http://x/"), new Uri("http://x/"), new Uri("http://x/"), new Uri("http://x/"))))
 			: Errors.PetProfile.NoFurtherRecordsError;
 	}

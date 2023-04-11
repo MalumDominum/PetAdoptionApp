@@ -4,5 +4,5 @@ using PetAdoptionApp.Application.PetProfiles.Queries.Models;
 namespace PetAdoptionApp.Api.Models;
 
 public record PetProfilePageResponse(
-	List<PetProfileListDto> Results,
+	List<PetProfileInListDto> Results,
 	PaginationDetails Pagination);

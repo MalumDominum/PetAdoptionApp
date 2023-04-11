@@ -46,11 +46,11 @@ public static class SeedData
 	{
 		var insert = new List<PetProfile>
 		{
-			new() { Name = "Alice", Gender = Gender.Female, ColorIds = new List<int>{ 1, 5 },
+			new() { Name = "Alice", Gender = Gender.Female,
 				Description = "**A short story:**\nA kitten😻 - gray-haired beauty Alice..." },
-			new() { Name = "Fenrir", Gender = Gender.Male, ColorIds = new List<int>{ 4, 6 },
+			new() { Name = "Fenrir", Gender = Gender.Male,
 				Description = "A god sibling! FEAR" },
-			new() { Name = "Cutie", Gender = Gender.Female, ColorIds = new List<int>{ 2, 4 },
+			new() { Name = "Cutie", Gender = Gender.Female,
 				Description = "Just cawai kitty" }
 		};
 		foreach (var row in insert)

@@ -18,8 +18,7 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 
 	//public int SpeciesId { get; set; }
 	//public Species Species { get; set; } = null!;
-
-	public List<int>? ColorIds;
+	
 	private readonly List<Color>? _colors;
 	public IReadOnlyCollection<Color>? Colors => _colors?.AsReadOnly();
 

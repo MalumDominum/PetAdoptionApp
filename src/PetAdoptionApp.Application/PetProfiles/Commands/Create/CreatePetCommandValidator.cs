@@ -2,7 +2,7 @@
 
 namespace PetAdoptionApp.Application.PetProfiles.Commands.Create;
 
-public class CreatePetCommandValidator : AbstractValidator<PetProfileCommand>
+public class CreatePetCommandValidator : AbstractValidator<CreatePetCommand>
 {
 	public CreatePetCommandValidator()
 	{

@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.Api.Models;
+using PetAdoptionApp.Application.PetProfiles.Commands.Create;
 using PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
@@ -20,7 +21,7 @@ public class PetProfilesController : ApiControllerBase
 	}
 
 	[HttpGet("{id:int}")]
-	public async Task<IActionResult> GetById(int id)
+	public async Task<IActionResult> GetPetProfileById(int id)
 	{
 		await Task.CompletedTask;
 		return Ok();
@@ -32,6 +33,14 @@ public class PetProfilesController : ApiControllerBase
 	{
 		var query = _mapper.Map<FilterablePagePetsQuery>(request);
 		var result = await _mediator.Send(query, cancellationToken);
+		return result.Match(Ok, Problem);
+	}
+
+	[HttpPost]
+	public async Task<IActionResult> PostPetProfile(PostPetProfilePageRequest request, CancellationToken cancellationToken)
+	{
+		var command = _mapper.Map<CreatePetCommand>(request);
+		var result = await _mediator.Send(command, cancellationToken);
 		return result.Match(Ok, Problem);
 	}
 }

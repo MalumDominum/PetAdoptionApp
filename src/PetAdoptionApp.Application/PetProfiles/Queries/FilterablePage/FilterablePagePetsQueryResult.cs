@@ -4,5 +4,5 @@ using PetAdoptionApp.Application.PetProfiles.Queries.Models;
 namespace PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
 
 public record FilterablePagePetsQueryResult(
-	List<PetProfileListDto> Results,
+	List<PetProfileInListDto> Results,
 	PaginationDetails Pagination);
