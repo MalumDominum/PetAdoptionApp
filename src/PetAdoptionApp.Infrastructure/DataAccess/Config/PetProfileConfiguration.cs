@@ -22,8 +22,7 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 			   {
 				   pc.ToTable("PetColor");
 				   pc.HasKey(p => new { p.ColorId, p.PetProfileId });
-				   pc.HasIndex(p => p.ColorId);
-				   pc.HasIndex(p => p.PetProfileId);
+				   pc.HasIndex(p => new { p.ColorId, p.PetProfileId });
 			   });
 		builder.Navigation(p => p.Colors).Metadata.SetField("_colors");
 		builder.Navigation(p => p.Colors).UsePropertyAccessMode(PropertyAccessMode.Field);

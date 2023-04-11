@@ -1,8 +1,6 @@
 ﻿using Mapster;
 using PetAdoptionApp.Api.Models;
 using PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
-using PetAdoptionApp.Application.PetProfiles.Queries.Models;
-using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
 
 namespace PetAdoptionApp.Api.Mapping;

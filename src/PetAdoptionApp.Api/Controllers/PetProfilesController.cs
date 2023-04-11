@@ -1,8 +1,10 @@
 ﻿using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.Api.Models;
 using PetAdoptionApp.Application.PetProfiles.Commands.Create;
+using PetAdoptionApp.Application.PetProfiles.Commands.Update;
 using PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
@@ -40,6 +42,14 @@ public class PetProfilesController : ApiControllerBase
 	public async Task<IActionResult> PostPetProfile(PostPetProfilePageRequest request, CancellationToken cancellationToken)
 	{
 		var command = _mapper.Map<CreatePetCommand>(request);
+		var result = await _mediator.Send(command, cancellationToken);
+		return result.Match(Ok, Problem);
+	}
+
+	[HttpPut]
+	public async Task<IActionResult> PutPetProfile(PutPetProfilePageRequest request, CancellationToken cancellationToken)
+	{
+		var command = _mapper.Map<UpdatePetCommand>(request);
 		var result = await _mediator.Send(command, cancellationToken);
 		return result.Match(Ok, Problem);
 	}

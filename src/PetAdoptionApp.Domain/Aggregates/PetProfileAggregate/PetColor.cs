@@ -3,7 +3,7 @@ using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 
-public class PetColor : IAggregateRoot
+public class PetColor : IManyToManyLinker
 {
 	public Guid PetProfileId { get; set; }
 	public PetProfile PetProfile { get; set; } = null!;

@@ -23,11 +23,11 @@ public class CreatePetCommandHandler : IRequestHandler<CreatePetCommand, ErrorOr
 	public async Task<ErrorOr<CreatePetCommandResult>> Handle(CreatePetCommand command, CancellationToken cancellationToken)
 	{
 		var createdPet = await _petRepository.AddAsync(_mapper.Map<PetProfile>(command), cancellationToken);
-		
-		if (command.ColorIds != null)
-			foreach (var colorId in command.ColorIds)
-				await _petColorRepository.AddAsync(new PetColor(createdPet.Id, colorId), cancellationToken);
 
-		return new CreatePetCommandResult(command.Name, command.Gender);
+		if (command.ColorIds != null)
+			await _petColorRepository.AddRangeAsync(
+				command.ColorIds.Select(id => new PetColor(createdPet.Id, id)), cancellationToken);
+
+		return _mapper.Map<CreatePetCommandResult>(createdPet);
 	}
 }
