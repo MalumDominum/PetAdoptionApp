@@ -16,6 +16,8 @@ public class MappingConfig : IRegister
 	        .Map(dest => dest, src => src.Value);
 
         config.NewConfig<string, Gender>()
-	        .MapWith(src => src == null ? Gender.Unknown : Gender.FromValue(src));
+	        .MapWith(src => Gender.List.Select(g => g.Value).Contains(src)
+		        ? Gender.FromValue(src)
+		        : Gender.Unknown);
 	}
 }

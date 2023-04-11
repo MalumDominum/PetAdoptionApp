@@ -6,6 +6,8 @@ public class UpdatePetCommandValidator : AbstractValidator<UpdatePetCommand>
 {
 	public UpdatePetCommandValidator()
 	{
-		//RuleFor(x => x.Email).NotNull();
+		const int maxColors = 4;
+		RuleFor(x => x.ColorIds).Must(x => x == null || x.Count <= maxColors)
+			.WithMessage($"The pet must have no more than {maxColors} colors");
 	}
 }
