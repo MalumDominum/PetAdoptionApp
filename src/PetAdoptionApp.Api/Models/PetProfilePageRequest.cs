@@ -4,4 +4,6 @@ public record PetProfilePageRequest(
 	DateTime? FromTime,
 	//Guid? UserId,
 	string? NameLike,
-	string? Gender);
+	string? Gender,
+	DateOnly? BirthDateFrom,
+	DateOnly? BirthDateTo);

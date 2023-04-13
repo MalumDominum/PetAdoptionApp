@@ -13,8 +13,8 @@ public record PetProfileFilteringValues(
 	int? HeightTo,
 	List<int>? ColorIds,
 
-	DateTime? BirthDateFrom,
-	DateTime? BirthDateTo,
+	DateOnly? BirthDateFrom,
+	DateOnly? BirthDateTo,
 
 	bool? Neutering,
 	bool? Healthy,

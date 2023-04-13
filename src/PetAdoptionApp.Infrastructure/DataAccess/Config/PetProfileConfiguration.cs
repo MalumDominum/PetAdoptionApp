@@ -46,5 +46,6 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 			   .HasConversion(e => e.Value, v => Gender.FromValue(v));
 
 		builder.OwnsOne(p => p.BirthDate).WithOwner();
+		builder.Property(p => p.BackfieldBirthDate).IsRequired();
 	}
 }

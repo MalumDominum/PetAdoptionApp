@@ -11,11 +11,25 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 
 	public Gender Gender { get; set; } = null!;
 
-	public PartialPossibleDate BirthDate { get; set; } = null!;
+	#region PartialPossibleDate BirthDate
+
+	private PartialPossibleDate _birthDate = null!;
+	public PartialPossibleDate BirthDate
+	{
+		get => _birthDate;
+		set
+		{
+			BackfieldBirthDate = (DateOnly)value;
+			_birthDate = value;
+		}
+	}
+	public DateOnly BackfieldBirthDate { private set; get; }  // Property for filtering that is not available to the user
+
+	#endregion
 
 	//public int SpeciesId { get; set; }
 	//public Species Species { get; set; } = null!;
-	
+
 	private readonly List<Color>? _colors;
 	public IReadOnlyCollection<Color>? Colors => _colors?.AsReadOnly();
 
@@ -42,7 +56,7 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 
 	#region Constructors
 
-	public PetProfile(List<string>? photoAndVideoUrls, List<Color>? colors)
+	public PetProfile(List<Color>? colors, List<string>? photoAndVideoUrls)
 	{
 		_colors = colors;
 		//_photoAndVideoUrls = photoAndVideoUrls;

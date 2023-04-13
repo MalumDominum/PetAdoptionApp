@@ -1,4 +1,5 @@
 ﻿using PetAdoptionApp.SharedKernel.DddModelsDefinition;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
@@ -33,19 +34,7 @@ public class PartialPossibleDate : ValueObject
 	                        || (Year == DateTime.Today.Year
 	                            && (Month == null || Month <= DateTime.Today.Month));
 
-	#region Comparing Operators
-
-	public static bool operator <=(PartialPossibleDate left, DateOnly right) =>
-		left.Year == right.Year
-			? new DateOnly(left.Year, left.Month ?? 1, left.Day ?? 1) <= right
-			: left.Year < right.Year;
-
-	public static bool operator >=(PartialPossibleDate left, DateOnly right) =>
-		left.Year == right.Year
-			? new DateOnly(left.Year, left.Month ?? 12, left.Day ?? 27) >= right
-			: left.Year > right.Year;
-
-	#endregion
+	public static explicit operator DateOnly(PartialPossibleDate date) => new(date.Year, date.Month ?? 1, date.Day ?? 1);
 
 	protected override IEnumerable<object> GetEqualityComponents()
 	{

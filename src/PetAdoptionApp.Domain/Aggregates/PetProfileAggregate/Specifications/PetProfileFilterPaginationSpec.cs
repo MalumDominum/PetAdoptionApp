@@ -36,15 +36,11 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 		//if (filter.HeightTo != null)
 		//	Query.Where(p => p.Height <= filter.HeightTo);
 
-		// TODO Implement that comparing logic in DatePartially ValueObject and DateTime
-		//if (filter.BirthDateFrom != null)
-		//	Query.Where(p => p.BirthDate.Year >= filter.BirthDateFrom.Value.Year &&
-		//					 (!p.BirthDate.Month.HasValue || p.BirthDate.Month >= filter.BirthDateFrom.Value.Month) &&
-		//					 (!p.BirthDate.Day.HasValue || p.BirthDate.Day >= filter.BirthDateFrom.Value.Day));
-		//  Query.Where(p => p.BirthDate >= filter.BirthDateFrom.Value); TODO THEN
+		if (filter.BirthDateFrom != null)
+			Query.Where(p => p.BackfieldBirthDate >= filter.BirthDateFrom.Value);
 
-		//if (filter.BirthDateTo != null)
-		//	Query.Where(p => p.BirthDate <= filter.BirthDateTo.Value);
+		if (filter.BirthDateTo != null)
+			Query.Where(p => p.BackfieldBirthDate <= filter.BirthDateTo.Value);
 		
 		//if (filter.Neutering != null)
 		//	Query.Where(p => p.Details.Neutering == filter.Neutering);
