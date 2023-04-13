@@ -1,8 +1,11 @@
-﻿namespace PetAdoptionApp.Api.Models;
+﻿using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
+
+namespace PetAdoptionApp.Api.Models;
 
 public record PutPetProfilePageRequest(
 	Guid Id,
 	string Name,
 	string Gender,
+	PartialPossibleDate BirthDate,
 	string Description,
 	List<int>? ColorIds);

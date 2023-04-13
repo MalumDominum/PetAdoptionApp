@@ -44,5 +44,7 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 			   .HasColumnType("char(1)")
 			   .IsRequired()
 			   .HasConversion(e => e.Value, v => Gender.FromValue(v));
+
+		builder.OwnsOne(p => p.BirthDate).WithOwner();
 	}
 }

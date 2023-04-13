@@ -5,11 +5,11 @@ namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 public class RangeOrValue<T> : ValueObject
 	where T : IComparable
 {
-	public T? Value { get; }
+	public T? Value { get; init; }
 
-	public T? From { get; }
+	public T? From { get; init; }
 
-	public T? To { get; }
+	public T? To { get; init; }
 
 	#region Constructors
 

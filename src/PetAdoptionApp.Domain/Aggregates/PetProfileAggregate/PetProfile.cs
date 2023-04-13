@@ -1,8 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
-using PetAdoptionApp.Domain.Aggregates.HeightAggregate;
+﻿using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
-using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Nesting;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
@@ -14,7 +11,7 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 
 	public Gender Gender { get; set; } = null!;
 
-	//public DatePartially BirthDate { get; set; } = null!;
+	public PartialPossibleDate BirthDate { get; set; } = null!;
 
 	//public int SpeciesId { get; set; }
 	//public Species Species { get; set; } = null!;

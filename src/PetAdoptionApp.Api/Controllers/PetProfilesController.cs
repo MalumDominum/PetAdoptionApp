@@ -1,6 +1,5 @@
 ﻿using MapsterMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.Api.Models;
 using PetAdoptionApp.Application.PetProfiles.Commands.Create;

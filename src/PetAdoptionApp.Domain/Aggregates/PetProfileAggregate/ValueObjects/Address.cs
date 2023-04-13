@@ -4,9 +4,9 @@ namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
 public class Address : ValueObject
 {
-	public Location Location { get; } = null!;
+	public Location Location { get; init; } = null!;
 
-	public string FullAddress { get; } = null!;
+	public string FullAddress { get; init; } = null!;
 
 	#region Constructors
 

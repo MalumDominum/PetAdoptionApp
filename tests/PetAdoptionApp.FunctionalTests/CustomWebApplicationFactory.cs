@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PetAdoptionApp.Api;
 using PetAdoptionApp.Infrastructure.DataAccess;
 
 namespace PetAdoptionApp.FunctionalTests;
@@ -44,7 +43,7 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
 	        //if (!db.ToDoItems.Any())
 	        //{
 	        // Seed the database with test data.
-	        SeedData.PopulateTestData(db);
+	        //SeedData.Initialize(db);
 	        //}
         }
         catch (Exception ex)

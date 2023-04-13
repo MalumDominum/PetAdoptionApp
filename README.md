@@ -6,9 +6,9 @@
 	"name": "Alice",
 	"gender": "f",
 	"birthDate": {
-		"year": { "value": 2022 },
-		"month": { "from": 11, "to": 12 } // Last value may be range if not sure
-		// "date": { "value": 30 } // May be optional if not sure exact date
+		"year": 2022,
+		"month": 12,
+		"date": null // May be optional if not sure exact date
 	},
 	// Not returned if photos present
 	"appearance": {
@@ -118,8 +118,9 @@
 			"name": "Alice",
 			"gender": "f",
 			"birthDate": {
-				"year": { "value": 2022 },
-				"month": { "from": 11, "to": 12 }
+				"year": 2022,
+				"month": 12,
+				"day": null
 			},
 			"speciesTitle": "Cat",
 			"colors": [

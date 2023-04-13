@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using MediatR;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
 namespace PetAdoptionApp.Application.PetProfiles.Commands.Update;
 
@@ -9,4 +10,5 @@ public record UpdatePetCommand(
 	string Name,
 	Gender Gender,
 	string Description,
+	PartialPossibleDate BirthDate,
 	List<int>? ColorIds) : IRequest<ErrorOr<UpdatePetCommandResult>>;

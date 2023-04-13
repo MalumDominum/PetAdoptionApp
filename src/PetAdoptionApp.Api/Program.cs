@@ -1,5 +1,4 @@
 ﻿using Ardalis.ListStartupServices;
-using Microsoft.EntityFrameworkCore;
 using PetAdoptionApp.Infrastructure;
 using Serilog;
 using PetAdoptionApp.Api;

@@ -4,8 +4,8 @@ namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
 public class Location : ValueObject
 {
-	public double Latitude { get; }
-	public double Longitude { get; }
+	public double Latitude { get; init; }
+	public double Longitude { get; init; }
 
 	#region Constructors
 

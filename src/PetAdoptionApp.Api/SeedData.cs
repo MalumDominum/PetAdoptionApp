@@ -2,6 +2,7 @@
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Infrastructure.DataAccess;
 
 namespace PetAdoptionApp.Api;
@@ -47,11 +48,14 @@ public static class SeedData
 		var insert = new List<PetProfile>
 		{
 			new() { Name = "Alice", Gender = Gender.Female,
-				Description = "**A short story:**\nA kitten😻 - gray-haired beauty Alice..." },
+				Description = "**A short story:**\nA kitten😻 - gray-haired beauty Alice...",
+				BirthDate = new PartialPossibleDate(2023, 2, 26, true) },
 			new() { Name = "Fenrir", Gender = Gender.Male,
-				Description = "A god sibling! FEAR" },
+				Description = "A god sibling! FEAR",
+				BirthDate = new PartialPossibleDate(2022, 9) },
 			new() { Name = "Cutie", Gender = Gender.Female,
-				Description = "Just cawai kitty" }
+				Description = "Just cawai kitty",
+				BirthDate = new PartialPossibleDate(2023) }
 		};
 		foreach (var row in insert)
 			context.PetProfiles.Add(row);
