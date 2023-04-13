@@ -1,10 +1,10 @@
 ﻿using ErrorOr;
 using MediatR;
-using PetAdoptionApp.Application.PetProfiles.Queries.Models;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 
 namespace PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
 
 public record FilterablePagePetsQuery(
 		DateTime? FromTime,
-		PetProfileFilteringOptions Filtering
+		PetProfileFilteringValues Filtering
 		) : IRequest<ErrorOr<FilterablePagePetsQueryResult>>;

@@ -3,7 +3,7 @@ using MediatR;
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.SharedKernel.DataAccess;
 
-namespace PetAdoptionApp.Application.PetProfiles.Queries.Entities;
+namespace PetAdoptionApp.Application.Colors.Queries;
 
 public class ColorsQueryHandler : IRequestHandler<ColorsQuery, ErrorOr<ColorsQueryResult>>
 {

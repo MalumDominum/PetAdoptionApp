@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
 
-namespace PetAdoptionApp.Application.PetProfiles.Queries.Entities;
+namespace PetAdoptionApp.Application.Colors.Queries;
 
 public record ColorsQuery : IRequest<ErrorOr<ColorsQueryResult>>;

@@ -26,7 +26,7 @@ public class FilterablePagePetsQueryHandler
 	public async Task<ErrorOr<FilterablePagePetsQueryResult>> Handle(
 		FilterablePagePetsQuery query, CancellationToken cancellationToken)
 	{
-		var specification = new PetProfileFilterPaginationSpec(_mapper.Map<PetProfileFilteringValues>(query));
+		var specification = new PetProfileFilterPaginationSpec(query.FromTime, query.Filtering);
 		var result = await _petRepository.ListAsync(specification, cancellationToken);
 
 		return result.Count > 0

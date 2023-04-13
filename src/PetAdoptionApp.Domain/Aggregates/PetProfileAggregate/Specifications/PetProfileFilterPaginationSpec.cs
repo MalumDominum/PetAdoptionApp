@@ -4,12 +4,12 @@ namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 
 public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 {
-	public PetProfileFilterPaginationSpec(PetProfileFilteringValues filter)
+	public PetProfileFilterPaginationSpec(DateTime? paginationTime, PetProfileFilteringValues filter)
 	{
-		Query.Include(p => p.Colors);
+		Query.Include(p => p.Colors); //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
 
 		if (!string.IsNullOrEmpty(filter.NameLike))
-			Query.Where(p => p.Name.Contains(filter.NameLike));
+			Query.Where(p => p.Name.ToLower().Contains(filter.NameLike.ToLower()));
 
 		if (filter.Gender != null)
 			Query.Where(p => p.Gender == filter.Gender);

@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PetAdoptionApp.Application.PetProfiles.Queries.Entities;
+using PetAdoptionApp.Application.Colors.Queries;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
 namespace PetAdoptionApp.Api.Controllers;
