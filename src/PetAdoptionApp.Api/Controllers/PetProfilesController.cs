@@ -55,6 +55,7 @@ public class PetProfilesController : ApiControllerBase
 	///		  },
 	///		  "description": "Cute little kitty",
 	///		  "speciesId": 1,
+	///		  "sizeId": 1,
 	///		  "colorIds": [
 	///		    1, 3
 	///		  ]

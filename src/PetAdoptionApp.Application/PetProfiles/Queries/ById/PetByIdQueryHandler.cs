@@ -1,7 +1,6 @@
 ﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
-using PetAdoptionApp.Application.Common;
 using PetAdoptionApp.Application.PetProfiles.Queries.Models;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;

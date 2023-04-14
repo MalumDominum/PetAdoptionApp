@@ -11,4 +11,6 @@ public record UpdatePetCommand(
 	Gender Gender,
 	string Description,
 	PartialPossibleDate BirthDate,
+	int SpeciesId,
+	int SizeId,
 	List<int>? ColorIds) : IRequest<ErrorOr<UpdatePetCommandResult>>;

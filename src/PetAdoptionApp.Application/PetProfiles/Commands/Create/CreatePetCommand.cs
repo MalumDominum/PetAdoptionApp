@@ -11,4 +11,5 @@ public record CreatePetCommand(
 	PartialPossibleDate BirthDate,
 	string Description,
 	int SpeciesId,
+	int SizeId,
 	List<int>? ColorIds) : IRequest<ErrorOr<CreatePetCommandResult>>;

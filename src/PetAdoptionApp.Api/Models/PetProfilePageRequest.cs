@@ -6,4 +6,7 @@ public record PetProfilePageRequest(
 	string? NameLike,
 	string? Gender,
 	DateOnly? BirthDateFrom,
-	DateOnly? BirthDateTo);
+	DateOnly? BirthDateTo,
+	List<int>? SizeIds,
+	List<int>? ColorIds,
+	int? SpeciesId);

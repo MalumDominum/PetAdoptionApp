@@ -1,8 +1,8 @@
 ﻿using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
-namespace PetAdoptionApp.Domain.Aggregates.HeightAggregate;
+namespace PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 
-public class Height : EntityBase<int>, IAggregateRoot
+public class Size : EntityBase<int>, IAggregateRoot
 {
 	public string Title { get; set; } = null!;
 

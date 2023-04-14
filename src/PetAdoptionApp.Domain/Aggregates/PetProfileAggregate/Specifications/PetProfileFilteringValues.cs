@@ -9,8 +9,7 @@ public record PetProfileFilteringValues(
 	string? NearLocation,
 	List<int>? StateIds,
 	Gender? Gender,
-	int? HeightFrom,
-	int? HeightTo,
+	List<int>? SizeIds,
 	List<int>? ColorIds,
 
 	DateOnly? BirthDateFrom,

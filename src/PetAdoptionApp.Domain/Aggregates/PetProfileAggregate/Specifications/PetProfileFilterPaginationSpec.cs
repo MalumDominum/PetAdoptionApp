@@ -8,6 +8,7 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 	{
 		Query.Include(p => p.Species); //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
 		Query.Include(p => p.Colors); //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
+		Query.Include(p => p.Size);
 
 		if (!string.IsNullOrEmpty(filter.NameLike))
 			Query.Where(p => p.Name.ToLower().Contains(filter.NameLike.ToLower()));
@@ -15,8 +16,8 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 		if (filter.Gender != null)
 			Query.Where(p => p.Gender == filter.Gender);
 
-		//if (filter.SpeciesId != null)
-		//	Query.Where(p => p.SpeciesId == filter.SpeciesId);
+		if (filter.SpeciesId != null)
+			Query.Where(p => p.SpeciesId == filter.SpeciesId);
 
 		//if (filter.BreedId != null)
 		//	Query.Where(p => p.BreedId == filter.BreedId);
@@ -27,15 +28,12 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 		//if (filter.StateIds != null)
 		//	Query.Where(p => p.StateIds.Contains(StateIds));
 
+		// TODO This doesn't work. Bring it in PetColor spec
 		//if (filter.ColorIds != null)
-		//	Query.Where(p => p.ColorIds.Contains(ColorIds));
-
-		// TODO Implement comparing RangeOrValue<T> with T and HasValue method
-		//if (filter.HeightFrom != null)
-		//	Query.Where(p => p.Height >= filter.HeightFrom);
-
-		//if (filter.HeightTo != null)
-		//	Query.Where(p => p.Height <= filter.HeightTo);
+		//	Query.Where(p => filter.ColorIds.All(fc => p.Colors!.Select(c => c.Id).Contains(fc)));
+		
+		if (filter.SizeIds != null)
+			Query.Where(p => p.SizeId != null && filter.SizeIds.Contains(p.SizeId.Value));
 
 		if (filter.BirthDateFrom != null)
 			Query.Where(p => p.BackfieldBirthDate >= filter.BirthDateFrom.Value);

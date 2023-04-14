@@ -11,23 +11,32 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 	{
 		// TODO Configure OnDelete behaviors
 		ConfigurePetProfileTable(builder);
+
 		ConfigureColorRelationship(builder);
+		
 		ConfigureSpeciesRelationship(builder);
+		ConfigureSizeRelationship(builder);
 	}
+
+	#region Configure Many-to-Many Relationships
 
 	private static void ConfigureColorRelationship(EntityTypeBuilder<PetProfile> builder)
 	{
 		builder.HasMany(p => p.Colors)
-			   .WithMany()
-			   .UsingEntity<PetColor>(pc =>
-			   {
-				   pc.ToTable("PetColor");
-				   pc.HasKey(p => new { p.ColorId, p.PetProfileId });
-				   pc.HasIndex(p => new { p.ColorId, p.PetProfileId });
-			   });
+			.WithMany()
+			.UsingEntity<PetColor>(pc =>
+			{
+				pc.ToTable("PetColor");
+				pc.HasKey(p => new { p.ColorId, p.PetProfileId });
+				pc.HasIndex(p => new { p.ColorId, p.PetProfileId });
+			});
 		builder.Navigation(p => p.Colors).Metadata.SetField("_colors");
 		builder.Navigation(p => p.Colors).UsePropertyAccessMode(PropertyAccessMode.Field);
 	}
+
+	#endregion
+
+	#region Configure One-to-Many Relationships
 
 	private static void ConfigureSpeciesRelationship(EntityTypeBuilder<PetProfile> builder)
 	{
@@ -36,6 +45,15 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 			   .HasForeignKey(p => p.SpeciesId)
 			   .IsRequired();
 	}
+
+	private static void ConfigureSizeRelationship(EntityTypeBuilder<PetProfile> builder)
+	{
+		builder.HasOne(p => p.Size)
+			   .WithMany()
+			   .HasForeignKey(p => p.SizeId);
+	}
+
+	#endregion
 
 	private static void ConfigurePetProfileTable(EntityTypeBuilder<PetProfile> builder)
 	{

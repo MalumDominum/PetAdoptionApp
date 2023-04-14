@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
+using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
 using PetAdoptionApp.SharedKernel.Events;
 
@@ -24,6 +25,8 @@ public class AppDbContext : DbContext
 	public DbSet<Color> Colors => Set<Color>();
 
 	public DbSet<Species> Species => Set<Species>();
+
+	public DbSet<Size> Sizes => Set<Size>();
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

@@ -1,5 +1,4 @@
 ﻿using PetAdoptionApp.SharedKernel.DddModelsDefinition;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 

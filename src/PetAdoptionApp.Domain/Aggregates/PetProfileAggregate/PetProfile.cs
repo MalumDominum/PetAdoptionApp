@@ -1,6 +1,7 @@
 ﻿using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
+using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
 using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
@@ -34,7 +35,8 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 	private readonly List<Color>? _colors;
 	public IReadOnlyCollection<Color>? Colors => _colors?.AsReadOnly();
 
-	//public Height Height { get; set; } = null!;
+	public int? SizeId { get; set; }
+	public Size? Size { get; set; }
 
 	//public PetProfileDetails? Details { get; set; }
 
