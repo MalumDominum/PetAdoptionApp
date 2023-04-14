@@ -3,6 +3,7 @@ using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
+using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
 using PetAdoptionApp.Infrastructure.DataAccess;
 
 namespace PetAdoptionApp.Api;
@@ -15,6 +16,7 @@ public static class SeedData
 		    serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null);
 
 		if (!dbContext.Colors.Any()) InsertColors(dbContext);
+		if (!dbContext.Species.Any()) InsertSpecies(dbContext);
 		if (isDevelopment)
 		{
 			if (!dbContext.PetProfiles.Any()) InsertPetProfilesForTesting(dbContext);
@@ -41,6 +43,29 @@ public static class SeedData
 		context.SaveChanges();
 	}
 
+	public static void InsertSpecies(AppDbContext context)
+	{
+		var insert = new List<Species>
+		{
+			new() { Title = "Cat" },		 // 1
+			new() { Title = "Dog" },		 // 2
+			new() { Title = "Parrot" },		 // 3
+			new() { Title = "Guinea Pig" },	 // 4
+			new() { Title = "Ferret" },		 // 5
+			new() { Title = "Rat" },		 // 6
+			new() { Title = "Chinchilla" },	 // 7
+			new() { Title = "Rabbit" },		 // 8
+			new() { Title = "Lizard" },		 // 9
+			new() { Title = "Snake" },		 // 10
+			new() { Title = "Fox" },		 // 11
+			new() { Title = "Exotic" }		 // 12
+		};
+		foreach (var row in insert)
+			context.Species.Add(row);
+
+		context.SaveChanges();
+	}
+
 	#region Data for Testing
 
 	private static void InsertPetProfilesForTesting(AppDbContext context)
@@ -49,13 +74,13 @@ public static class SeedData
 		{
 			new() { Name = "Alice", Gender = Gender.Female,
 				Description = "**A short story:**\nA kitten😻 - gray-haired beauty Alice...",
-				BirthDate = new PartialPossibleDate(2023, 2, 26, true) },
+				BirthDate = new PartialPossibleDate(2023, 2, 26, true), SpeciesId = 1 },
 			new() { Name = "Fenrir", Gender = Gender.Male,
 				Description = "A god sibling! FEAR",
-				BirthDate = new PartialPossibleDate(2022, 9) },
+				BirthDate = new PartialPossibleDate(2022, 9), SpeciesId = 2 },
 			new() { Name = "Cutie", Gender = Gender.Female,
 				Description = "Just cawai kitty",
-				BirthDate = new PartialPossibleDate(2023) }
+				BirthDate = new PartialPossibleDate(2023), SpeciesId = 1 }
 		};
 		foreach (var row in insert)
 			context.PetProfiles.Add(row);

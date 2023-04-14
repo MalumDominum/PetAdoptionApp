@@ -7,4 +7,5 @@ public record PostPetProfilePageRequest(
 	string Gender,
 	PartialPossibleDate BirthDate,
 	string Description,
+	int SpeciesId,
 	List<int>? ColorIds);

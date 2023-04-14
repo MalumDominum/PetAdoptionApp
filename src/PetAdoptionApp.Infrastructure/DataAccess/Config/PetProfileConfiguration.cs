@@ -12,6 +12,7 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 		// TODO Configure OnDelete behaviors
 		ConfigurePetProfileTable(builder);
 		ConfigureColorRelationship(builder);
+		ConfigureSpeciesRelationship(builder);
 	}
 
 	private static void ConfigureColorRelationship(EntityTypeBuilder<PetProfile> builder)
@@ -26,6 +27,14 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 			   });
 		builder.Navigation(p => p.Colors).Metadata.SetField("_colors");
 		builder.Navigation(p => p.Colors).UsePropertyAccessMode(PropertyAccessMode.Field);
+	}
+
+	private static void ConfigureSpeciesRelationship(EntityTypeBuilder<PetProfile> builder)
+	{
+		builder.HasOne(p => p.Species)
+			   .WithMany()
+			   .HasForeignKey(p => p.SpeciesId)
+			   .IsRequired();
 	}
 
 	private static void ConfigurePetProfileTable(EntityTypeBuilder<PetProfile> builder)

@@ -6,6 +6,7 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 {
 	public PetProfileFilterPaginationSpec(DateTime? paginationTime, PetProfileFilteringValues filter)
 	{
+		Query.Include(p => p.Species); //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
 		Query.Include(p => p.Colors); //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
 
 		if (!string.IsNullOrEmpty(filter.NameLike))

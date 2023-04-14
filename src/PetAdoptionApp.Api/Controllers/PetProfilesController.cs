@@ -1,4 +1,4 @@
-using MapsterMapper;
+﻿using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.Api.Models;
@@ -54,6 +54,7 @@ public class PetProfilesController : ApiControllerBase
 	///		    "isExact": true
 	///		  },
 	///		  "description": "Cute little kitty",
+	///		  "speciesId": 1,
 	///		  "colorIds": [
 	///		    1, 3
 	///		  ]

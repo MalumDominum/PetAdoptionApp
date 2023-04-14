@@ -8,4 +8,5 @@ public record PetProfileInListDto(
 	string Name,
 	string Gender,
 	PartialPossibleDate BirthDate,
+	Domain.Aggregates.SpeciesAggregate.Species Species,
 	List<Color> Colors);
