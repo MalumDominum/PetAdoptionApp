@@ -21,8 +21,8 @@ public class PetProfilesController : ApiControllerBase
 		_mapper = mapper;
 	}
 
-	[HttpGet("{id:int}")]
-	public async Task<IActionResult> GetPetProfileById(int id)
+	[HttpGet("{id:guid}")]
+	public async Task<IActionResult> GetPetProfileById(Guid id)
 	{
 		await Task.CompletedTask;
 		return Ok();
@@ -37,12 +37,35 @@ public class PetProfilesController : ApiControllerBase
 		return result.Match(Ok, Problem);
 	}
 
+	/// <summary>Creates a PetProfile</summary>
+	/// <returns>A creation details</returns>
+	/// <remarks>
+	/// Sample request:
+	///
+	///     {
+	///		  "name": "Luna",
+	///		  "gender": "f",
+	///		  "birthDate": {
+	///		    "year": 2023,
+	///		    "month": 2,
+	///		    "day": null,
+	///		    "isExact": true
+	///		  },
+	///		  "description": "Cute little kitty",
+	///		  "colorIds": [
+	///		    1, 3
+	///		  ]
+	///     }
+	///
+	/// </remarks>
+	/// <response code="201">PetProfile was successfully created</response>
+	/// <response code="400">Passed PetProfile didn't pass the validation (see response details)</response>
 	[HttpPost]
 	public async Task<IActionResult> PostPetProfile(PostPetProfilePageRequest request, CancellationToken cancellationToken)
 	{
 		var command = _mapper.Map<CreatePetCommand>(request);
 		var result = await _mediator.Send(command, cancellationToken);
-		return result.Match(Ok, Problem);
+		return result.Match(r => CreatedAtAction(nameof(GetPetProfileById), new { id = result.Value.Id }, r), Problem);
 	}
 
 	[HttpPut]

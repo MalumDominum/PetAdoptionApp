@@ -1,6 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using PetAdoptionApp.Api.Mapping;
 using Ardalis.ListStartupServices;
+using System.Reflection;
 
 namespace PetAdoptionApp.Api;
 
@@ -9,8 +10,8 @@ public static class ApiDiModule
 	public static IServiceCollection AddPresentation(this IServiceCollection services, bool isDev)
 	{
 		services.AddControllers();
-		services.AddMapping();
-		services.AddSwaggerDocumentation();
+		services.AddMapping()
+			    .AddSwaggerDocumentation();
 		if (isDev)
 			// add list services page for diagnostic purposes
 			services.Configure<ServiceConfig>(config =>
@@ -22,7 +23,7 @@ public static class ApiDiModule
 		return services;
 	}
 
-	public static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
+	private static IServiceCollection AddSwaggerDocumentation(this IServiceCollection services)
 	{
 		services.AddSwaggerGen(c =>
 		{
@@ -32,7 +33,8 @@ public static class ApiDiModule
 				Version = "v1",
 				Description = "This is an API for Hand to Paw website",
 			});
-			c.EnableAnnotations();
+			var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+			c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 		});
 		return services;
 	}
