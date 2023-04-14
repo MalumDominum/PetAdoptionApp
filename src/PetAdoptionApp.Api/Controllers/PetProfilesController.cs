@@ -1,9 +1,10 @@
-﻿using MapsterMapper;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.Api.Models;
 using PetAdoptionApp.Application.PetProfiles.Commands.Create;
 using PetAdoptionApp.Application.PetProfiles.Commands.Update;
+using PetAdoptionApp.Application.PetProfiles.Queries.ById;
 using PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
@@ -22,10 +23,11 @@ public class PetProfilesController : ApiControllerBase
 	}
 
 	[HttpGet("{id:guid}")]
-	public async Task<IActionResult> GetPetProfileById(Guid id)
+	public async Task<IActionResult> GetPetProfileById(Guid id, CancellationToken cancellationToken)
 	{
-		await Task.CompletedTask;
-		return Ok();
+		var query = new PetByIdQuery(id);
+		var result = await _mediator.Send(query, cancellationToken);
+		return result.Match(Ok, Problem);
 	}
 
 	[HttpGet]
@@ -61,6 +63,8 @@ public class PetProfilesController : ApiControllerBase
 	/// <response code="201">PetProfile was successfully created</response>
 	/// <response code="400">Passed PetProfile didn't pass the validation (see response details)</response>
 	[HttpPost]
+	[ProducesResponseType(201)]
+	[ProducesResponseType(400)]
 	public async Task<IActionResult> PostPetProfile(PostPetProfilePageRequest request, CancellationToken cancellationToken)
 	{
 		var command = _mapper.Map<CreatePetCommand>(request);

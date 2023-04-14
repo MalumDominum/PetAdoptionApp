@@ -9,5 +9,9 @@ public static partial class Errors
 		public static Error NoFurtherRecordsError = Error.NotFound(
 			code: "PetProfile.NoFurtherRecordsError",
 			description: "Starting from this date further no more PetProfile records");
+
+		public static Error NoSuchRecordFoundError = Error.NotFound(
+			code: "PetProfile.NoSuchRecordFoundError",
+			description: "PetProfile record with passed id didn't exist");
 	}
 }
