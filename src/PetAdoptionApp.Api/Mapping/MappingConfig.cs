@@ -12,7 +12,7 @@ public class MappingConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<PetProfilePageRequest, FilterablePagePetsQuery>()
+        config.NewConfig<PagePetProfileRequest, FilterablePagePetsQuery>()
 	        .Map(dest => dest.Filtering, src => src);
 
         config.NewConfig<CreatePetCommand, PetProfile>();

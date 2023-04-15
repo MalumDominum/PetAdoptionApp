@@ -3,7 +3,7 @@ using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
 namespace PetAdoptionApp.Api.Models;
 
-public record PostPetProfilePageRequest(
+public record PostPetProfileRequest(
 	string Name,
 	string Gender,
 	PartialPossibleDate BirthDate,

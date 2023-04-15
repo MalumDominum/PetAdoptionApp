@@ -1,6 +1,6 @@
 ﻿namespace PetAdoptionApp.Api.Models;
 
-public record PetProfilePageRequest(
+public record PagePetProfileRequest(
 	DateTime? FromTime,
 	//Guid? UserId,
 	string? NameLike,

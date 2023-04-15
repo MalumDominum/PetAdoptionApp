@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.Api.Models;
 using PetAdoptionApp.Application.PetProfiles.Commands.Create;
+using PetAdoptionApp.Application.PetProfiles.Commands.Delete;
 using PetAdoptionApp.Application.PetProfiles.Commands.Update;
 using PetAdoptionApp.Application.PetProfiles.Queries.ById;
 using PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
@@ -32,7 +33,7 @@ public class PetProfilesController : ApiControllerBase
 
 	[HttpGet]
 	public async Task<IActionResult> GetFilterablePage(
-		[FromQuery] PetProfilePageRequest request, CancellationToken cancellationToken)
+		[FromQuery] PagePetProfileRequest request, CancellationToken cancellationToken)
 	{
 		var query = _mapper.Map<FilterablePagePetsQuery>(request);
 		var result = await _mediator.Send(query, cancellationToken);
@@ -75,7 +76,7 @@ public class PetProfilesController : ApiControllerBase
 	[HttpPost]
 	[ProducesResponseType(201)]
 	[ProducesResponseType(400)]
-	public async Task<IActionResult> PostPetProfile(PostPetProfilePageRequest request, CancellationToken cancellationToken)
+	public async Task<IActionResult> PostPetProfile(PostPetProfileRequest request, CancellationToken cancellationToken)
 	{
 		var command = _mapper.Map<CreatePetCommand>(request);
 		var result = await _mediator.Send(command, cancellationToken);
@@ -83,10 +84,17 @@ public class PetProfilesController : ApiControllerBase
 	}
 
 	[HttpPut]
-	public async Task<IActionResult> PutPetProfile(PutPetProfilePageRequest request, CancellationToken cancellationToken)
+	public async Task<IActionResult> PutPetProfile(PutPetProfileRequest request, CancellationToken cancellationToken)
 	{
 		var command = _mapper.Map<UpdatePetCommand>(request);
 		var result = await _mediator.Send(command, cancellationToken);
+		return result.Match(Ok, Problem);
+	}
+
+	[HttpDelete("{id:guid}")]
+	public async Task<IActionResult> DeletePetProfile(Guid id, CancellationToken cancellationToken)
+	{
+		var result = await _mediator.Send(new DeletePetCommand(id), cancellationToken);
 		return result.Match(Ok, Problem);
 	}
 }

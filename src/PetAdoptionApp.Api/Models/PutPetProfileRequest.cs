@@ -3,7 +3,7 @@ using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
 namespace PetAdoptionApp.Api.Models;
 
-public record PutPetProfilePageRequest(
+public record PutPetProfileRequest(
 	Guid Id,
 	string Name,
 	string Gender,

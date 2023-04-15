@@ -3,6 +3,6 @@ using PetAdoptionApp.Application.PetProfiles.Queries.Models;
 
 namespace PetAdoptionApp.Api.Models;
 
-public record PetProfilePageResponse(
+public record PagePetProfileResponse(
 	List<PetProfileInListDto> Results,
 	PaginationDetails Pagination);
