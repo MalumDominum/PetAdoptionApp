@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using PetAdoptionApp.SharedKernel.Providers;
 
 namespace PetAdoptionApp.Application;
 
@@ -14,6 +15,8 @@ public static class ApplicationDiModule
 			configuration.RegisterServicesFromAssembly(typeof(ApplicationDiModule).Assembly));
 
 		services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+		services.AddSingleton<IDateTimeProvider, DateTimeProviderWithoutTimezone>();
 
 		return services;
 	}

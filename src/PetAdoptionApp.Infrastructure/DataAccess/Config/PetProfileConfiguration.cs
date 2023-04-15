@@ -82,5 +82,8 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 				.WithMany()
 				.HasForeignKey(d => d.BreedId);
 		});
+
+		builder.Property(p => p.CreatedAt)
+			   .HasDefaultValueSql("NOW()");
 	}
 }

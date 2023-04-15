@@ -53,9 +53,7 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 	//public User Owner { get; set; }
 
 	public DateTime StatusChangedAt { get; set; } // Hidden property for ordering
-
 	public DateTime CreatedAt { get; set; }
-	
 	public DateTime? EditedAt { get; set; }
 
 	#region Constructors
