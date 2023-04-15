@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
+using PetAdoptionApp.Application.PetProfiles.Commands.Models;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
@@ -12,4 +13,5 @@ public record CreatePetCommand(
 	string Description,
 	int SpeciesId,
 	int SizeId,
-	List<int>? ColorIds) : IRequest<ErrorOr<CreatePetCommandResult>>;
+	List<int>? ColorIds,
+	PetProfileDetailsCommandDto Details) : IRequest<ErrorOr<CreatePetCommandResult>>;

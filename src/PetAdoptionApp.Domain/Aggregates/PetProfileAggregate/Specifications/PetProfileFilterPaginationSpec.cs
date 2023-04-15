@@ -19,8 +19,9 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 		if (filter.SpeciesId != null)
 			Query.Where(p => p.SpeciesId == filter.SpeciesId);
 
-		//if (filter.BreedId != null)
-		//	Query.Where(p => p.BreedId == filter.BreedId);
+		if (filter.BreedIds != null)
+			Query.Where(p => p.Details!.BreedId != null &&
+			                 filter.BreedIds.Contains(p.Details.BreedId.Value));
 
 		//if (filter.NearLocation != null)
 		//	Implement Near logic
@@ -31,26 +32,34 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 		// TODO This doesn't work. Bring it in PetColor spec
 		//if (filter.ColorIds != null)
 		//	Query.Where(p => filter.ColorIds.All(fc => p.Colors!.Select(c => c.Id).Contains(fc)));
-		
+
 		if (filter.SizeIds != null)
-			Query.Where(p => p.SizeId != null && filter.SizeIds.Contains(p.SizeId.Value));
+			Query.Where(p => p.SizeId != null &&
+			                 filter.SizeIds.Contains(p.SizeId.Value));
 
 		if (filter.BirthDateFrom != null)
 			Query.Where(p => p.BackfieldBirthDate >= filter.BirthDateFrom.Value);
 
 		if (filter.BirthDateTo != null)
 			Query.Where(p => p.BackfieldBirthDate <= filter.BirthDateTo.Value);
-		
-		//if (filter.Neutering != null)
-		//	Query.Where(p => p.Details.Neutering == filter.Neutering);
 
-		//if (filter.Healthy != null)
-		//	Query.Where(p => p.Details.Healthy == filter.Healthy);
+		#region Details Filtering
 
-		//if (filter.Vaccination != null)
-		//	Query.Where(p => p.Details.Vaccination == filter.Vaccination);
+		if (filter.Neutering != null)
+			Query.Where(p => p.Details!.Neutering == filter.Neutering);
 
-		//if (filter.HasCollar != null)
-		//	Query.Where(p => p.Details.HasCollar == filter.HasCollar);
+		if (filter.Healthy != null)
+			Query.Where(p => p.Details!.Healthy == filter.Healthy);
+
+		if (filter.Vaccination != null)
+			Query.Where(p => p.Details!.Vaccination == filter.Vaccination);
+
+		if (filter.HasPassport != null)
+			Query.Where(p => p.Details!.HasPassport == filter.HasPassport);
+
+		if (filter.HasCollar != null)
+			Query.Where(p => p.Details!.HasCollar == filter.HasCollar);
+
+		#endregion
 	}
 }

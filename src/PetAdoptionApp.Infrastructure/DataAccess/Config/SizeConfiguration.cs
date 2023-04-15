@@ -10,18 +10,18 @@ public class SizeConfiguration : IEntityTypeConfiguration<Size>
 	{
 		builder.ToTable("Sizes");
 
-		builder.HasKey(p => p.Id);
-		builder.Property(p => p.Id)
+		builder.HasKey(s => s.Id);
+		builder.Property(s => s.Id)
 			   .HasColumnName("SizeId");
 
-		builder.Property(c => c.Title)
+		builder.Property(s => s.Title)
 			   .HasMaxLength(50)
 			   .IsRequired();
 
-		builder.Property(c => c.From)
+		builder.Property(s => s.From)
 			   .IsRequired();
 
-		builder.Property(c => c.To)
+		builder.Property(s => s.To)
 			   .IsRequired();
 	}
 }

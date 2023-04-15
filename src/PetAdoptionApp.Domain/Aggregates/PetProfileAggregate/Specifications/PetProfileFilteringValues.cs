@@ -5,7 +5,7 @@ namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 public record PetProfileFilteringValues(
 	string? NameLike,
 	int? SpeciesId,
-	int? BreedId,
+	List<int>? BreedIds,
 	string? NearLocation,
 	List<int>? StateIds,
 	Gender? Gender,
@@ -18,5 +18,6 @@ public record PetProfileFilteringValues(
 	bool? Neutering,
 	bool? Healthy,
 	bool? Vaccination,
+	bool? HasPassport,
 	bool? HasCollar
 );

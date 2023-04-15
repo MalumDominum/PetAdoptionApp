@@ -58,7 +58,15 @@ public class PetProfilesController : ApiControllerBase
 	///		  "sizeId": 1,
 	///		  "colorIds": [
 	///		    1, 3
-	///		  ]
+	///		  ],
+	///		  "details": {
+	///		    "breedId": 3,
+	///		    "neutering": true,
+	///		    "healthy": false,
+	///		    "vaccination": true,
+	///		    "hasPassport": false,
+	///		    "hasCollar": true
+	///		  }
 	///     }
 	///
 	/// </remarks>

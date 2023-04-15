@@ -1,4 +1,5 @@
-﻿using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
+﻿using PetAdoptionApp.Application.Species.Models;
+using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
 namespace PetAdoptionApp.Application.PetProfiles.Queries.Models;
@@ -8,5 +9,7 @@ public record DetailedPetProfileDto(
 	string Name,
 	string Gender,
 	PartialPossibleDate BirthDate,
-	Domain.Aggregates.SpeciesAggregate.Species Species,
-	List<Color> Colors);
+	SpeciesWithoutNestingDto Species,
+	List<Color> Colors,
+	PetProfileDetailsQueryDto Details,
+	string Description);

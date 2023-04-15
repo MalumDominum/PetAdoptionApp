@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PetAdoptionApp.Domain.Aggregates.BreedAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
 
 namespace PetAdoptionApp.Infrastructure.DataAccess.Config;
@@ -10,12 +11,15 @@ public class SpeciesConfiguration : IEntityTypeConfiguration<Species>
 	{
 		builder.ToTable("Species");
 
-		builder.HasKey(p => p.Id);
-		builder.Property(p => p.Id)
+		builder.HasKey(s => s.Id);
+		builder.Property(s => s.Id)
 			   .HasColumnName("SpeciesId");
 
-		builder.Property(c => c.Title)
+		builder.Property(s => s.Title)
 			   .HasMaxLength(50)
 			   .IsRequired();
+
+		builder.HasMany(s => s.Breeds)
+			   .WithOne();
 	}
 }

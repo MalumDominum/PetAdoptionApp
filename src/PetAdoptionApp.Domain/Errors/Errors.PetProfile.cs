@@ -13,5 +13,9 @@ public static partial class Errors
 		public static Error NoSuchRecordFoundError = Error.NotFound(
 			code: "PetProfile.NoSuchRecordFoundError",
 			description: "PetProfile record with passed id didn't exist");
+
+		public static Error BreedNotBelongToSpecies = Error.Validation(
+			code: "PetProfile.BreedNotBelongToSpecies",
+			description: "The Breed not belong to specified Species. Please refetch Species again - maybe it outdated");
 	}
 }

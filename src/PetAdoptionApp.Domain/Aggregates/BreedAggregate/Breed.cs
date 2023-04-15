@@ -4,5 +4,7 @@ namespace PetAdoptionApp.Domain.Aggregates.BreedAggregate;
 
 public class Breed : EntityBase<int>, IAggregateRoot
 {
-	public string Name { get; set; } = null!;
+	public string Title { get; set; } = null!;
+
+	public int SpeciesId { get; set; }
 }

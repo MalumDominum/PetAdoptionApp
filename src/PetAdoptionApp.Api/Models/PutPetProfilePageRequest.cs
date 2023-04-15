@@ -1,4 +1,5 @@
-﻿using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
+﻿using PetAdoptionApp.Application.PetProfiles.Commands.Models;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
 namespace PetAdoptionApp.Api.Models;
 
@@ -10,4 +11,5 @@ public record PutPetProfilePageRequest(
 	string Description,
 	int SpeciesId,
 	int SizeId,
-	List<int>? ColorIds);
+	List<int>? ColorIds,
+	PetProfileDetailsCommandDto Details);

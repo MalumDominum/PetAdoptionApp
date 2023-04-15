@@ -9,7 +9,8 @@ public sealed class PetProfileByIdSpec : Specification<PetProfile>
 		Query.Include(p => p.Species); //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
 		Query.Include(p => p.Colors); //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
 		Query.Include(p => p.Size);
-		
+		Query.Include(p => p.Details).ThenInclude(d => d!.Breed);
+
 		Query.Where(p => p.Id == id);
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace PetAdoptionApp.Application.Species.Queries;
+﻿using PetAdoptionApp.Application.Species.Models;
+
+namespace PetAdoptionApp.Application.Species.Queries;
 
 public record SpeciesQueryResult(
-	List<Domain.Aggregates.SpeciesAggregate.Species> Results);
+	List<SpeciesDto> Results);

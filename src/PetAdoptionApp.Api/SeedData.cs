@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PetAdoptionApp.Domain.Aggregates.BreedAggregate;
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Nesting;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
@@ -18,7 +20,8 @@ public static class SeedData
 
 		if (!dbContext.Colors.Any()) InsertColors(dbContext);
 		if (!dbContext.Species.Any()) InsertSpecies(dbContext);
-		if (!dbContext.Sizes.Any()) InsertHeights(dbContext);
+		if (!dbContext.Breeds.Any()) InsertBreeds(dbContext);
+		if (!dbContext.Sizes.Any()) InsertSizes(dbContext);
 		if (isDevelopment)
 		{
 			if (!dbContext.PetProfiles.Any()) InsertPetProfilesForTesting(dbContext);
@@ -70,7 +73,41 @@ public static class SeedData
 		context.SaveChanges();
 	}
 
-	public static void InsertHeights(AppDbContext context)
+	public static void InsertBreeds(AppDbContext context)
+	{
+		var insert = new List<Breed>
+		{
+			new() { Title = "Mongrel", SpeciesId = 1 },
+			new() { Title = "Hybrid", SpeciesId = 2 },
+			new() { Title = "Siamese", SpeciesId = 1 },
+			new() { Title = "Persian", SpeciesId = 1 },
+			new() { Title = "Maine Coon", SpeciesId = 1 },
+			new() { Title = "Ragdoll", SpeciesId = 1 },
+			new() { Title = "Bengal", SpeciesId = 1 },
+			new() { Title = "Abyssinian", SpeciesId = 1 },
+			new() { Title = "Birman", SpeciesId = 1 },
+			new() { Title = "Oriental Shorthair", SpeciesId = 1 },
+			new() { Title = "Sphynx", SpeciesId = 1 },
+			new() { Title = "American Shorthair", SpeciesId = 1 },
+
+			new() { Title = "Mongrel", SpeciesId = 2 },
+			new() { Title = "Hybrid", SpeciesId = 2 },
+			new() { Title = "Labrador Retrievers", SpeciesId = 2 },
+			new() { Title = "Poodles", SpeciesId = 2 },
+			new() { Title = "Bulldogs", SpeciesId = 2 },
+			new() { Title = "Rottweilers", SpeciesId = 2 },
+			new() { Title = "Beagles", SpeciesId = 2 },
+			new() { Title = "Yorkshire Terriers", SpeciesId = 2 },
+			new() { Title = "Siberian Huskies", SpeciesId = 2 },
+			new() { Title = "Dalmatians", SpeciesId = 2 }
+		};
+		foreach (var row in insert)
+			context.Breeds.Add(row);
+
+		context.SaveChanges();
+	}
+
+	public static void InsertSizes(AppDbContext context)
 	{
 		var insert = new List<Size>
 		{
@@ -95,13 +132,16 @@ public static class SeedData
 		{
 			new() { Name = "Alice", Gender = Gender.Female,
 				Description = "**A short story:**\nA kitten😻 - gray-haired beauty Alice...",
-				BirthDate = new PartialPossibleDate(2023, 2, 26, true), SpeciesId = 1, SizeId = 1 },
+				BirthDate = new PartialPossibleDate(2023, 2, 26, true), SpeciesId = 1, SizeId = 1,
+				Details = null },
 			new() { Name = "Fenrir", Gender = Gender.Male,
 				Description = "A god sibling! FEAR",
-				BirthDate = new PartialPossibleDate(2022, 9), SpeciesId = 2, SizeId = 4 },
+				BirthDate = new PartialPossibleDate(2022, 9), SpeciesId = 2, SizeId = 4,
+				Details = new PetProfileDetails { BreedId = 21, HasCollar = true, HasPassport = true, Healthy = true, Neutering = true, Vaccination = true } },
 			new() { Name = "Cutie", Gender = Gender.Female,
 				Description = "Just cawai kitty",
-				BirthDate = new PartialPossibleDate(2023), SpeciesId = 1, SizeId = null }
+				BirthDate = new PartialPossibleDate(2023), SpeciesId = 1, SizeId = null,
+				Details = new PetProfileDetails { BreedId = 1, HasPassport = false, Healthy = true, Neutering = true, Vaccination = false }}
 		};
 		foreach (var row in insert)
 			context.PetProfiles.Add(row);

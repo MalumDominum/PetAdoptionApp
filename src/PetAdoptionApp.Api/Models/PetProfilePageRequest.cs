@@ -9,4 +9,11 @@ public record PetProfilePageRequest(
 	DateOnly? BirthDateTo,
 	List<int>? SizeIds,
 	List<int>? ColorIds,
-	int? SpeciesId);
+	int? SpeciesId,
+	List<int>? BreedIds,
+
+	bool? Neutering,
+	bool? Healthy,
+	bool? Vaccination,
+	bool? HasPassport,
+	bool? HasCollar);

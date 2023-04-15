@@ -7,14 +7,14 @@ namespace PetAdoptionApp.Application.Sizes.Queries;
 
 public class SizesQueryHandler : IRequestHandler<SizesQuery, ErrorOr<SizesQueryResult>>
 {
-	private readonly IReadRepository<Size> _heightRepository;
+	private readonly IReadRepository<Size> _sizeRepository;
 
-	public SizesQueryHandler(IReadRepository<Size> heightRepository) => _heightRepository = heightRepository;
+	public SizesQueryHandler(IReadRepository<Size> sizeRepository) => _sizeRepository = sizeRepository;
 
 	public async Task<ErrorOr<SizesQueryResult>> Handle(
 		SizesQuery query, CancellationToken cancellationToken)
 	{
-		var result = await _heightRepository.ListAsync(cancellationToken);
+		var result = await _sizeRepository.ListAsync(cancellationToken);
 		return new SizesQueryResult(result);
 	}
 }

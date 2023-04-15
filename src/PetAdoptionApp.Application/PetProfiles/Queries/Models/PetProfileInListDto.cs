@@ -1,4 +1,5 @@
-﻿using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
+﻿using PetAdoptionApp.Application.Species.Models;
+using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 
@@ -9,6 +10,6 @@ public record PetProfileInListDto(
 	string Name,
 	string Gender,
 	PartialPossibleDate BirthDate,
-	Domain.Aggregates.SpeciesAggregate.Species Species,
+	SpeciesWithoutNestingDto Species,
 	Size Size,
 	List<Color> Colors);

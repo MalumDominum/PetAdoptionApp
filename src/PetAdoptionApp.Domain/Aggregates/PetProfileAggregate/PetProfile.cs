@@ -1,5 +1,6 @@
 ﻿using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Nesting;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
@@ -38,7 +39,7 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 	public int? SizeId { get; set; }
 	public Size? Size { get; set; }
 
-	//public PetProfileDetails? Details { get; set; }
+	public PetProfileDetails? Details { get; set; }
 
 	public string Description { get; set; } = null!;
 	
