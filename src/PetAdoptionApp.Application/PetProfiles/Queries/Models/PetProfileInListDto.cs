@@ -2,6 +2,7 @@
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate;
 
 namespace PetAdoptionApp.Application.PetProfiles.Queries.Models;
 
@@ -12,4 +13,5 @@ public record PetProfileInListDto(
 	PartialPossibleDate BirthDate,
 	SpeciesWithoutNestingDto Species,
 	Size Size,
-	List<Color> Colors);
+	List<Color> Colors,
+	List<State>? ActiveStates);

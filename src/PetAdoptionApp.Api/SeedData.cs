@@ -7,6 +7,8 @@ using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Nesting;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate.Enums;
 using PetAdoptionApp.Infrastructure.DataAccess;
 
 namespace PetAdoptionApp.Api;
@@ -25,12 +27,13 @@ public static class SeedData
 		if (isDevelopment)
 		{
 			if (!dbContext.PetProfiles.Any()) InsertPetProfilesForTesting(dbContext);
+			if (!dbContext.States.Any()) InsertStatesForTesting(dbContext);
 		}
     }
 
 	#region Initial Data
 
-	public static void InsertColors(AppDbContext context)
+	private static void InsertColors(AppDbContext context)
 	{
 		var insert = new List<Color>
 		{
@@ -50,7 +53,7 @@ public static class SeedData
 		context.SaveChanges();
 	}
 
-	public static void InsertSpecies(AppDbContext context)
+	private static void InsertSpecies(AppDbContext context)
 	{
 		var insert = new List<Species>
 		{
@@ -73,11 +76,11 @@ public static class SeedData
 		context.SaveChanges();
 	}
 
-	public static void InsertBreeds(AppDbContext context)
+	private static void InsertBreeds(AppDbContext context)
 	{
 		var insert = new List<Breed>
 		{
-			new() { Title = "Mongrel", SpeciesId = 1 },
+			new() { Title = "Unbred", SpeciesId = 1 },
 			new() { Title = "Hybrid", SpeciesId = 2 },
 			new() { Title = "Siamese", SpeciesId = 1 },
 			new() { Title = "Persian", SpeciesId = 1 },
@@ -90,7 +93,7 @@ public static class SeedData
 			new() { Title = "Sphynx", SpeciesId = 1 },
 			new() { Title = "American Shorthair", SpeciesId = 1 },
 
-			new() { Title = "Mongrel", SpeciesId = 2 },
+			new() { Title = "Unbred", SpeciesId = 2 },
 			new() { Title = "Hybrid", SpeciesId = 2 },
 			new() { Title = "Labrador Retrievers", SpeciesId = 2 },
 			new() { Title = "Poodles", SpeciesId = 2 },
@@ -107,7 +110,7 @@ public static class SeedData
 		context.SaveChanges();
 	}
 
-	public static void InsertSizes(AppDbContext context)
+	private static void InsertSizes(AppDbContext context)
 	{
 		var insert = new List<Size>
 		{
@@ -134,10 +137,12 @@ public static class SeedData
 				Description = "**A short story:**\nA kitten😻 - gray-haired beauty Alice...",
 				BirthDate = new PartialPossibleDate(2023, 2, 26, true), SpeciesId = 1, SizeId = 1,
 				Details = null },
+			
 			new() { Name = "Fenrir", Gender = Gender.Male,
 				Description = "A god sibling! FEAR",
 				BirthDate = new PartialPossibleDate(2022, 9), SpeciesId = 2, SizeId = 4,
 				Details = new PetProfileDetails { BreedId = 21, HasCollar = true, HasPassport = true, Healthy = true, Neutering = true, Vaccination = true } },
+
 			new() { Name = "Cutie", Gender = Gender.Female,
 				Description = "Just cawai kitty",
 				BirthDate = new PartialPossibleDate(2023), SpeciesId = 1, SizeId = null,
@@ -145,6 +150,30 @@ public static class SeedData
 		};
 		foreach (var row in insert)
 			context.PetProfiles.Add(row);
+
+		context.SaveChanges();
+	}
+
+	private static void InsertStatesForTesting(AppDbContext context)
+	{
+		var petProfileIds = context.PetProfiles.Select(p => p.Id).ToList();
+
+		var insert = new List<State>
+		{
+			new() { Status = Status.Missing, AssignedTime = DateTime.UtcNow.AddDays(-10),
+				ResolvedDate = DateTime.UtcNow.AddDays(-4), PetProfileId = petProfileIds[0] },
+
+			new() { Status = Status.Found, AssignedTime = DateTime.UtcNow.AddDays(-9),
+				ResolvedDate = DateTime.UtcNow.AddDays(-1), PetProfileId = petProfileIds[1] },
+
+			new() { Status = Status.NeedsHome, AssignedTime = DateTime.UtcNow.AddDays(-1),
+				ResolvedDate = null, PetProfileId = petProfileIds[1] },
+
+			new() { Status = Status.Found, AssignedTime = DateTime.UtcNow.AddDays(-15),
+				ResolvedDate = null, PetProfileId = petProfileIds[2] }
+		};
+		foreach (var row in insert)
+			context.States.Add(row);
 
 		context.SaveChanges();
 	}

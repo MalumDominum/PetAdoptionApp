@@ -1,12 +1,16 @@
-﻿using PetAdoptionApp.SharedKernel.DddModelsDefinition;
+﻿using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate.Enums;
+using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
 namespace PetAdoptionApp.Domain.Aggregates.StateAggregate;
 
-public class State : EntityBase<int>, IAggregateRoot
+public class State : EntityBase<Guid>, IAggregateRoot
 {
-	public string Title { get; set; } = null!;
+	public Status Status { get; set; } = null!;
 
 	public DateTime AssignedTime { get; set; }
 
 	public DateTime? ResolvedDate { get; set; }
+
+	public Guid PetProfileId { get; set; }
 }

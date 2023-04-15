@@ -22,13 +22,15 @@
 			{ "id": 5, "name": "Gray", "hexValue": "#808080" }
 		]
 	},
-	"height": { "id": 1, "title": "Small", "from": 15, "to": 30 },
+	"size": { "id": 1, "title": "Small", "from": 0, "to": 10 },
 	"details": {
 		"breed": { "id": "1", "value": "Unbred" },
 		"neutering": true,
 		"healthy": false,
 		"vaccination": true,
-		"hasCollar": true // Not returned if no active status Losted or Founded
+		"hasPassport": true,
+		"hasCollar": true,
+		"goingWith": ["b086b71c-1e2e-46ce-b08d-0357f46919b2"]
 	},
 	"descriprion": "**A short story:**\nA kitten😻 - gray-haired beauty Alice...",
 	"address": {
@@ -128,7 +130,7 @@
 				{ "id": 1, "name": "White", "hexValue": "#ffffff" },
 				{ "id": 5, "name": "Gray", "hexValue": "#808080" }
 			],
-			"height": { "from": 15, "to": 30 },
+			"size": { "id": 1, "title": "Small", "from": 0, "to": 10 },
 			// OR if status Losted or Founded
 			"hasCollar": true,
 			"activeStates": [

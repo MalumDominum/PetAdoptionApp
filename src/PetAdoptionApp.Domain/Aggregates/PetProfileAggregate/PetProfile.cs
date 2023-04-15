@@ -4,6 +4,7 @@ using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Nesting;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate;
 using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
@@ -45,7 +46,7 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 	
 	//public Address Address { get; set; } = null!;
 
-	//public States States { get; set; } = null!;
+	public List<State>? States { get; set; } = null!;
 
 	//private readonly List<string>? _photoAndVideoUrls;
 	//public ReadOnlyCollection<string>? PhotoAndVideoUrls => _photoAndVideoUrls?.AsReadOnly();

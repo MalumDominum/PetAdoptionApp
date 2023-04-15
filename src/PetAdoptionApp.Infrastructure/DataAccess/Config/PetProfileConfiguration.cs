@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate;
 
 namespace PetAdoptionApp.Infrastructure.DataAccess.Config;
 

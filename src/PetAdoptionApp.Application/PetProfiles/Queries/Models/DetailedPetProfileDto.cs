@@ -1,4 +1,5 @@
-﻿using PetAdoptionApp.Application.Species.Models;
+﻿using PetAdoptionApp.Application.PetProfiles.Queries.Models.Nesting;
+using PetAdoptionApp.Application.Species.Models;
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
@@ -12,4 +13,5 @@ public record DetailedPetProfileDto(
 	SpeciesWithoutNestingDto Species,
 	List<Color> Colors,
 	PetProfileDetailsQueryDto Details,
+	States States,
 	string Description);

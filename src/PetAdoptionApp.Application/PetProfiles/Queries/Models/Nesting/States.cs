@@ -1,6 +1,6 @@
 ﻿using PetAdoptionApp.Domain.Aggregates.StateAggregate;
 
-namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Nesting;
+namespace PetAdoptionApp.Application.PetProfiles.Queries.Models.Nesting;
 
 public class States
 {

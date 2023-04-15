@@ -5,6 +5,7 @@ using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate;
 using PetAdoptionApp.SharedKernel.Events;
 
 namespace PetAdoptionApp.Infrastructure.DataAccess;
@@ -30,6 +31,8 @@ public class AppDbContext : DbContext
 	public DbSet<Species> Species => Set<Species>();
 
 	public DbSet<Breed> Breeds => Set<Breed>();
+
+	public DbSet<State> States => Set<State>();
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
