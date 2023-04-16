@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PetAdoptionApp.Domain.Aggregates.BreedAggregate;
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Linkers;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
 using PetAdoptionApp.Domain.Aggregates.StateAggregate;

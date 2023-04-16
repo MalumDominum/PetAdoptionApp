@@ -1,8 +1,5 @@
 ﻿using ErrorOr;
-using MapsterMapper;
 using MediatR;
-using PetAdoptionApp.Domain.Aggregates.BreedAggregate;
-using PetAdoptionApp.Domain.Aggregates.BreedAggregate.Specifications;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Errors;
 using PetAdoptionApp.SharedKernel.DataAccess;

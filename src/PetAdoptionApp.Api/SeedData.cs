@@ -156,21 +156,23 @@ public static class SeedData
 
 	private static void InsertStatesForTesting(AppDbContext context)
 	{
-		var petProfileIds = context.PetProfiles.Select(p => p.Id).ToList();
+		var alice = context.PetProfiles.FirstOrDefault(p => p.Name == "Alice")!;
+		var fenrir = context.PetProfiles.FirstOrDefault(p => p.Name == "Fenrir")!;
+		var cutie = context.PetProfiles.FirstOrDefault(p => p.Name == "Cutie")!;
 
 		var insert = new List<State>
 		{
 			new() { Status = Status.Missing, AssignedTime = DateTime.UtcNow.AddDays(-10),
-				ResolvedDate = DateTime.UtcNow.AddDays(-4), PetProfileId = petProfileIds[0] },
+				ResolvedDate = DateTime.UtcNow.AddDays(-4), PetProfileId = alice.Id },
 
 			new() { Status = Status.Found, AssignedTime = DateTime.UtcNow.AddDays(-9),
-				ResolvedDate = DateTime.UtcNow.AddDays(-1), PetProfileId = petProfileIds[1] },
+				ResolvedDate = DateTime.UtcNow.AddDays(-1), PetProfileId = fenrir.Id },
 
 			new() { Status = Status.NeedsHome, AssignedTime = DateTime.UtcNow.AddDays(-1),
-				ResolvedDate = null, PetProfileId = petProfileIds[1] },
+				ResolvedDate = null, PetProfileId = fenrir.Id },
 
 			new() { Status = Status.Found, AssignedTime = DateTime.UtcNow.AddDays(-15),
-				ResolvedDate = null, PetProfileId = petProfileIds[2] }
+				ResolvedDate = null, PetProfileId = cutie.Id }
 		};
 		foreach (var row in insert)
 			context.States.Add(row);

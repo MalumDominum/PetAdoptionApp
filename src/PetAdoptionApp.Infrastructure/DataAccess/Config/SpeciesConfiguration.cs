@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetAdoptionApp.Domain.Aggregates.BreedAggregate;
 using PetAdoptionApp.Domain.Aggregates.SpeciesAggregate;
 
 namespace PetAdoptionApp.Infrastructure.DataAccess.Config;

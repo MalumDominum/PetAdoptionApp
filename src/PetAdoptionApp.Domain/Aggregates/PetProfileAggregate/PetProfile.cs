@@ -1,5 +1,6 @@
 ﻿using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Linkers;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Nesting;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
@@ -34,6 +35,8 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 	public int SpeciesId { get; set; }
 	public Species? Species { get; set; }
 
+	public List<PetColor>? SetColors { get; set; }
+
 	private readonly List<Color>? _colors;
 	public IReadOnlyCollection<Color>? Colors => _colors?.AsReadOnly();
 
@@ -53,13 +56,13 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 
 	//public User Owner { get; set; }
 
-	public DateTime StatusChangedAt { get; set; } // Hidden property for ordering
 	public DateTime CreatedAt { get; set; }
 	public DateTime? EditedAt { get; set; }
+	public DateTime? StatesChangedAt { get; set; } // Hidden property for ordering
 
 	#region Constructors
 
-	public PetProfile(List<Color>? colors, List<string>? photoAndVideoUrls)
+	public PetProfile(List<Color>? colors) //, List<string>? photoAndVideoUrls)
 	{
 		_colors = colors;
 		//_photoAndVideoUrls = photoAndVideoUrls;

@@ -1,4 +1,3 @@
-﻿using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.StateAggregate.Enums;
 using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
@@ -13,4 +12,16 @@ public class State : EntityBase<Guid>, IAggregateRoot
 	public DateTime? ResolvedDate { get; set; }
 
 	public Guid PetProfileId { get; set; }
+
+	#region Constructors
+
+	public State(ushort statusValue, DateTime assignedTime)
+	{
+		Status = Status.FromValue(statusValue);
+		AssignedTime = assignedTime;
+	}
+
+	public State() { }
+
+	#endregion
 }

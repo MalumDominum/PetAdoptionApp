@@ -1,8 +1,8 @@
-﻿using PetAdoptionApp.Application.Species.Models;
+﻿using PetAdoptionApp.Application.PetProfiles.Queries.Models.Nesting;
+using PetAdoptionApp.Application.Species.Models;
 using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 using PetAdoptionApp.Domain.Aggregates.SizeAggregate;
-using PetAdoptionApp.Domain.Aggregates.StateAggregate;
 
 namespace PetAdoptionApp.Application.PetProfiles.Queries.Models;
 
@@ -14,4 +14,4 @@ public record PetProfileInListDto(
 	SpeciesWithoutNestingDto Species,
 	Size Size,
 	List<Color> Colors,
-	List<State>? ActiveStates);
+	List<ActiveStateDto>? ActiveStates);

@@ -1,6 +1,6 @@
 ﻿using PetAdoptionApp.Application.Species.Models;
 
-namespace PetAdoptionApp.Application.PetProfiles.Queries.Models;
+namespace PetAdoptionApp.Application.PetProfiles.Queries.Models.Nesting;
 
 public record PetProfileDetailsQueryDto(
 	BreedDto? Breed,

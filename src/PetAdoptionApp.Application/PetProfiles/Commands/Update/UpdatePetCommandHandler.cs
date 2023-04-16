@@ -1,10 +1,15 @@
 ﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
+using PetAdoptionApp.Domain.Aggregates.BreedAggregate;
+using PetAdoptionApp.Domain.Aggregates.BreedAggregate.Specifications;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Linkers;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate;
+using PetAdoptionApp.Domain.Aggregates.StateAggregate.Specifications;
+using PetAdoptionApp.Domain.Errors;
 using PetAdoptionApp.SharedKernel.DataAccess;
-using PetAdoptionApp.SharedKernel.Providers;
 
 namespace PetAdoptionApp.Application.PetProfiles.Commands.Update;
 
@@ -12,41 +17,46 @@ public class UpdatePetCommandHandler : IRequestHandler<UpdatePetCommand, ErrorOr
 {
 	private readonly IMapper _mapper;
 
-	private readonly IDateTimeProvider _dateTimeProvider;
-
 	private readonly IRepository<PetProfile> _petRepository;
+	private readonly IRepository<Breed> _breedRepository;
 	private readonly IRepository<PetColor> _petColorRepository;
+	private readonly IRepository<State> _stateRepository;
 
-	public UpdatePetCommandHandler(IMapper mapper, IDateTimeProvider dateTimeProvider,
-		IRepository<PetProfile> petRepository, IRepository<PetColor> petColorRepository)
+	#region Constructor
+
+	public UpdatePetCommandHandler(IMapper mapper, IRepository<PetProfile> petRepository,
+		IRepository<Breed> breedRepository, IRepository<PetColor> petColorRepository,
+		IRepository<State> stateRepository)
 	{
 		_mapper = mapper;
 		_petRepository = petRepository;
+		_breedRepository = breedRepository;
 		_petColorRepository = petColorRepository;
-		_dateTimeProvider = dateTimeProvider;
+		_stateRepository = stateRepository;
 	}
 
-	public async Task<ErrorOr<UpdatePetCommandResult>> Handle(UpdatePetCommand command, CancellationToken cancellationToken)
+	#endregion
+
+	public async Task<ErrorOr<UpdatePetCommandResult>> Handle(
+		UpdatePetCommand command, CancellationToken cancellationToken)
 	{
+		if (command.Details.BreedId != null)
+			if (!await _breedRepository.AnyAsync(
+				    new AnyBreedBySpeciesIdSpec(command.SpeciesId, command.Details.BreedId.Value), cancellationToken))
+				return Errors.PetProfile.BreedNotBelongToSpecies;
+
+		var previousColors = await _petColorRepository.ListAsync(
+			new PetColorByPetProfileIdSpec(command.Id), cancellationToken);
+		await _petColorRepository.DeleteRangeAsync(previousColors, cancellationToken);
+
+		var previousActiveStates = await _stateRepository.ListAsync(
+			new ActiveStatesByPetProfileIdSpec(command.Id), cancellationToken);
+		await _stateRepository.DeleteRangeAsync(previousActiveStates, cancellationToken);
+
 		var petProfile = _mapper.Map<PetProfile>(command);
-		petProfile.EditedAt = _dateTimeProvider.UtcNow;
 
 		await _petRepository.UpdateAsync(petProfile, cancellationToken);
 
-		var currentColorIds = await _petColorRepository
-			.ListAsync(new PetColorByPetProfileIdSpec(command.Id), cancellationToken);
-		
-		var colorIdsToDelete = command.ColorIds != null
-			? currentColorIds.Where(pc => !command.ColorIds.Contains(pc.ColorId))
-			: currentColorIds;
-
-		await _petColorRepository.DeleteRangeAsync(colorIdsToDelete, cancellationToken);
-
-		if (command.ColorIds != null)
-			await _petColorRepository.AddRangeAsync(
-				command.ColorIds.Where(cId => !currentColorIds.Select(pc => pc.ColorId).Contains(cId))
-					.Select(id => new PetColor(command.Id, id)), cancellationToken);
-
-		return _mapper.Map<UpdatePetCommandResult>(command);
+		return new UpdatePetCommandResult();
 	}
 }

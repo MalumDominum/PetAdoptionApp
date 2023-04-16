@@ -1,5 +1,4 @@
 ﻿using Ardalis.Specification;
-using static PetAdoptionApp.Domain.Errors.Errors;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 

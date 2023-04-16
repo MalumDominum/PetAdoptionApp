@@ -1,4 +1,5 @@
 ﻿using Ardalis.Specification;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Linkers;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 

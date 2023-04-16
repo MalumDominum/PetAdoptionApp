@@ -13,5 +13,5 @@ public record DetailedPetProfileDto(
 	SpeciesWithoutNestingDto Species,
 	List<Color> Colors,
 	PetProfileDetailsQueryDto Details,
-	States States,
+	SeparatedStates States,
 	string Description);

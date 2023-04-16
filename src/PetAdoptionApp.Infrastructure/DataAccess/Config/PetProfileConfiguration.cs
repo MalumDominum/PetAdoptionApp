@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
-using PetAdoptionApp.Domain.Aggregates.StateAggregate;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Linkers;
 
 namespace PetAdoptionApp.Infrastructure.DataAccess.Config;
 
@@ -24,13 +24,9 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 	private static void ConfigureColorRelationship(EntityTypeBuilder<PetProfile> builder)
 	{
 		builder.HasMany(p => p.Colors)
-			.WithMany()
-			.UsingEntity<PetColor>(pc =>
-			{
-				pc.ToTable("PetColor");
-				pc.HasKey(p => new { p.ColorId, p.PetProfileId });
-				pc.HasIndex(p => new { p.ColorId, p.PetProfileId });
-			});
+			   .WithMany()
+			   .UsingEntity<PetColor>();
+
 		builder.Navigation(p => p.Colors).Metadata.SetField("_colors");
 		builder.Navigation(p => p.Colors).UsePropertyAccessMode(PropertyAccessMode.Field);
 	}
@@ -75,7 +71,7 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 
 		builder.OwnsOne(p => p.BirthDate).WithOwner();
 		builder.Property(p => p.BackfieldBirthDate).IsRequired();
-
+		
 		builder.OwnsOne(p => p.Details, db =>
 		{
 			db.WithOwner();

@@ -57,9 +57,7 @@ public class PetProfilesController : ApiControllerBase
 	///		  "description": "Cute little kitty",
 	///		  "speciesId": 1,
 	///		  "sizeId": 1,
-	///		  "colorIds": [
-	///		    1, 3
-	///		  ],
+	///		  "colorIds": [1, 3],
 	///		  "details": {
 	///		    "breedId": 3,
 	///		    "neutering": true,
@@ -67,7 +65,8 @@ public class PetProfilesController : ApiControllerBase
 	///		    "vaccination": true,
 	///		    "hasPassport": false,
 	///		    "hasCollar": true
-	///		  }
+	///		  },
+	///		  "states": [1, 5]
 	///     }
 	///
 	/// </remarks>

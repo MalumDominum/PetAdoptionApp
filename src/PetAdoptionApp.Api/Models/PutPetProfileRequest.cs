@@ -12,4 +12,5 @@ public record PutPetProfileRequest(
 	int SpeciesId,
 	int SizeId,
 	List<int>? ColorIds,
-	PetProfileDetailsCommandDto Details);
+	PetProfileDetailsCommandDto Details,
+	List<ushort>? States);

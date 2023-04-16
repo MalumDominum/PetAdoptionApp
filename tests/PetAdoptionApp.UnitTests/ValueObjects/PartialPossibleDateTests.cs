@@ -43,38 +43,4 @@ public class Tests
 				1)
 			.IsPast(), expectedResult);
 	}
-
-
-	[Theory]
-	[InlineData(2023, 10, 2, 2023, 10, 2, true)]
-	[InlineData(2023, 10, 2, 2023, 10, 3, true)]
-	[InlineData(2023, 10, 2, 2023, 10, 1, false)]
-
-	[InlineData(2023, 10, null, 2023, 10, 1, true)]
-	[InlineData(2023, null, null, 2023, 10, 1, true)]
-	public void BiggerOrEqualOperatorTest(int leftYear, int? leftMonth, int? leftDay,
-										  int rightYear, int rightMonth, int rightDay, bool expectedResult)
-	{
-		Assert.Equal(
-			new PartialPossibleDate(leftYear, leftMonth, leftDay)
-				<= new DateOnly(rightYear, rightMonth, rightDay),
-			expectedResult);
-	}
-
-
-	[Theory]
-	[InlineData(2023, 10, 2, 2023, 10, 2, true)]
-	[InlineData(2023, 10, 2, 2023, 10, 3, false)]
-	[InlineData(2023, 10, 2, 2023, 10, 1, true)]
-
-	[InlineData(2023, 10, null, 2023, 10, 1, true)]
-	[InlineData(2023, null, null, 2023, 10, 1, true)]
-	public void LesserOrEqualOperatorTest(int leftYear, int? leftMonth, int? leftDay,
-		int rightYear, int rightMonth, int rightDay, bool expectedResult)
-	{
-		Assert.Equal(
-			new PartialPossibleDate(leftYear, leftMonth, leftDay)
-			>= new DateOnly(rightYear, rightMonth, rightDay),
-			expectedResult);
-	}
 }

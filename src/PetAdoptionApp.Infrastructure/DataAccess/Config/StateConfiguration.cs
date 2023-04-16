@@ -19,8 +19,7 @@ public class StateConfiguration : IEntityTypeConfiguration<State>
 		builder.Property(p => p.Status)
 			   .HasColumnType("smallint")
 			   .IsRequired()
-			   .HasConversion(e => e.Value, v => Status.FromValue(v))
-			   .IsRequired();
+			   .HasConversion(e => e.Value, v => Status.FromValue(v));
 
 		builder.Property(p => p.AssignedTime)
 			   .HasDefaultValueSql("NOW()");

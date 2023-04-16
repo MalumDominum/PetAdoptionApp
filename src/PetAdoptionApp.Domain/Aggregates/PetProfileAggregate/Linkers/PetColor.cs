@@ -1,7 +1,7 @@
 ﻿using PetAdoptionApp.Domain.Aggregates.ColorAggregate;
 using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
-namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate;
+namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Linkers;
 
 public class PetColor : IManyToManyLinker
 {
@@ -13,11 +13,7 @@ public class PetColor : IManyToManyLinker
 
 	#region Constructors
 
-	public PetColor(Guid petProfileId, int colorId)
-	{
-		PetProfileId = petProfileId;
-		ColorId = colorId;
-	}
+	public PetColor(int colorId) => ColorId = colorId;
 
 	public PetColor() { }
 
