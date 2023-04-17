@@ -14,7 +14,7 @@ public class PetColorConfiguration : IEntityTypeConfiguration<PetColor>
 		builder.HasIndex(pc => new { pc.ColorId, pc.PetProfileId });
 
 		builder.HasOne(pc => pc.PetProfile)
-			.WithMany(p => p.SetColors)
+			.WithMany(p => p.PetColors)
 			.HasForeignKey(pc => pc.PetProfileId);
 
 		builder.HasOne(pc => pc.Color)

@@ -14,5 +14,5 @@ public interface ICreateUpdatePetCommand
 	public int SizeId { get; init; }
 	public List<int>? ColorIds { get; init; }
 	public PetProfileDetailsCommandDto Details { get; init; }
-	public List<ushort>? States { get; init; }
+	public List<int>? States { get; init; }
 }

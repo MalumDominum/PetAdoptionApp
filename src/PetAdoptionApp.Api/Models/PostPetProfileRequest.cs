@@ -12,4 +12,4 @@ public record PostPetProfileRequest(
 	int SizeId,
 	List<int>? ColorIds,
 	PetProfileDetailsCommandDto Details,
-	List<ushort>? States);
+	List<int>? States);

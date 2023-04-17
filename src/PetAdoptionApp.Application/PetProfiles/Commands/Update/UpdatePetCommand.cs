@@ -17,4 +17,4 @@ public record UpdatePetCommand(
 	int SizeId,
 	List<int>? ColorIds,
 	PetProfileDetailsCommandDto Details,
-	List<ushort>? States) : IRequest<ErrorOr<UpdatePetCommandResult>>, ICreateUpdatePetCommand;
+	List<int>? States) : IRequest<ErrorOr<UpdatePetCommandResult>>, ICreateUpdatePetCommand;

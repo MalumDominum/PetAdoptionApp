@@ -5,12 +5,14 @@ public record PagePetProfileRequest(
 	//Guid? UserId,
 	string? NameLike,
 	string? Gender,
-	DateOnly? BirthDateFrom,
-	DateOnly? BirthDateTo,
-	List<int>? SizeIds,
-	List<int>? ColorIds,
 	int? SpeciesId,
 	List<int>? BreedIds,
+	List<int>? StateIds,
+	List<int>? SizeIds,
+	List<int>? ColorIds,
+
+	DateOnly? BirthDateFrom,
+	DateOnly? BirthDateTo,
 
 	bool? Neutering,
 	bool? Healthy,

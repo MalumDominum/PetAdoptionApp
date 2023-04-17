@@ -22,7 +22,7 @@ public class MappingConfig : IRegister
 	        .Map(dest => dest.Filtering, src => src);
 
         config.NewConfig<CreatePetCommand, PetProfile>()
-	        .Map(dest => dest.SetColors, src => src.ColorIds)
+	        .Map(dest => dest.PetColors, src => src.ColorIds)
 	        .AfterMapping(p =>
 	        {
 		        p.CreatedAt = UtcNow();
@@ -31,7 +31,7 @@ public class MappingConfig : IRegister
 	        });
 
         config.NewConfig<UpdatePetCommand, PetProfile>()
-	        .Map(dest => dest.SetColors, src => src.ColorIds)
+	        .Map(dest => dest.PetColors, src => src.ColorIds)
 	        .AfterMapping(p => p.EditedAt = UtcNow());
 
 		config.NewConfig<PetProfile, PetProfileInListDto>()
@@ -42,7 +42,7 @@ public class MappingConfig : IRegister
 				? src.Select(colorId => new PetColor(colorId)).ToList()
 				: null);
 
-		config.NewConfig<List<ushort>?, List<State>?>()
+		config.NewConfig<List<int>?, List<State>?>()
 	        .MapWith(src => src != null
 		        ? src.Select(status => new State(status, UtcNow())).ToList()
 		        : null);

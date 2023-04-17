@@ -39,7 +39,7 @@ public class CreateUpdatePetCommandValidator<TCommand> : AbstractValidator<TComm
 					"are conflicted. PetProfile can have only one listed status at a time")
 				.Must(x =>
 				{
-					var diffChecker = new HashSet<ushort>();
+					var diffChecker = new HashSet<int>();
 					var isAllDifferent = x!.All(diffChecker.Add);
 					return isAllDifferent;
 				}).WithMessage("Some statuses have duplicates");

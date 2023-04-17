@@ -15,7 +15,7 @@ public class State : EntityBase<Guid>, IAggregateRoot
 
 	#region Constructors
 
-	public State(ushort statusValue, DateTime assignedTime)
+	public State(int statusValue, DateTime assignedTime)
 	{
 		Status = Status.FromValue(statusValue);
 		AssignedTime = assignedTime;

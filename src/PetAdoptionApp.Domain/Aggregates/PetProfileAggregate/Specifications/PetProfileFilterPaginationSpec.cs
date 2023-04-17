@@ -1,4 +1,5 @@
 ﻿using Ardalis.Specification;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications.Models;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 
@@ -28,22 +29,22 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 			Query.Where(p => p.SpeciesId == filter.SpeciesId);
 
 		if (filter.BreedIds != null)
-			Query.Where(p => p.Details!.BreedId != null &&
-			                 filter.BreedIds.Contains(p.Details.BreedId.Value));
+			Query.Where(p => filter.BreedIds.Contains(p.Details!.BreedId!.Value));
 
 		//if (filter.NearLocation != null)
 		//	Implement Near logic
 
-		//if (filter.StateIds != null)
-		//	Query.Where(p => p.StateIds.Contains(StateIds));
-
-		// TODO This doesn't work. Bring it in PetColor spec
-		//if (filter.ColorIds != null)
-		//	Query.Where(p => filter.ColorIds.All(fc => p.Colors!.Select(c => c.Id).Contains(fc)));
+		if (filter.StateIds != null)
+			Query.Where(p => p.States!.Any(state =>
+				filter.StateIds.Any(id => state.Status == id)));
+		
+		if (filter.ColorIds != null)
+			Query.Where(p => p.PetColors!.Count > 0 &&
+			                 p.PetColors!.All(pc =>
+				                 filter.ColorIds.Contains(pc.ColorId)));
 
 		if (filter.SizeIds != null)
-			Query.Where(p => p.SizeId != null &&
-			                 filter.SizeIds.Contains(p.SizeId.Value));
+			Query.Where(p => filter.SizeIds.Contains(p.SizeId!.Value));
 
 		if (filter.BirthDateFrom != null)
 			Query.Where(p => p.BackfieldBirthDate >= filter.BirthDateFrom.Value);

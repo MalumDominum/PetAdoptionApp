@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
 using MediatR;
-using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications.Models;
 
 namespace PetAdoptionApp.Application.PetProfiles.Queries.FilterablePage;
 
