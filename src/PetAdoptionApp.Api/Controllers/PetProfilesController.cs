@@ -42,34 +42,6 @@ public class PetProfilesController : ApiControllerBase
 
 	/// <summary>Creates a PetProfile</summary>
 	/// <returns>A creation details</returns>
-	/// <remarks>
-	/// Sample request:
-	///
-	///     {
-	///		  "name": "Luna",
-	///		  "gender": "f",
-	///		  "birthDate": {
-	///		    "year": 2023,
-	///		    "month": 2,
-	///		    "day": null,
-	///		    "isExact": true
-	///		  },
-	///		  "description": "Cute little kitty",
-	///		  "speciesId": 1,
-	///		  "sizeId": 1,
-	///		  "colorIds": [1, 3],
-	///		  "details": {
-	///		    "breedId": 3,
-	///		    "neutering": true,
-	///		    "healthy": false,
-	///		    "vaccination": true,
-	///		    "hasPassport": false,
-	///		    "hasCollar": true
-	///		  },
-	///		  "states": [1, 5]
-	///     }
-	///
-	/// </remarks>
 	/// <response code="201">PetProfile was successfully created</response>
 	/// <response code="400">Passed PetProfile didn't pass the validation (see response details)</response>
 	[HttpPost]

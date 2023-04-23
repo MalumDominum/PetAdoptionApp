@@ -2,6 +2,7 @@
 using PetAdoptionApp.Api.Mapping;
 using Ardalis.ListStartupServices;
 using System.Reflection;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace PetAdoptionApp.Api;
 
@@ -35,7 +36,11 @@ public static class ApiDiModule
 			});
 			var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 			c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
+			c.ExampleFilters();
+			c.OperationFilter<AddResponseHeadersFilter>();
 		});
+		services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
 		return services;
 	}
 }

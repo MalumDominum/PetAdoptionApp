@@ -55,7 +55,7 @@ public class PetProfile : EntityBase<Guid>, IAggregateRoot
 	//public ReadOnlyCollection<string>? PhotoAndVideoUrls => _photoAndVideoUrls?.AsReadOnly();
 
 	//public User Owner { get; set; }
-
+	
 	public DateTime CreatedAt { get; set; }
 	public DateTime? EditedAt { get; set; }
 	public DateTime? StatesChangedAt { get; set; } // Hidden property for ordering
