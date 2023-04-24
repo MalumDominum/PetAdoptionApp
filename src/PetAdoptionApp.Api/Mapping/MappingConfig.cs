@@ -27,7 +27,7 @@ public class MappingConfig : IRegister
 	        {
 		        p.CreatedAt = UtcNow();
 				if (p.States is { Count: > 0 })
-					p.StatesChangedAt = UtcNow();
+					p.NewStatesAddedAt = UtcNow();
 	        });
 
         config.NewConfig<UpdatePetCommand, PetProfile>()

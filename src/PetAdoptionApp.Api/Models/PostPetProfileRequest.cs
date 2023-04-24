@@ -9,7 +9,7 @@ public record PostPetProfileRequest(
 	PartialPossibleDate BirthDate,
 	string Description,
 	int SpeciesId,
-	int SizeId,
+	int? SizeId,
 	List<int>? ColorIds,
 	PetProfileDetailsCommandDto Details,
 	List<int>? States);

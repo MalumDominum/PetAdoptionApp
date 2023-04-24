@@ -2,7 +2,7 @@
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
-namespace PetAdoptionApp.Application.PetProfiles.Commands.Shared;
+namespace PetAdoptionApp.Application.PetProfiles.Commands.Common;
 
 public interface ICreateUpdatePetCommand
 {
@@ -11,7 +11,7 @@ public interface ICreateUpdatePetCommand
 	public PartialPossibleDate BirthDate { get; init; }
 	public string Description { get; init; }
 	public int SpeciesId { get; init; }
-	public int SizeId { get; init; }
+	public int? SizeId { get; init; }
 	public List<int>? ColorIds { get; init; }
 	public PetProfileDetailsCommandDto Details { get; init; }
 	public List<int>? States { get; init; }

@@ -1,4 +1,4 @@
-﻿using PetAdoptionApp.Application.PetProfiles.Commands.Shared;
+﻿using PetAdoptionApp.Application.PetProfiles.Commands.Common;
 
 namespace PetAdoptionApp.Application.PetProfiles.Commands.Update;
 

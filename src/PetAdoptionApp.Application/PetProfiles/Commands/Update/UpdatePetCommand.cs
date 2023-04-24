@@ -1,7 +1,7 @@
 ﻿using ErrorOr;
 using MediatR;
+using PetAdoptionApp.Application.PetProfiles.Commands.Common;
 using PetAdoptionApp.Application.PetProfiles.Commands.Models;
-using PetAdoptionApp.Application.PetProfiles.Commands.Shared;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Enums;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.ValueObjects;
 
@@ -14,7 +14,7 @@ public record UpdatePetCommand(
 	string Description,
 	PartialPossibleDate BirthDate,
 	int SpeciesId,
-	int SizeId,
+	int? SizeId,
 	List<int>? ColorIds,
 	PetProfileDetailsCommandDto Details,
 	List<int>? States) : IRequest<ErrorOr<UpdatePetCommandResult>>, ICreateUpdatePetCommand;

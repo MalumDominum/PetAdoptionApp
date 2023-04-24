@@ -2,7 +2,7 @@
 using PetAdoptionApp.Domain.Aggregates.StateAggregate.Enums;
 using static System.String;
 
-namespace PetAdoptionApp.Application.PetProfiles.Commands.Shared;
+namespace PetAdoptionApp.Application.PetProfiles.Commands.Common;
 
 public class CreateUpdatePetCommandValidator<TCommand> : AbstractValidator<TCommand>
 	where TCommand : ICreateUpdatePetCommand

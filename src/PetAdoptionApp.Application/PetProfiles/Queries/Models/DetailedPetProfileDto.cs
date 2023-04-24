@@ -14,4 +14,6 @@ public record DetailedPetProfileDto(
 	List<Color> Colors,
 	PetProfileDetailsQueryDto Details,
 	SeparatedStates States,
-	string Description);
+	string Description, 
+	DateTime CreatedAt,
+	DateTime? EditedAt);
