@@ -20,16 +20,23 @@ public static class PetProfileSpecExtensions
 	public static ISpecificationBuilder<PetProfile> DetailedPetProfileIncludeWithOrdering(
 		this ISpecificationBuilder<PetProfile> query)
 	{
-		query.PetProfileIncludeWithOrdering(false)
-			 .Include(p => p.Details).ThenInclude(d => d!.Breed);
-		return query;
+		return query.PetProfileIncludeWithOrdering(false)
+					.Include(p => p.Details).ThenInclude(d => d!.Breed);
 	}
 
 	public static ISpecificationBuilder<PetProfile> OrderForList(
 		this ISpecificationBuilder<PetProfile> query)
 	{
-		query.OrderByDescending(p => p.NewStatesAddedAt)
-			 .ThenByDescending(p => p.CreatedAt);
-		return query;
+		return query.OrderByDescending(p => p.NewStatesAddedAt)
+					.ThenByDescending(p => p.CreatedAt);
+	}
+
+	public static ISpecificationBuilder<PetProfile> PaginateFrom(
+		this ISpecificationBuilder<PetProfile> query, DateTime? paginationTime, int pageLimit)
+	{
+		return paginationTime != null 
+			? query.Where(p => p.NewStatesAddedAt < paginationTime || p.NewStatesAddedAt == DateTime.MinValue)
+				   .Take(pageLimit)
+			: query.Take(pageLimit);
 	}
 }

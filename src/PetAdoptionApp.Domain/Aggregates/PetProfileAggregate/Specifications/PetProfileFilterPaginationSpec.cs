@@ -6,10 +6,13 @@ namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 
 public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 {
+	private const int PageLimit = 20;
+
 	public PetProfileFilterPaginationSpec(DateTime? paginationTime, PetProfileFilteringValues filter)
 	{
 		Query.PetProfileIncludeWithOrdering(true)
-			 .OrderForList();
+			 .OrderForList()
+			 .PaginateFrom(paginationTime, PageLimit);
 
 		if (!string.IsNullOrEmpty(filter.NameLike))
 			Query.Search(p => p.Name.ToLower(), $"%{filter.NameLike.ToLower()}%");
