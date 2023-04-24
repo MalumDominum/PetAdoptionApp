@@ -4,15 +4,13 @@ using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications.Models
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
 
-public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
+public sealed class PetProfileFilterFromSpec : Specification<PetProfile>
 {
-	private const int PageLimit = 20;
-
-	public PetProfileFilterPaginationSpec(DateTime? paginationTime, PetProfileFilteringValues filteringValues)
+	public PetProfileFilterFromSpec(DateTime from, PetProfileFilteringValues filteringValues)
 	{
 		Query.PetProfileIncludeWithOrdering(true)
-			.OrderForList()
-			.PaginateFrom(paginationTime, PageLimit)
-			.Filter(filteringValues);
+			 .OrderForList()
+			 .Filter(filteringValues)
+			 .Where(p => p.NewStatesAddedAt < from);
 	}
 }

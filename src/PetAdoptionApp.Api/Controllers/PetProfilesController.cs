@@ -36,6 +36,7 @@ public class PetProfilesController : ApiControllerBase
 		[FromQuery] PagePetProfileRequest request, CancellationToken cancellationToken)
 	{
 		var query = _mapper.Map<FilterablePagePetsQuery>(request);
+		query.Request = Request;
 		var result = await _mediator.Send(query, cancellationToken);
 		return result.Match(Ok, Problem);
 	}
