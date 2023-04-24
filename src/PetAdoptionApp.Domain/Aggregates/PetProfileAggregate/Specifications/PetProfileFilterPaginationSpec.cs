@@ -1,4 +1,5 @@
 ﻿using Ardalis.Specification;
+using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications.Common;
 using PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications.Models;
 
 namespace PetAdoptionApp.Domain.Aggregates.PetProfileAggregate.Specifications;
@@ -7,17 +8,8 @@ public sealed class PetProfileFilterPaginationSpec : Specification<PetProfile>
 {
 	public PetProfileFilterPaginationSpec(DateTime? paginationTime, PetProfileFilteringValues filter)
 	{
-		Query.Include(p => p.Species) //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
-		     .Include(p => p.Colors) //.Where(p => p.PhotoAndVideoUrls is {Count > 0});
-		     .Include(p => p.Size)
-		     .Include(p => p.States);
-
-		Query.PostProcessingAction(filteredPets =>
-		{
-			var petProfiles = filteredPets.ToList();
-			petProfiles.ForEach(p => p.States = p.States?.Where(s => s.ResolvedDate == null).ToList());
-			return petProfiles;
-		});
+		Query.PetProfileIncludeWithOrdering(true)
+			 .OrderForList();
 
 		if (!string.IsNullOrEmpty(filter.NameLike))
 			Query.Search(p => p.Name.ToLower(), $"%{filter.NameLike.ToLower()}%");

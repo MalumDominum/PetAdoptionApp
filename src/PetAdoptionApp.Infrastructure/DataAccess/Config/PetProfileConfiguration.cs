@@ -82,5 +82,8 @@ public class PetProfileConfiguration : IEntityTypeConfiguration<PetProfile>
 
 		builder.Property(p => p.CreatedAt)
 			   .HasDefaultValueSql("NOW()");
+
+		builder.Property(p => p.NewStatesAddedAt)
+			   .HasDefaultValue(DateTime.MinValue);
 	}
 }
