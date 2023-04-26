@@ -39,6 +39,7 @@ public class AppDbContext : DbContext
 	{
 		base.OnModelCreating(modelBuilder);
 		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+		AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 	}
 
 	public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())

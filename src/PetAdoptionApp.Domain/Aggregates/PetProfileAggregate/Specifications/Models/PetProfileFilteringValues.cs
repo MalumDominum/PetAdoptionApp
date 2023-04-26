@@ -11,6 +11,7 @@ public record PetProfileFilteringValues(
 	List<int>? StateIds,
 	List<int>? SizeIds,
 	List<int>? ColorIds,
+	DateTime? StatusChangedAfter,
 
 	DateOnly? BirthDateFrom,
 	DateOnly? BirthDateTo,

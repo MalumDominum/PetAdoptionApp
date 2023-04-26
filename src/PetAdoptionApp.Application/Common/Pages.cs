@@ -6,4 +6,4 @@ public record Pages(
 	Uri? PreviousPage,
 	Uri? NextPage,
 	Uri? AfterNextPage,
-	Uri LastPage);
+	Uri? LastPage);

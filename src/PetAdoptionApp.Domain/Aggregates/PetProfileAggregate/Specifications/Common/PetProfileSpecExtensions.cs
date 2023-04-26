@@ -32,11 +32,11 @@ public static class PetProfileSpecExtensions
 					.ThenByDescending(p => p.CreatedAt);
 	}
 
-	public static ISpecificationBuilder<PetProfile> PaginateFrom(
-		this ISpecificationBuilder<PetProfile> query, DateTime? paginationTime, int pageLimit)
+	public static ISpecificationBuilder<PetProfile> Paginate(
+		this ISpecificationBuilder<PetProfile> query, int? pageNumber, int pageLimit)
 	{
-		return paginationTime != null 
-			? query.Where(p => p.NewStatesAddedAt < paginationTime || p.NewStatesAddedAt == DateTime.MinValue)
+		return pageNumber != null 
+			? query.Skip((pageNumber.Value - 1) * pageLimit)
 				   .Take(pageLimit)
 			: query.Take(pageLimit);
 	}
@@ -70,6 +70,9 @@ public static class PetProfileSpecExtensions
 
 		if (filter.SizeIds != null)
 			query.Where(p => filter.SizeIds.Contains(p.SizeId!.Value));
+
+		if (filter.StatusChangedAfter != null)
+			query.Where(p => p.NewStatesAddedAt < filter.StatusChangedAfter);
 
 		if (filter.BirthDateFrom != null)
 			query.Where(p => p.BackfieldBirthDate >= filter.BirthDateFrom.Value);

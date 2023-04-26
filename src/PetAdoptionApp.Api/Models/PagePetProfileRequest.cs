@@ -1,7 +1,8 @@
 ﻿namespace PetAdoptionApp.Api.Models;
 
 public record PagePetProfileRequest(
-	DateTime? FromTime,
+	int? Page,
+
 	//Guid? UserId,
 	string? NameLike,
 	string? Gender,
@@ -10,6 +11,7 @@ public record PagePetProfileRequest(
 	List<int>? StateIds,
 	List<int>? SizeIds,
 	List<int>? ColorIds,
+	DateTime? StatusChangedAfter,
 
 	DateOnly? BirthDateFrom,
 	DateOnly? BirthDateTo,
