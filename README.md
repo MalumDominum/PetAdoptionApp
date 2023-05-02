@@ -30,7 +30,7 @@
 		"vaccination": true,
 		"hasPassport": true,
 		"hasCollar": true,
-		"goingWith": ["b086b71c-1e2e-46ce-b08d-0357f46919b2"]
+		"goingWith": ["b086b71c-1e2e-46ce-b08d-0357f46919b2"] // For
 	},
 	"descriprion": "**A short story:**\nA kitten😻 - gray-haired beauty Alice...",
 	"address": {
@@ -156,12 +156,12 @@
 		"lastPageNumber": 7,
 		"totalResultsCount": 132,
 		"pages": {
-			"first": "https://domain.de/api/petProfiles?fromDate=27/07/2022_17:51",
-			"beforePreviousPage": "https://domain.de/api/petProfiles?fromDate=11/03/2023_12:36",
-			"previousPage": "https://domain.de/api/petProfiles?fromDate=08/03/2022_09:39",
-			"nextPage": "https://domain.de/api/petProfiles?fromDate=02/03/2022_21:04",
+			"first": "https://domain.de/api/petProfiles",
+			"beforePreviousPage": "https://domain.de/api/petProfiles?Page=4",
+			"previousPage": "https://domain.de/api/petProfiles?Page=5",
+			"nextPage": "https://domain.de/api/petProfiles?Page=7",
 			"afterNextPage": null,
-			"lastPage": "https://domain.de/api/petProfiles?fromDate=02/03/2022_21:04"
+			"lastPage": "https://domain.de/api/petProfiles?Page=7"
 		}
 	}
 }

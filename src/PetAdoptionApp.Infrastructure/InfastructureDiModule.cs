@@ -22,7 +22,7 @@ public static class InfrastructureDiModule
 		ConfigurationManager configuration)
 	{
 		services.AddDbContext<AppDbContext>(options =>
-					options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+			options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 		services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 		services.AddScoped(typeof(IReadRepository<>), typeof(EfReadRepository<>));

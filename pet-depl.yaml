@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pet-domain
+spec:
+  selector:
+    matchLabels:
+      app: pet-domain
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pet-domain
+    spec:
+      containers:
+        - name: pet-domain
+          image: mihailalekseev/petdomain
+          env:
+            - name: ConnectionStrings__DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: postgresql-connection
+                  key: PET_DOMAIN_CONNECTION
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pet-domain-service
+spec:
+  selector:
+    app: pet-domain
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

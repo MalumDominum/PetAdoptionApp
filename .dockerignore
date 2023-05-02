@@ -1,0 +1,28 @@
+# Ignore Test Projects Folder
+tests/
+
+# Ignore Docs Files
+LICENSE
+*.md
+.gitignore
+
+# Ignore Visual Studio files
+.vscode/
+.vs/
+*.suo
+*.user
+*.vspscc
+*.vssscc
+*.pdb
+*.csproj.user
+*.cache
+*.dll.config
+*.dbmdl
+
+# Ignore NuGet package files
+*.nupkg
+*.snupkg
+
+# Ignore build output
+**/bin/
+**/obj/

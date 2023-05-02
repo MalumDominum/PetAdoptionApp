@@ -51,8 +51,8 @@ var app = builder.Build();
 		catch (Exception ex)
 		{
 			var logger = services.GetRequiredService<ILogger<Program>>();
-			logger.LogError(ex, "An error occurred seeding the DB: {exceptionMessage}", ex.Message);
-			throw new ("An error occurred seeding the DB: " + ex.Message);
+			logger.LogError(ex, "An error occurred while seeding the DB: {exceptionMessage}", ex.Message);
+			throw new ("An error occurred while seeding the DB: " + ex.Message);
 		}
 	}
 	app.Run();
