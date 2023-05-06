@@ -3,10 +3,11 @@ WORKDIR /app
 
 COPY . ./
 
-# Remove test project lines from solution file
-RUN dotnet sln remove src/tests/PetProfileDomain.FunctionalTests/PetProfileDomain.FunctionalTests.csproj \
- && dotnet sln remove src/tests/PetProfileDomain.IntegrationTests/PetProfileDomain.IntegrationTests.csproj \
- && dotnet sln remove src/tests/PetProfileDomain.UnitTests/PetProfileDomain.UnitTests.csproj
+# Remove other microservice's and test projects
+RUN find src/ -name "*.csproj" \
+    ! -path "src/PetProfileDomain/*" \
+    ! -path "src/PetAdoptionApp.SharedKernel/*" \
+    -exec dotnet sln remove {} \;
 
 RUN dotnet restore
 
