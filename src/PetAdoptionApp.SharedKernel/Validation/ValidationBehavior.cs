@@ -1,8 +1,8 @@
-﻿using MediatR;
-using ErrorOr;
+﻿using ErrorOr;
 using FluentValidation;
+using MediatR;
 
-namespace PetAdoptionApp.SharedKernel.Behaviors;
+namespace PetAdoptionApp.SharedKernel.Validation;
 
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 	where TRequest : IRequest<TResponse>

@@ -1,5 +1,5 @@
-# Ignore Test Projects Folder
-tests/
+# Ignore Kubernetes Deployment Files
+*-depl.yaml
 
 # Ignore Docs Files
 LICENSE

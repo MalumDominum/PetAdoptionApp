@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
-using PetProjectApp.Api.ErrorHandling;
 
 namespace PetAdoptionApp.SharedKernel.ErrorHandling;
 

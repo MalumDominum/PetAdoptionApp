@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
+WORKDIR /app
+
+COPY . ./
+
+# Remove test project lines from solution file
+RUN dotnet sln remove src/tests/PetProfileDomain.FunctionalTests/PetProfileDomain.FunctionalTests.csproj \
+ && dotnet sln remove src/tests/PetProfileDomain.IntegrationTests/PetProfileDomain.IntegrationTests.csproj \
+ && dotnet sln remove src/tests/PetProfileDomain.UnitTests/PetProfileDomain.UnitTests.csproj
+
+RUN dotnet restore
+
+COPY . ./
+RUN dotnet publish src/PetProfileDomain/PetProfileDomain.Api/PetProfileDomain.Api.csproj -c Release -o /app/publish
+
+# Runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
+WORKDIR /app
+COPY --from=build-env /app/publish ./
+ENTRYPOINT ["dotnet", "PetAdoptionApp.Api.dll"]

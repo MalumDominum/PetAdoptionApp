@@ -1,4 +1,4 @@
-﻿namespace PetProjectApp.Api.ErrorHandling;
+﻿namespace PetAdoptionApp.SharedKernel.ErrorHandling;
 
 public static class HttpContextItemKeys
 {

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using PetAdoptionApp.SharedKernel.Behaviors;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 using PetAdoptionApp.SharedKernel.Events;
+using PetAdoptionApp.SharedKernel.Validation;
 
 namespace PetAdoptionApp.SharedKernel;
 public static class SharedKernelDiModule
