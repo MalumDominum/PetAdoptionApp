@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FDB8F4FA
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PetProfileDomain", "PetProfileDomain", "{36D1A08C-5483-44BE-8561-9C6A23EB9096}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetAdoptionApp.ApiGateway", "src\PetAdoptionApp.ApiGateway\PetAdoptionApp.ApiGateway.csproj", "{67AF6313-D76C-40B5-8E6C-C988BC1D343C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{04D35D60-4208-44F7-B0B9-07D09B2BB9E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04D35D60-4208-44F7-B0B9-07D09B2BB9E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04D35D60-4208-44F7-B0B9-07D09B2BB9E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67AF6313-D76C-40B5-8E6C-C988BC1D343C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67AF6313-D76C-40B5-8E6C-C988BC1D343C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67AF6313-D76C-40B5-8E6C-C988BC1D343C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67AF6313-D76C-40B5-8E6C-C988BC1D343C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
