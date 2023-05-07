@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var isDev = builder.Environment.IsDevelopment();
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 builder.Services.AddPresentation(isDev)
-				.AddApplication()
+				.AddApplication(builder.Configuration)
 				.AddInfrastructure(builder.Configuration, isDev)
 				.AddSharedKernel();
 
