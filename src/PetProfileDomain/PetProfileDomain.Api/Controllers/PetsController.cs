@@ -3,11 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 using PetProfileDomain.Api.Models;
-using PetProfileDomain.Application.Pets.Commands.Create;
-using PetProfileDomain.Application.Pets.Commands.Delete;
-using PetProfileDomain.Application.Pets.Commands.Update;
-using PetProfileDomain.Application.Pets.Queries.ById;
-using PetProfileDomain.Application.Pets.Queries.FilterablePage;
+using PetProfileDomain.Application.Commands.Pets.Create;
+using PetProfileDomain.Application.Commands.Pets.Update;
+using PetProfileDomain.Application.Queries.Pets.ById;
+using PetProfileDomain.Application.Queries.Pets.Commands.Delete;
+using PetProfileDomain.Application.Queries.Pets.FilterablePage;
 
 namespace PetProfileDomain.Api.Controllers;
 

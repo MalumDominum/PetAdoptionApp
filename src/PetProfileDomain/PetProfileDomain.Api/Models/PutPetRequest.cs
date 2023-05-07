@@ -1,4 +1,4 @@
-﻿using PetProfileDomain.Application.Pets.Commands.Models;
+﻿using PetProfileDomain.Application.Queries.Pets.Commands.Models;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.ValueObjects;
 
 namespace PetProfileDomain.Api.Models;

@@ -31,11 +31,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Breeds\Commands\" />
-      <Folder Include="Sizes\Commands\" />
-      <Folder Include="Species\Commands\" />
-      <Folder Include="Colors\Commands\" />
-      <Folder Include="States\Commands\" />
+      <Folder Include="Commands\Breeds\" />
+      <Folder Include="Commands\Colors\" />
+      <Folder Include="Commands\Sizes\" />
+      <Folder Include="Commands\Species\" />
+      <Folder Include="Commands\States\" />
+      <Folder Include="Queries\States\" />
     </ItemGroup>
 	
 </Project>

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
-using PetProfileDomain.Application.Breeds.Queries.List;
-using PetProfileDomain.Application.Breeds.Queries.ListBySpeciesId;
+using PetProfileDomain.Application.Queries.Breeds.List;
+using PetProfileDomain.Application.Queries.Breeds.ListBySpeciesId;
 
 namespace PetProfileDomain.Api.Controllers;
 

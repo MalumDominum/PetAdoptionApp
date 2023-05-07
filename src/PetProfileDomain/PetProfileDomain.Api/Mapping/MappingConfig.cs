@@ -1,11 +1,11 @@
 ﻿using Mapster;
 using PetAdoptionApp.SharedKernel.Providers;
 using PetProfileDomain.Api.Models;
-using PetProfileDomain.Application.Pets.Commands.Create;
-using PetProfileDomain.Application.Pets.Commands.Update;
-using PetProfileDomain.Application.Pets.Queries.FilterablePage;
-using PetProfileDomain.Application.Pets.Queries.Models;
-using PetProfileDomain.Application.Pets.Queries.Models.Nesting;
+using PetProfileDomain.Application.Commands.Pets.Create;
+using PetProfileDomain.Application.Commands.Pets.Update;
+using PetProfileDomain.Application.Models.Models;
+using PetProfileDomain.Application.Models.Models.Nesting;
+using PetProfileDomain.Application.Queries.Pets.FilterablePage;
 using PetProfileDomain.Domain.Aggregates.PetAggregate;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Enums;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Linkers;

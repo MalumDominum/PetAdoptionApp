@@ -1,5 +1,5 @@
-﻿using PetProfileDomain.Application.Common;
-using PetProfileDomain.Application.Pets.Queries.Models;
+﻿using PetProfileDomain.Application.Models.Common;
+using PetProfileDomain.Application.Models.Models;
 
 namespace PetProfileDomain.Api.Models;
 

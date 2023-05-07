@@ -1,5 +1,5 @@
 ﻿using PetProfileDomain.Api.Models;
-using PetProfileDomain.Application.Pets.Commands.Models;
+using PetProfileDomain.Application.Queries.Pets.Commands.Models;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Enums;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.ValueObjects;
 using Swashbuckle.AspNetCore.Filters;
