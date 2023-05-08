@@ -1,6 +1,7 @@
 ﻿using Ardalis.ListStartupServices;
 using Serilog;
 using PetAdoptionApp.SharedKernel;
+using PetAdoptionApp.SharedKernel.Providers;
 using PetProfileDomain.Api;
 using PetProfileDomain.Application;
 using PetProfileDomain.Infrastructure;
@@ -8,6 +9,18 @@ using PetProfileDomain.Infrastructure.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 var isDev = builder.Environment.IsDevelopment();
+
+var rootPath = SolutionPathProvider.TryGetSolutionDirectoryInfo();
+var settingsConfig = rootPath != null
+	? new ConfigurationBuilder()
+		.SetBasePath(rootPath.FullName)
+		.AddJsonFile("configs\\petdomain-api-appsettings.json", false, true)
+		.AddJsonFile("configs\\petdomain-api-appsettings.Development.json", true, true)
+		.Build()
+	: null;
+if (settingsConfig != null)
+	builder.Configuration.AddConfiguration(settingsConfig);
+
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 builder.Services.AddPresentation(isDev)
 				.AddApplication(builder.Configuration)
@@ -29,8 +42,6 @@ var app = builder.Build();
 	}
 	app.UseRouting();
 	app.MapControllers();
-
-	//app.UseStaticFiles(); Add if will share files
 
 	app.UseSwagger();
 	app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pet Adoption API V1"));

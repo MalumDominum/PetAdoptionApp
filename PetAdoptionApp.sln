@@ -29,6 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthProvider.Api", "src\Aut
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthProvider", "AuthProvider", "{321BA70A-0E71-473C-ACEA-C5DE6B999437}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configs", "Configs", "{B90675A6-0E1B-48F4-8B56-27FAAFAF3031}"
+	ProjectSection(SolutionItems) = preProject
+		configs\petdomain-api-appsettings.json = configs\petdomain-api-appsettings.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
