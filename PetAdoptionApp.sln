@@ -25,9 +25,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PetProfileDomain", "PetProf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetAdoptionApp.ApiGateway", "src\PetAdoptionApp.ApiGateway\PetAdoptionApp.ApiGateway.csproj", "{67AF6313-D76C-40B5-8E6C-C988BC1D343C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityProvider.Api", "src\IdentityProvider\IdentityProvider.Api\IdentityProvider.Api.csproj", "{6B2D3AFA-FBBC-4F2D-92E2-D81DFBBB1B0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthProvider.Api", "src\AuthProvider\AuthProvider.Api\AuthProvider.Api.csproj", "{6B2D3AFA-FBBC-4F2D-92E2-D81DFBBB1B0E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityProvider", "IdentityProvider", "{321BA70A-0E71-473C-ACEA-C5DE6B999437}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthProvider", "AuthProvider", "{321BA70A-0E71-473C-ACEA-C5DE6B999437}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
