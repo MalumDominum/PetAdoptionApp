@@ -10,18 +10,6 @@ using PetProfileDomain.Infrastructure.DataAccess;
 var builder = WebApplication.CreateBuilder(args);
 var isDev = builder.Environment.IsDevelopment();
 
-var rootPath = SolutionPathProvider.TryGetSolutionDirectoryInfo();
-Console.WriteLine(Path.Combine(rootPath?.FullName ?? "", "configs", "petdomain-api-appsettings.json"));
-var settingsConfig = rootPath?.FullName != null
-	? new ConfigurationBuilder()
-		.SetBasePath(rootPath.FullName)
-		.AddJsonFile(Path.Combine("configs", "petdomain-api-appsettings.json"), false, true)
-		.AddJsonFile(Path.Combine("configs", "petdomain-api-appsettings.Development.json"), true, true)
-		.Build()
-	: null;
-if (settingsConfig != null)
-	builder.Configuration.AddConfiguration(settingsConfig);
-
 builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Configuration));
 builder.Services.AddPresentation(isDev)
 				.AddApplication(builder.Configuration)

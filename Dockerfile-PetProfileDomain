@@ -16,6 +16,11 @@ RUN dotnet publish src/PetProfileDomain/PetProfileDomain.Api/PetProfileDomain.Ap
 
 # Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
+RUN apt-get update && \
+    apt-get install -y \
+        curl \
+        dnsutils \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY --from=build-env /app/publish ./
-ENTRYPOINT ["dotnet", "PetAdoptionApp.Api.dll"]
+ENTRYPOINT ["dotnet", "PetProfileDomain.Api.dll"]
