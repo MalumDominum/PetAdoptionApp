@@ -4,6 +4,9 @@
 # Ignore env file
 .env
 
+# Ignore Helm files
+Chart.lock
+
 # User-specific files
 *.suo
 *.user
