@@ -1,0 +1,15 @@
+dependencies:
+- name: common
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 2.2.5
+- name: haproxy
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 0.7.2
+- name: postgresql
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 12.4.2
+- name: rabbitmq
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 11.14.4
+digest: sha256:2dae484b8428ea77cc543c7b57c072319e2d56ee81ec4b7e2085ec8aec511252
+generated: "2023-05-08T12:52:58.1248346+03:00"

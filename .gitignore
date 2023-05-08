@@ -266,3 +266,6 @@ pub/
 
 #Ignore log files
 log*.txt
+
+#Ignore chart dependencies
+**/charts/*.tgz

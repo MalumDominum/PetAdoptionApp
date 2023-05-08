@@ -1,0 +1,36 @@
+apiVersion: v2
+type: application
+name: petadopt
+description: A Helm chart for Kubernetes for deploying PetAdoptionApp
+home: https://github.com/MalumDominum/PetAdoptionApp
+keywords:
+  - petadopt
+sources:
+  - https://github.com/MalumDominum/PetAdoptionApp
+version: 0.1.0
+appVersion: v1.0.0
+
+dependencies:
+  - name: common
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-common
+    version: 2.x.x
+  - name: haproxy
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-haproxy
+    condition: haproxy.enabled
+    version: 0.7.x
+  - name: postgresql
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-postgresql
+    version: 12.x.x
+    condition: postgresql.enabled
+  - name: rabbitmq
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-rabbitmq
+    condition: rabbitmq.enabled
+    version: 11.x.x

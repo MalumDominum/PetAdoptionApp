@@ -1,0 +1,499 @@
+## @section Global parameters
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry, imagePullSecrets and storageClass
+##
+
+## @param global.imageRegistry Global Docker image registry
+## @param global.imagePullSecrets Global Docker registry secret names as an array
+## @param global.storageClass Global StorageClass for Persistent Volume(s)
+##
+global:
+  imageRegistry: ""
+  ## E.g.
+  ## imagePullSecrets:
+  ##   - myRegistryKeySecretName
+  ##
+  imagePullSecrets: []
+  storageClass: ""
+
+## @section Common parameters
+##
+
+## @param kubeVersion Override Kubernetes version
+##
+kubeVersion: ""
+## @param nameOverride String to partially override common.names.fullname
+##
+nameOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride: ""
+## @param commonLabels Labels to add to all deployed objects
+##
+commonLabels: {}
+## @param commonAnnotations Annotations to add to all deployed objects
+##
+commonAnnotations: {}
+## @param clusterDomain Kubernetes cluster domain name
+##
+clusterDomain: cluster.local
+## @param extraDeploy Array of extra objects to deploy with the release
+##
+extraDeploy: []
+
+## @param petdomain
+petdomain:
+  ## Configure log level
+  ## Trace/Debug/Information/Warning/Error/Critical
+  loglevel: Information
+  ## Enable diagnostic mode in the deployment
+  ##
+  diagnosticMode:
+    ## @param diagnosticMode.enabled Enable diagnostic mode (all probes will be disabled and the command will be overridden)
+    ##
+    enabled: false
+    ## @param diagnosticMode.command Command to override all containers in the deployment
+    ##
+    command:
+      - sleep
+    ## @param diagnosticMode.args Args to override all containers in the deployment
+    ##
+    args:
+      - infinity
+  
+  ## @section Traffic Exposure Parameters
+  ##
+  
+  ## petdomain service parameters
+  ##
+  service:
+    ## @param service.type petdomain service type
+    ##
+    type: ClusterIP
+    ## @param service.ports [array] List of petdomain service ports
+    ##
+    ports:
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: http
+    ## @param service.clusterIP petdomain service Cluster IP
+    ## e.g.:
+    ## clusterIP: None
+    ##
+    clusterIP: ""
+    ## @param service.externalTrafficPolicy petdomain service external traffic policy
+    ## ref https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+    ##
+    externalTrafficPolicy: Cluster
+    ## @param service.annotations Additional custom annotations for petdomain service
+    ##
+    annotations: {}
+    ## @param service.sessionAffinity Session Affinity for Kubernetes service, can be "None" or "ClientIP"
+    ## If "ClientIP", consecutive client requests will be directed to the same mongos Pod
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#virtual-ips-and-service-proxies
+    ##
+    sessionAffinity: None
+    ## @param service.sessionAffinityConfig Additional settings for the sessionAffinity
+    ## sessionAffinityConfig:
+    ##   clientIP:
+    ##     timeoutSeconds: 300
+    ##
+    sessionAffinityConfig: {}
+    ## @param service.labels Additional custom labels for petdomain service
+    ##
+    labels: {}
+    ## @param service.headless petdomain headless service parameters
+    ##
+    headless:
+      ## @param service.headless.annotations Additional custom labels for petdomain headless service
+      ##
+      annotations: {}
+  
+  ## @section PetDomain Parameters
+  ##
+  ## @param image.registry PetDomain image registry
+  ## @param image.repository PetDomain image repository
+  ## @param image.tag PetDomain image tag (immutable tags are recommended)
+  ## @param image.digest PetDomain image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
+  ## @param image.pullPolicy PetDomain image pull policy
+  ## @param image.pullSecrets PetDomain image pull secrets
+  ##
+  image:
+    registry: docker.io
+    repository: mihailalekseev/petdomain
+    tag: v1.0.0
+    digest: ""
+    ## Specify a imagePullPolicy
+    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+    ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+    ##
+    pullPolicy: Always
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ## e.g:
+    ## pullSecrets:
+    ##   - myRegistryKeySecretName
+    ##
+    pullSecrets: []
+  ## @param replicaCount Number of petdomain replicas to deploy
+  ##
+  replicaCount: 1
+  ## Configure extra options for petdomain containers' liveness and readiness probes
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
+  ## @param startupProbe.enabled Enable startupProbe on petdomain nodes
+  ## @param startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
+  ## @param startupProbe.periodSeconds Period seconds for startupProbe
+  ## @param startupProbe.timeoutSeconds Timeout seconds for startupProbe
+  ## @param startupProbe.failureThreshold Failure threshold for startupProbe
+  ## @param startupProbe.successThreshold Success threshold for startupProbe
+  ##
+  startupProbe:
+    enabled: false
+    failureThreshold: 5
+    initialDelaySeconds: 15
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  ## @param livenessProbe.enabled Enable livenessProbe on petdomain nodes
+  ## @param livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
+  ## @param livenessProbe.periodSeconds Period seconds for livenessProbe
+  ## @param livenessProbe.timeoutSeconds Timeout seconds for livenessProbe
+  ## @param livenessProbe.failureThreshold Failure threshold for livenessProbe
+  ## @param livenessProbe.successThreshold Success threshold for livenessProbe
+  ##
+  livenessProbe:
+    enabled: true
+    failureThreshold: 5
+    initialDelaySeconds: 15
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  ## @param readinessProbe.enabled Enable readinessProbe on petdomain nodes
+  ## @param readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
+  ## @param readinessProbe.periodSeconds Period seconds for readinessProbe
+  ## @param readinessProbe.timeoutSeconds Timeout seconds for readinessProbe
+  ## @param readinessProbe.failureThreshold Failure threshold for readinessProbe
+  ## @param readinessProbe.successThreshold Success threshold for readinessProbe
+  ##
+  readinessProbe:
+    enabled: true
+    failureThreshold: 5
+    initialDelaySeconds: 15
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  ## @param customStartupProbe Custom startupProbe that overrides the default one
+  ##
+  customStartupProbe: {}
+  ## @param customLivenessProbe Custom livenessProbe that overrides the default one
+  ##
+  customLivenessProbe: {}
+  ## @param customReadinessProbe Custom readinessProbe that overrides the default one
+  ##
+  customReadinessProbe: {}
+  ## petdomain resource requests and limits
+  ## ref: https://kubernetes.io/docs/user-guide/compute-resources/
+  ## @param resources.limits The resources limits for the petdomain containers
+  ## @param resources.requests The requested resources for the petdomain containers
+  ##
+  resources:
+    limits: {}
+    requests: {}
+  ## Configure Pods Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+  ## @param podSecurityContext.enabled Enabled petdomain pods' Security Context
+  ## @param podSecurityContext.fsGroup Set petdomain pod's Security Context fsGroup
+  ##
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+  ## Configure Container Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+  ## @param containerSecurityContext.enabled Enabled petdomain containers' Security Context
+  ## @param containerSecurityContext.runAsUser Set petdomain containers' Security Context runAsUser
+  ## @param containerSecurityContext.runAsNonRoot Set petdomain container's Security Context runAsNonRoot
+  ##
+  containerSecurityContext:
+    enabled: true
+    runAsUser: 1001
+    runAsNonRoot: true
+  
+  ## PetDomain Pod Disruption Budget configuration
+  ## ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+  ## @param pdb.create Enable a Pod Disruption Budget creation
+  ## @param pdb.minAvailable Minimum number/percentage of pods that should remain scheduled
+  ## @param pdb.maxUnavailable Maximum number/percentage of pods that may be made unavailable
+  ##
+  pdb:
+    create: false
+    minAvailable: 1
+    maxUnavailable: ""
+  
+  ## PetDomain Autoscaling configuration
+  ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+  ## @param autoscaling.enabled Enable Horizontal POD autoscaling for PetDomain
+  ## @param autoscaling.minReplicas Minimum number of PetDomain replicas
+  ## @param autoscaling.maxReplicas Maximum number of PetDomain replicas
+  ## @param autoscaling.targetCPU Target CPU utilization percentage
+  ## @param autoscaling.targetMemory Target Memory utilization percentage
+  ##
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 10
+    targetCPU: 50
+    targetMemory: 50
+  
+  ## @param command Override default container command (useful when using custom images)
+  ##
+  command: []
+  ## @param args Override default container args (useful when using custom images)
+  ##
+  args: []
+  ## @param hostAliases petdomain pods host aliases
+  ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+  ##
+  hostAliases: []
+  ## @param podLabels Extra labels for petdomain pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+  ##
+  podLabels: {}
+  ## @param podAnnotations Annotations for petdomain pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  podAnnotations: {}
+  ## @param podAffinityPreset Pod affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAffinityPreset: ""
+  ## @param podAntiAffinityPreset Pod anti-affinity preset. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAntiAffinityPreset: soft
+  ## Node affinity preset
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+  ##
+  nodeAffinityPreset:
+    ## @param nodeAffinityPreset.type Node affinity preset type. Ignored if `affinity` is set. Allowed values: `soft` or `hard`
+    ##
+    type: ""
+    ## @param nodeAffinityPreset.key Node label key to match. Ignored if `affinity` is set
+    ##
+    key: ""
+    ## @param nodeAffinityPreset.values Node label values to match. Ignored if `affinity` is set
+    ## E.g.
+    ## values:
+    ##   - e2e-az1
+    ##   - e2e-az2
+    ##
+    values: []
+  
+  ## @param containerPorts [array] List of container ports to enable in the petdomain container
+  ##
+  containerPorts:
+    - name: http
+      containerPort: 80
+  
+  ## @param affinity Affinity for petdomain pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  ## NOTE: `podAffinityPreset`, `podAntiAffinityPreset`, and `nodeAffinityPreset` will be ignored when it's set
+  ##
+  affinity: {}
+  ## @param nodeSelector Node labels for petdomain pods assignment
+  ## ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
+  nodeSelector: {}
+  ## @param tolerations Tolerations for petdomain pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  ##
+  tolerations: []
+  ## @param schedulerName Name of the k8s scheduler (other than default)
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  schedulerName: ""
+  ## @param topologySpreadConstraints Topology Spread Constraints for pod assignment
+  ## https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/
+  ## The value is evaluated as a template
+  ##
+  topologySpreadConstraints: []
+  ## @param updateStrategy.type petdomain statefulset strategy type
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
+  ##
+  updateStrategy:
+    ## StrategyType
+    ## Can be set to RollingUpdate or OnDelete
+    ##
+    type: RollingUpdate
+  ## @param priorityClassName petdomain pods' priorityClassName
+  ##
+  priorityClassName: ""
+  ## @param lifecycleHooks for the petdomain container(s) to automate configuration before or after startup
+  ##
+  lifecycleHooks: {}
+  ## @param extraEnvVars Array with extra environment variables to add to petdomain nodes
+  ## e.g:
+  ## extraEnvVars:
+  ##   - name: FOO
+  ##     value: "bar"
+  ##
+  extraEnvVars: []
+  ## @param extraEnvVarsCM Name of existing ConfigMap containing extra env vars for petdomain nodes
+  ##
+  extraEnvVarsCM: ""
+  ## @param extraEnvVarsSecret Name of existing Secret containing extra env vars for petdomain nodes
+  ##
+  extraEnvVarsSecret: ""
+  ## @param extraVolumes Optionally specify extra list of additional volumes for the petdomain pod(s)
+  ##
+  extraVolumes: []
+  ## @param extraVolumeMounts Optionally specify extra list of additional volumeMounts for the petdomain container(s)
+  ##
+  extraVolumeMounts: []
+  ## @param sidecars Add additional sidecar containers to the petdomain pod(s)
+  ## e.g:
+  ## sidecars:
+  ##   - name: your-image-name
+  ##     image: your-image
+  ##     imagePullPolicy: Always
+  ##     ports:
+  ##       - name: portname
+  ##         containerPort: 1234
+  ##
+  sidecars: []
+  ## @param initContainers Add additional init containers to the petdomain pod(s)
+  ## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+  ## e.g:
+  ## initContainers:
+  ##  - name: your-image-name
+  ##    image: your-image
+  ##    imagePullPolicy: Always
+  ##    command: ['sh', '-c', 'echo "hello world"']
+  ##
+  initContainers: []
+  
+  ## @section Other Parameters
+  ##
+  
+  ## ServiceAccount configuration
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+  ## @param serviceAccount.create Specifies whether a ServiceAccount should be created
+  ## @param serviceAccount.name Name of the service account to use. If not set and create is true, a name is generated using the fullname template.
+  ## @param serviceAccount.automountServiceAccountToken Automount service account token for the server service account
+  ## @param serviceAccount.annotations Annotations for service account. Evaluated as a template. Only used if `create` is `true`.
+  ##
+  serviceAccount:
+    ## @param serviceAccount.create Specifies whether a ServiceAccount should be created
+    ##
+    create: true
+    ## @param serviceAccount.name The name of the ServiceAccount to use.
+    ## If not set and create is true, a name is generated using the common.names.fullname template
+    ##
+    name: ""
+    automountServiceAccountToken: true
+    annotations: {}
+
+
+# Default configuration for dependencies
+haproxy:
+  enabled: true
+  configuration: |
+    global
+      log stdout format raw local0
+      tune.http.logurilen 2000
+      maxconn 1024
+      stats timeout 30s
+      ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+      ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384
+      ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+      ssl-default-server-options ssl-min-ver TLSv1.2 no-tls-tickets
+      ssl-default-server-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384
+      ssl-default-server-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+    
+    resolvers k8resolver
+      parse-resolv-conf
+      accepted_payload_size 8192
+      timeout resolve 3
+      timeout retry 1
+      resolve_retries 3
+    
+    defaults
+      mode http
+      log global
+      option redispatch
+      option dontlognull
+      option http-server-close
+      timeout connect 3s
+      timeout client 30s
+      timeout server 30s
+      unique-id-format %{+X}o\ %ci:%cp_%fi:%fp_%Ts_%rt:%pid
+      unique-id-header X-Request-ID
+      compression algo gzip
+      compression type text/css text/html text/javascript application/javascript text/plain text/xml application/json
+    
+    listen statistics
+      bind :8090
+      mode http
+      stats enable
+      stats uri /
+      stats realm Statistics
+      stats auth PetAdoption:PetAdoptionSecretPassword
+    
+    frontend petadop
+      bind :8080
+      http-request set-var(txn.host) req.hdr(Host),lower,word(1,:)
+      http-request set-var(txn.path) path
+      http-request set-header X-Forwarded-Proto %[var(txn.scheme)]
+      http-request replace-header X-Forwarded-For (.*) %[src],\1 if { req.hdr(X-Forwarded-For) -m found }
+      http-request set-header X-Real-IP %[src]
+      http-response del-header Server
+      http-response del-header X-Powered-By
+      http-response del-header X-AspNet-Version
+      http-response del-header X-AspNetMvc-Version
+      http-response set-header X-Request-ID %[unique-id]
+      http-response set-header X-Frame-Options SAMEORIGIN
+      http-response set-header X-Content-Type-Options nosniff
+      http-response set-header X-XSS-Protection 0
+      use_backend petdomain if { var(txn.path) -m beg -i /petdomain/ }
+    
+    backend petdomain
+      balance roundrobin
+      # enable advanced healthchecks for autoscaling deployment of dotnet apps:
+      # add "observe layer7 error-limit 50 on-error mark-down inter 1s rise 30 slowstart 20s" after "check" directive in "server-template"
+      # explanation of parameters available at: https://www.haproxy.com/blog/how-to-enable-health-checks-in-haproxy/
+      server-template petdomain {{ .Values.backend.maxSlots }} _http._tcp.{{ .Release.Name }}-petdomain-headless.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }} resolvers k8resolver init-addr none maxconn 300 check
+      option httpchk
+      http-check connect
+      http-check send meth GET uri /-/healthy ver HTTP/1.1 hdr Host localhost hdr User-Agent haproxy/2.7 #hdr Accept */*
+      http-check expect status 200
+  containerPorts:
+    - name: http
+      containerPort: 8080
+    - name: statistics
+      containerPort: 8090
+  backend:
+    maxSlots: 10
+
+postgresql:
+  enabled: true
+  global:
+    postgresql:
+      auth:
+        postgresPassword: PostgresSecretPassword
+        database: PetAdoption
+        username: PetAdoption
+        password: PetAdoptionSecretPassword
+  primary:
+    persistence:
+      size: 1Gi
+
+rabbitmq:
+  enabled: true
+  auth:
+    username: PetAdoption
+    password: PetAdoptionSecretPassword
+    erlangCookie: eu6QjqbcVAILMxxjMnizzMYlib9sOj5i
+  persistence:
+    size: 1Gi

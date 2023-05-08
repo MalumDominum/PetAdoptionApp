@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.fullname" . }}-petdomain-configmap
+  namespace: {{ .Release.Namespace | quote }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: petdomain
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.commonAnnotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- end }}
+data:
+  appsettings.json: |
+    {
+      "Pagination": {
+        "PageLimit": 20
+      },
+      "RabbitMQ": {
+        "Host": "{{ .Release.Name }}-rabbitmq.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }}",
+        "Port": 5672,
+        "Username": {{ .Values.rabbitmq.auth.username | quote }},
+        "Password": {{ .Values.rabbitmq.auth.password | quote }},
+        "VirtualHost": "/"
+      },
+      "ConnectionStrings": {
+        "DefaultConnection": "Host={{ .Release.Name }}-postgresql.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }};Port=5432;Database={{ .Values.postgresql.global.postgresql.auth.database }};Pooling=true;User ID={{ .Values.postgresql.global.postgresql.auth.username }};Password={{ .Values.postgresql.global.postgresql.auth.password }};"
+      },
+      "Serilog": {
+        "MinimumLevel": {
+          "Default": {{ .Values.petdomain.loglevel | quote }}
+        },
+        "WriteTo": [
+          {
+            "Name": "Console"
+          }
+        ]
+      }
+    }
+---

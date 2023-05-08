@@ -1,0 +1,23 @@
+{{- if .Values.petdomain.pdb.create }}
+apiVersion: {{ include "common.capabilities.policy.apiVersion" . }}
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "common.names.fullname" . }}-petdomain
+  namespace: {{ .Release.Namespace | quote }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.commonAnnotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.petdomain.pdb.minAvailable }}
+  minAvailable: {{ .Values.petdomain.pdb.minAvailable }}
+  {{- end }}
+  {{- if .Values.petdomain.pdb.maxUnavailable }}
+  maxUnavailable: {{ .Values.petdomain.pdb.maxUnavailable }}
+  {{- end }}
+  selector:
+    matchLabels: {{ include "common.labels.matchLabels" . | nindent 6 }}
+{{- end }}

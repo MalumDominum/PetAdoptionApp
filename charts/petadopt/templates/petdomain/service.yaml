@@ -1,0 +1,47 @@
+{{- if .Values.petdomain.service.ports }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "common.names.fullname" . }}-petdomain
+  namespace: {{ .Release.Namespace | quote }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: petdomain
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+    {{- if .Values.petdomain.service.labels }}
+    {{- include "common.tplvalues.render" (dict "value" .Values.petdomain.service.labels "context" $) | nindent 4 }}
+    {{- end }}
+  {{- if or .Values.petdomain.service.annotations .Values.commonAnnotations }}
+  annotations:
+    {{- if .Values.petdomain.service.annotations }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.petdomain.service.annotations "context" $ ) | nindent 4 }}
+    {{- end }}
+    {{- if .Values.commonAnnotations }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+    {{- end }}
+  {{- end }}
+spec:
+  type: {{ .Values.petdomain.service.type }}
+  {{- if .Values.petdomain.clusterIP }}
+  clusterIP: {{ .Values.petdomain.clusterIP }}
+  {{- end }}
+  {{- if (or (eq .Values.petdomain.service.type "LoadBalancer") (eq .Values.petdomain.service.type "NodePort")) }}
+  externalTrafficPolicy: {{ .Values.petdomain.service.externalTrafficPolicy | quote }}
+  {{- end }}
+  {{- if eq .Values.petdomain.service.type "LoadBalancer" }}
+  loadBalancerSourceRanges: {{ .Values.petdomain.service.loadBalancerSourceRanges }}
+  {{- if .Values.petdomain.service.loadBalancerIP }}
+  loadBalancerIP: {{ .Values.petdomain.service.loadBalancerIP }}
+  {{- end }}
+  {{- end }}
+  {{- if .Values.petdomain.service.sessionAffinity }}
+  sessionAffinity: {{ .Values.petdomain.service.sessionAffinity }}
+  {{- end }}
+  {{- if .Values.petdomain.service.sessionAffinityConfig }}
+  sessionAffinityConfig: {{- include "common.tplvalues.render" (dict "value" .Values.petdomain.service.sessionAffinityConfig "context" $) | nindent 4 }}
+  {{- end }}
+  ports: {{- include "common.tplvalues.render" ( dict "value" .Values.petdomain.service.ports "context" $ ) | nindent 4 }}
+  selector: {{- include "common.labels.matchLabels" . | nindent 4 }}
+    app.kubernetes.io/component: petdomain
+{{- end }}
