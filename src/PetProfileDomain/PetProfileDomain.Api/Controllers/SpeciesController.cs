@@ -5,6 +5,7 @@ using PetProfileDomain.Application.Queries.Species;
 
 namespace PetProfileDomain.Api.Controllers;
 
+[Route("PetDomain/[controller]")]
 public class SpeciesController : ApiControllerBase
 {
 	private readonly ISender _mediator;

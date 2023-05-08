@@ -6,6 +6,7 @@ using PetProfileDomain.Application.Queries.Breeds.ListBySpeciesId;
 
 namespace PetProfileDomain.Api.Controllers;
 
+[Route("PetDomain/[controller]")]
 public class BreedsController : ApiControllerBase
 {
 	private readonly ISender _mediator;

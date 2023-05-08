@@ -11,16 +11,20 @@ public static class ApiDiModule
 	public static IServiceCollection AddPresentation(this IServiceCollection services, bool isDev)
 	{
 		services.AddControllers();
-		services.AddMapping()
-			    .AddSwaggerDocumentation();
-		if (isDev)
-			// add list services page for diagnostic purposes
-			services.Configure<ServiceConfig>(config =>
-			{
-				config.Services = new List<ServiceDescriptor>(services);
-				config.Path = "/listservices";
-			});
+		services.AddMapping();
+		services.AddHealthChecks();
+
 		//builder.Logging.AddAzureWebAppDiagnostics(); add this if deploying to Azure
+
+		if (!isDev) return services;
+		services.AddSwaggerDocumentation();
+		// add list services page for diagnostic purposes
+		services.Configure<ServiceConfig>(config =>
+		{
+			config.Services = new List<ServiceDescriptor>(services);
+			config.Path = "/listservices";
+		});
+
 		return services;
 	}
 

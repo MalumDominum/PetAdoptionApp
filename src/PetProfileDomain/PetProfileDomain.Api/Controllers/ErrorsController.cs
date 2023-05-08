@@ -5,6 +5,7 @@ namespace PetProfileDomain.Api.Controllers;
 
 [ApiController]
 [ApiExplorerSettings(IgnoreApi = true)]
+[Route("PetDomain/[controller]")]
 public class ErrorsController : ControllerBase
 {
     [Route("Error/")]

@@ -4,6 +4,7 @@ using PetProfileDomain.Domain.Aggregates.StateAggregate.Enums;
 
 namespace PetProfileDomain.Api.Controllers;
 
+[Route("PetDomain/[controller]")]
 public class StatesController : ApiControllerBase
 {
 	[HttpGet]

@@ -11,8 +11,8 @@ using PetProfileDomain.Application.Queries.Pets.FilterablePage;
 
 namespace PetProfileDomain.Api.Controllers;
 
-[Route("api/PetProfiles")]
 [Tags("PetProfiles")]
+[Route("PetDomain/PetProfiles")]
 public class PetsController : ApiControllerBase
 {
 	private readonly ISender _mediator;

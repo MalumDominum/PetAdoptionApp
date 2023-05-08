@@ -5,6 +5,7 @@ using PetProfileDomain.Application.Queries.Colors;
 
 namespace PetProfileDomain.Api.Controllers;
 
+[Route("PetDomain/[controller]")]
 public class ColorsController : ApiControllerBase
 {
 	private readonly ISender _mediator;

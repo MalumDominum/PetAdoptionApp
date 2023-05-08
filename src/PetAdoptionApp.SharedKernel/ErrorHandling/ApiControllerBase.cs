@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PetAdoptionApp.SharedKernel.ErrorHandling;
 
-[Route("api/[controller]")]
 [ApiController]
 public abstract class ApiControllerBase : ControllerBase
 {
