@@ -14,8 +14,8 @@ var rootPath = SolutionPathProvider.TryGetSolutionDirectoryInfo();
 var settingsConfig = rootPath != null
 	? new ConfigurationBuilder()
 		.SetBasePath(rootPath.FullName)
-		.AddJsonFile("configs\\petdomain-api-appsettings.json", false, true)
-		.AddJsonFile("configs\\petdomain-api-appsettings.Development.json", true, true)
+		.AddJsonFile(Path.Combine("configs", "petdomain-api-appsettings.json"), false, true)
+		.AddJsonFile(Path.Combine("configs", "petdomain-api-appsettings.json"), true, true)
 		.Build()
 	: null;
 if (settingsConfig != null)
