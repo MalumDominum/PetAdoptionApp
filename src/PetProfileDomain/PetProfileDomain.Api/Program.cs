@@ -5,7 +5,6 @@ using PetProfileDomain.Api;
 using PetProfileDomain.Application;
 using PetProfileDomain.Infrastructure;
 using PetProfileDomain.Infrastructure.DataAccess;
-using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 var isDev = builder.Environment.IsDevelopment();
@@ -28,7 +27,7 @@ var app = builder.Build();
 	}
 	else
 	{
-		app.UseExceptionHandler("/Error");
+		app.UseExceptionHandler("PetDomain/Error");
 		app.UseHttpsRedirection();
 		app.UseHsts();
 	}

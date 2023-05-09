@@ -11,7 +11,7 @@ namespace PetAdoptionApp.SharedKernel.ErrorHandling;
 // Extended implementation of DefaultProblemDetailsFactory that's is sealed for some reasons
 public class CustomProblemDetailsFactory : ProblemDetailsFactory
 {
-    private void AddErrorsToResponse(HttpContext? httpContext, ProblemDetails problemDetails)
+    private static void AddErrorsToResponse(HttpContext? httpContext, ProblemDetails problemDetails)
     {
         if (httpContext?.Items[HttpContextItemKeys.Errors] is List<Error> errors)
         {

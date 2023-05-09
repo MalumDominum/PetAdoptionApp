@@ -1,4 +1,4 @@
-﻿namespace PetProfileDomain.Application.Models.Models.Nesting;
+﻿namespace PetProfileDomain.Application.Models.Pets.Nesting;
 
 public class SeparatedStates
 {

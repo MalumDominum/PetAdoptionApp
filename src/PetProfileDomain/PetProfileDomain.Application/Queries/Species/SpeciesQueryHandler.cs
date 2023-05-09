@@ -2,7 +2,7 @@
 using MapsterMapper;
 using MediatR;
 using PetAdoptionApp.SharedKernel.DataAccess;
-using PetProfileDomain.Application.Models.Models;
+using PetProfileDomain.Application.Models.Species;
 using PetProfileDomain.Domain.Aggregates.SpeciesAggregate.Specifications;
 
 namespace PetProfileDomain.Application.Queries.Species;

@@ -1,4 +1,4 @@
-﻿using PetProfileDomain.Application.Models.Models;
+﻿using PetProfileDomain.Application.Models.Pets;
 
 namespace PetProfileDomain.Application.Queries.Pets.ById;
 

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Auth\Register\" />
+    <Folder Include="Queries\Users\Search\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="FluentValidation.AspNetCore" />
+    <PackageReference Include="Mapster" />
+    <PackageReference Include="MassTransit.Abstractions" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\PetAdoptionApp.SharedKernel\PetAdoptionApp.SharedKernel.csproj" />
+    <ProjectReference Include="..\AuthProvider.Domain\AuthProvider.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

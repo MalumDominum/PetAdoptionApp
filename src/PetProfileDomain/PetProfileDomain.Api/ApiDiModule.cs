@@ -34,7 +34,7 @@ public static class ApiDiModule
 		{
 			c.SwaggerDoc("v1", new OpenApiInfo
 			{
-				Title = "Pet Adoption API",
+				Title = "Pet Adoption - PetProfile API",
 				Version = "v1",
 				Description = "This is an API for Hand to Paw website",
 			});

@@ -1,9 +1,10 @@
-﻿using PetProfileDomain.Application.Models.Models.Nesting;
+﻿using PetProfileDomain.Application.Models.Pets.Nesting;
+using PetProfileDomain.Application.Models.Species;
 using PetProfileDomain.Domain.Aggregates.ColorAggregate;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.ValueObjects;
 using PetProfileDomain.Domain.Aggregates.SizeAggregate;
 
-namespace PetProfileDomain.Application.Models.Models;
+namespace PetProfileDomain.Application.Models.Pets;
 
 public record PetInListDto(
 	Guid Id,

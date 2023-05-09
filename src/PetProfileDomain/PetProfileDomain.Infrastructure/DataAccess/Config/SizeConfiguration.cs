@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetProfileDomain.Domain.Aggregates.SizeAggregate;
 
 namespace PetProfileDomain.Infrastructure.DataAccess.Config;
 

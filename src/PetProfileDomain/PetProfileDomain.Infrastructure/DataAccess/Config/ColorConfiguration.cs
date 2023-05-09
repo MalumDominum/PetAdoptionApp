@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetProfileDomain.Domain.Aggregates.ColorAggregate;
 
 namespace PetProfileDomain.Infrastructure.DataAccess.Config;
 

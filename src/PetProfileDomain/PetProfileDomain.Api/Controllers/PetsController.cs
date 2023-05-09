@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 using PetProfileDomain.Api.Models;
 using PetProfileDomain.Application.Commands.Pets.Create;
+using PetProfileDomain.Application.Commands.Pets.Delete;
 using PetProfileDomain.Application.Commands.Pets.Update;
 using PetProfileDomain.Application.Queries.Pets.ById;
-using PetProfileDomain.Application.Queries.Pets.Commands.Delete;
 using PetProfileDomain.Application.Queries.Pets.FilterablePage;
 
 namespace PetProfileDomain.Api.Controllers;
@@ -19,11 +19,15 @@ public class PetsController : ApiControllerBase
 
 	private readonly IMapper _mapper;
 
+	#region Constructor
+
 	public PetsController(ISender mediator, IMapper mapper)
 	{
 		_mediator = mediator;
 		_mapper = mapper;
 	}
+
+	#endregion
 
 	[HttpGet("{id:guid}")]
 	public async Task<IActionResult> GetPetById(Guid id, CancellationToken cancellationToken)

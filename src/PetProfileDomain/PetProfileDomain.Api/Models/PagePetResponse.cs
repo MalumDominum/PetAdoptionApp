@@ -1,5 +1,5 @@
 ﻿using PetProfileDomain.Application.Models.Common;
-using PetProfileDomain.Application.Models.Models;
+using PetProfileDomain.Application.Models.Pets;
 
 namespace PetProfileDomain.Api.Models;
 

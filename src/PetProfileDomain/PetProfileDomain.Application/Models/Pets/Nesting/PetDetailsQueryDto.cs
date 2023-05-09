@@ -1,4 +1,6 @@
-﻿namespace PetProfileDomain.Application.Models.Models.Nesting;
+﻿using PetProfileDomain.Application.Models.Species;
+
+namespace PetProfileDomain.Application.Models.Pets.Nesting;
 
 public record PetDetailsQueryDto(
 	BreedDto? Breed,

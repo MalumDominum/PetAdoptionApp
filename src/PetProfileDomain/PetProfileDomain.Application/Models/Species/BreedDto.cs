@@ -1,3 +1,3 @@
-﻿namespace PetProfileDomain.Application.Models.Models;
+﻿namespace PetProfileDomain.Application.Models.Species;
 
 public record BreedDto(int Id, string Title);
