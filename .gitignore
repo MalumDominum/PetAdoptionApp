@@ -4,9 +4,6 @@
 # Ignore env file
 .env
 
-# Ignore Helm files
-Chart.lock
-
 # User-specific files
 *.suo
 *.user
@@ -272,3 +269,6 @@ log*.txt
 
 #Ignore chart dependencies
 **/charts/*.tgz
+
+#Ingore chart lock files
+**/charts/**/Chart.lock

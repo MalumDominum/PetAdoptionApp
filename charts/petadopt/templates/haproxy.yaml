@@ -1,0 +1,121 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petadopt-haproxy
+  namespace: {{ .Release.Namespace | quote }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+    app.kubernetes.io/component: haproxy
+    {{- if .Values.commonLabels }}
+    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.commonAnnotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- end }}
+data:
+  haproxy.cfg: |
+    global
+      log stdout format raw local0
+      tune.http.logurilen 2000
+      maxconn 1024
+      stats timeout 30s
+      ssl-default-bind-options ssl-min-ver TLSv1.2 no-tls-tickets
+      ssl-default-bind-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384
+      ssl-default-bind-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+      ssl-default-server-options ssl-min-ver TLSv1.2 no-tls-tickets
+      ssl-default-server-ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384
+      ssl-default-server-ciphersuites TLS_AES_128_GCM_SHA256:TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256
+    
+    resolvers k8resolver
+      parse-resolv-conf
+      accepted_payload_size 8192
+      timeout resolve 3
+      timeout retry 1
+      resolve_retries 3
+    
+    defaults
+      mode http
+      log global
+      option redispatch
+      option dontlognull
+      option http-server-close
+      timeout connect 3s
+      timeout client 30s
+      timeout server 30s
+      unique-id-format %{+X}o\ %ci:%cp_%fi:%fp_%Ts_%rt:%pid
+      unique-id-header X-Request-ID
+      compression algo gzip
+      compression type text/css text/html text/javascript application/javascript text/plain text/xml application/json
+    
+    listen statistics
+      bind :8090
+      mode http
+      stats enable
+      stats uri /
+      stats realm Statistics
+      stats auth PetAdoption:PetAdoptionSecretPassword
+    
+    frontend http-80-port
+      bind :8080
+      http-request set-var(txn.host) req.hdr(Host),lower,word(1,:)
+      http-request set-var(txn.path) path
+      http-request set-header X-Forwarded-Proto %[var(txn.scheme)]
+      http-request replace-header X-Forwarded-For (.*) %[src],\1 if { req.hdr(X-Forwarded-For) -m found }
+      http-request set-header X-Real-IP %[src]
+      http-response del-header Server
+      http-response del-header X-Powered-By
+      http-response del-header X-AspNet-Version
+      http-response del-header X-AspNetMvc-Version
+      http-response set-header X-Request-ID %[unique-id]
+      http-response set-header X-Frame-Options SAMEORIGIN
+      http-response set-header X-Content-Type-Options nosniff
+      http-response set-header X-XSS-Protection 0
+      use_backend petdomain if { var(txn.path) -m beg -i /petdomain/ }
+      use_backend minio-console if { var(txn.path) -m beg -i /minio-console/ }
+      use_backend minio-console if { var(txn.path) -m beg -i /api/v1/buckets }
+      use_backend minio-console if { var(txn.path) -m beg -i /api/v1/policies }
+    
+    backend petdomain
+      balance roundrobin
+      # enable advanced healthchecks for autoscaling deployment of dotnet apps:
+      # add "observe layer7 error-limit 50 on-error mark-down inter 1s rise 30 slowstart 20s" after "check" directive in "server-template"
+      # explanation of parameters available at: https://www.haproxy.com/blog/how-to-enable-health-checks-in-haproxy/
+    {{- if and .Values.petdomain.autoscaling.enabled .Values.petdomain.autoscaling.maxReplicas }}
+      server-template petdomain {{ .Values.petdomain.autoscaling.maxReplicas }} _http._tcp.{{ .Release.Name }}-petdomain-headless.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }} resolvers k8resolver init-addr none maxconn 300 check
+    {{- else }}
+      server-template petdomain {{ .Values.petdomain.replicaCount }} _http._tcp.{{ .Release.Name }}-petdomain-headless.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }} resolvers k8resolver init-addr none maxconn 300 check
+    {{- end }}
+      option httpchk
+      http-check connect
+      http-check send meth GET uri /-/healthy ver HTTP/1.1 hdr Host localhost hdr User-Agent haproxy/2.7
+      http-check expect status 200
+    
+    backend minio-console
+      balance roundrobin
+    {{- if eq .Values.minio.mode "distributed" }}
+      server-template minio-console {{ .Values.minio.statefulset.replicaCount }} _minio-console._tcp.{{ .Release.Name }}-minio-headless.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }} resolvers k8resolver init-addr none maxconn 300 check
+    {{- else }}
+      server-template minio-console 1 _minio-console._tcp.{{ .Release.Name }}-minio.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }} resolvers k8resolver init-addr none maxconn 300 check
+    {{- end }}
+      option httpchk
+      http-check connect
+      http-check send meth GET uri /login ver HTTP/1.1 hdr Host localhost hdr User-Agent haproxy/2.7
+      http-check expect status 200
+      # transparent rewrite /minio-console/ to /
+      http-request set-uri %[url,regsub(^/minio-console/,/,)] if { path_beg /minio-console/ }
+    
+    frontend s3-9000-port
+      bind :9000
+      default_backend minio-api
+    
+    backend minio-api
+      balance roundrobin
+    {{- if eq .Values.minio.mode "distributed" }}
+      server-template minio-api {{ .Values.minio.statefulset.replicaCount }} _minio-api._tcp.{{ .Release.Name }}-minio-headless.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }} resolvers k8resolver init-addr none maxconn 300 check
+    {{- else }}
+      server-template minio-api 1 _minio-api._tcp.{{ .Release.Name }}-minio.{{ .Release.Namespace }}.svc.{{ .Values.clusterDomain }} resolvers k8resolver init-addr none maxconn 300 check
+    {{- end }}
+      option httpchk
+      http-check connect
+      http-check send meth GET uri /minio/health/live ver HTTP/1.1 hdr Host localhost hdr User-Agent haproxy/2.7
+      http-check expect status 200
+---

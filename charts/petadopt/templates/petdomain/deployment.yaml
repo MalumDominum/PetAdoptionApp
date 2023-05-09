@@ -107,11 +107,10 @@ spec:
           startupProbe: {{- include "common.tplvalues.render" (dict "value" .Values.petdomain.customStartupProbe "context" $) | nindent 12 }}
           {{- else if .Values.petdomain.startupProbe.enabled }}
           startupProbe:
-            # Using exec instead of tcpSocket to avoid noise in te logs
-            exec:
-              command:
-                - curl
-                - localhost/-/healthy
+            httpGet:
+              path: /-/healthy
+              port: http
+              scheme: HTTP
             initialDelaySeconds: {{ .Values.petdomain.startupProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.petdomain.startupProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.petdomain.startupProbe.timeoutSeconds }}
@@ -122,11 +121,10 @@ spec:
           livenessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.petdomain.customLivenessProbe "context" $) | nindent 12 }}
           {{- else if .Values.petdomain.livenessProbe.enabled }}
           livenessProbe:
-            # Using exec instead of tcpSocket to avoid noise in te logs
-            exec:
-              command:
-                - curl
-                - localhost/-/healthy
+            httpGet:
+              path: /-/healthy
+              port: http
+              scheme: HTTP
             initialDelaySeconds: {{ .Values.petdomain.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.petdomain.livenessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.petdomain.livenessProbe.timeoutSeconds }}
@@ -137,11 +135,10 @@ spec:
           readinessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.petdomain.customReadinessProbe "context" $) | nindent 12 }}
           {{- else if .Values.petdomain.readinessProbe.enabled }}
           readinessProbe:
-            # Using exec instead of tcpSocket to avoid noise in te logs
-            exec:
-              command:
-                - curl
-                - localhost/-/healthy
+            httpGet:
+              path: /-/healthy
+              port: http
+              scheme: HTTP
             initialDelaySeconds: {{ .Values.petdomain.readinessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.petdomain.readinessProbe.periodSeconds }}
             timeoutSeconds: {{ .Values.petdomain.readinessProbe.timeoutSeconds }}
