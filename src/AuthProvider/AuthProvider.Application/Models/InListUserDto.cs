@@ -1,7 +1,6 @@
 ﻿namespace AuthProvider.Application.Models;
 
-public record DetailedUserDto(
+public record InListUserDto(
 	Guid Id,
 	string FirstName,
 	string LastName);
-	//Gender Gender);

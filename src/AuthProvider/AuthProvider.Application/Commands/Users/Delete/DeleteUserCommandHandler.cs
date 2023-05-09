@@ -1,5 +1,4 @@
 ﻿using AuthProvider.Domain.Aggregates.UserAggregate;
-using AuthProvider.Domain.Aggregates.UserAggregate.Events;
 using AuthProvider.Domain.Errors;
 using ErrorOr;
 using MassTransit;

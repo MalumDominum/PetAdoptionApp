@@ -1,7 +1,7 @@
 ﻿using Ardalis.Specification;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Specifications.Models;
 
-namespace PetProfileDomain.Domain.Aggregates.PetAggregate.Specifications.Common;
+namespace PetProfileDomain.Domain.Aggregates.PetAggregate.Specifications.Extensions;
 
 public static class PetSpecExtensions
 {

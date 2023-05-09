@@ -27,7 +27,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Error
 	public async Task<ErrorOr<UpdateUserCommandResult>> Handle(
 		UpdateUserCommand command, CancellationToken cancellationToken)
 	{
-		var user = await _userRepository.FirstOrDefaultAsync(
+		var user = await _userRepository.SingleOrDefaultAsync(
 			new UserForUpdateSpec(command.Id), cancellationToken);
 
 		if (user == null)

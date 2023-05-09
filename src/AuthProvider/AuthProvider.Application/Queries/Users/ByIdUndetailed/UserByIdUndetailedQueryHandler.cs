@@ -7,28 +7,28 @@ using MapsterMapper;
 using MediatR;
 using PetAdoptionApp.SharedKernel.DataAccess;
 
-namespace AuthProvider.Application.Queries.Users.ById;
+namespace AuthProvider.Application.Queries.Users.ByIdUndetailed;
 
-public class UserByIdQueryHandler
-	: IRequestHandler<UserByIdQuery, ErrorOr<UserByIdQueryResult>>
+public class UserByIdUndetailedQueryHandler
+	: IRequestHandler<UserByIdUndetailedQuery, ErrorOr<UserByIdUndetailedQueryResult>>
 {
 	private readonly IMapper _mapper;
 	private readonly IRepository<User> _userRepository;
 
-	public UserByIdQueryHandler(IMapper mapper, IRepository<User> userRepository)
+	public UserByIdUndetailedQueryHandler(IMapper mapper, IRepository<User> userRepository)
 	{
 		_mapper = mapper;
 		_userRepository = userRepository;
 	}
 
-	public async Task<ErrorOr<UserByIdQueryResult>> Handle(
-		UserByIdQuery query, CancellationToken cancellationToken)
+	public async Task<ErrorOr<UserByIdUndetailedQueryResult>> Handle(
+		UserByIdUndetailedQuery query, CancellationToken cancellationToken)
 	{
 		var specification = new UserByIdSpec(query.Id);
 		var result = await _userRepository.SingleOrDefaultAsync(specification, cancellationToken);
 		
 		return result != null
-			? new UserByIdQueryResult(_mapper.Map<DetailedUserDto>(result))
+			? new UserByIdUndetailedQueryResult(_mapper.Map<InListUserDto>(result))
 			: Errors.User.NoSuchRecordFoundError;
 	}
 }
