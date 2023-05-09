@@ -1,4 +1,7 @@
-﻿using AuthProvider.Domain.Aggregates.UserAggregate;
+﻿using AuthProvider.Application.Services.Interfaces;
+using AuthProvider.Domain.Aggregates.UserAggregate;
+using AuthProvider.Domain.Aggregates.UserAggregate.Specifications;
+using AuthProvider.Domain.Errors;
 using ErrorOr;
 using MapsterMapper;
 using MediatR;
@@ -6,28 +9,31 @@ using PetAdoptionApp.SharedKernel.DataAccess;
 
 namespace AuthProvider.Application.Commands.Users.Create;
 
-public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<CreateUserCommandResult>>
+public class RegisterCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<RegisterCommandResult>>
 {
 	private readonly IMapper _mapper;
 	private readonly IRepository<User> _userRepository;
+	private readonly ITokenProviderService _tokenProvider;
 
 	#region Constructor
 
-	public CreateUserCommandHandler(IMapper mapper, IRepository<User> userRepository)
+	public RegisterCommandHandler(IMapper mapper, IRepository<User> userRepository, ITokenProviderService tokenProvider)
 	{
 		_mapper = mapper;
 		_userRepository = userRepository;
+		_tokenProvider = tokenProvider;
 	}
 
 	#endregion
 
-	public async Task<ErrorOr<CreateUserCommandResult>> Handle(
+	public async Task<ErrorOr<RegisterCommandResult>> Handle(
 		CreateUserCommand command, CancellationToken cancellationToken)
 	{
-		var pet = _mapper.Map<User>(command);
+		var previousUser = await _userRepository.SingleOrDefaultAsync(new UserByEmailSpec(command.Email), cancellationToken);
+		if (previousUser != null) return Errors.Auth.UserAlreadyExistsError;
 
-		var createdPet = await _userRepository.AddAsync(pet, cancellationToken);
-
-		return _mapper.Map<CreateUserCommandResult>(createdPet);
+		var user = _mapper.Map<User>(command);
+		var createdUser = await _userRepository.AddAsync(user, cancellationToken);
+		return new RegisterCommandResult(createdUser.Id, _tokenProvider.GenerateToken(createdUser));
 	}
 }

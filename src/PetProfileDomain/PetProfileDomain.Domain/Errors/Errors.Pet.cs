@@ -8,7 +8,7 @@ public static partial class Errors
 	{
 		public static Error NoFurtherRecordsError = Error.NotFound(
 			code: "Pet.NoFurtherRecordsError",
-			description: "Starting from this date further no more Pet records");
+			description: "No Pet was found with matching search parameters");
 
 		public static Error NoSuchRecordFoundError = Error.NotFound(
 			code: "Pet.NoSuchRecordFoundError",

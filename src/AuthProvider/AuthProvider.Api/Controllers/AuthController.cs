@@ -1,4 +1,5 @@
 ﻿using AuthProvider.Api.Models;
+using AuthProvider.Application.Commands.Users.Create;
 using AuthProvider.Application.Queries.Auth.Authenticate;
 using MapsterMapper;
 using MediatR;
@@ -32,14 +33,12 @@ public class AuthController : ApiControllerBase
 		return result.Match(Ok, Problem);
 	}
 
-	/*[HttpPost("register")]
-	public async Task<IActionResult> Register(UserDTO user)
+	[HttpPost("Register")]
+	public async Task<IActionResult> Register(
+		RegisterRequest request, CancellationToken cancellationToken)
 	{
-		var response = await _service.RegisterAsync(user);
-
-		if (response == null)
-			return BadRequest("Didn't register!");
-
-		return Ok(response);
-	}*/
+		var command = _mapper.Map<CreateUserCommand>(request);
+		var result = await _mediator.Send(command, cancellationToken);
+		return result.Match(Ok, Problem);
+	}
 }

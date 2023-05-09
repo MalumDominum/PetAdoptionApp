@@ -1,5 +1,5 @@
 ﻿namespace AuthProvider.Application.Models;
 
 public record Token(
-	string AccessToken,
+	string Value,
 	DateTime ExpiresAt);

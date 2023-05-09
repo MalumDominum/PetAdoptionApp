@@ -6,8 +6,7 @@ namespace AuthProvider.Application.Commands.Users.Create;
 
 public record CreateUserCommand(
 	string Email,
-	byte[] PasswordHash,
-	byte[] PasswordSalt,
+	string Password,
 	string FirstName,
 	string LastName
-	/*Gender Gender*/) : IRequest<ErrorOr<CreateUserCommandResult>>, ICreateUpdateUserCommand;
+	/*Gender Gender*/) : IRequest<ErrorOr<RegisterCommandResult>>, ICreateUpdateUserCommand;

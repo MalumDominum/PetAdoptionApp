@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using AuthProvider.Application.Models;
 using AuthProvider.Application.Services.Interfaces;
+using AuthProvider.Domain.Aggregates.UserAggregate;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -15,8 +16,8 @@ public class TokenProviderService : ITokenProviderService
 	private readonly IDateTimeProvider _dateTimeProvider;
 	private readonly IConfiguration _configuration;
 
-	private const string JwtSecretSection = "Jwt:SecretKey";
-	private const string JwtExpiringMinutes = "Jwt:ExpiringMinutes";
+	private const string JwtSecretSection = "JwtSettings:SecretKey";
+	private const string JwtExpiringMinutes = "JwtSettings:ExpiringMinutes";
 
 	#region Constructor
 
@@ -27,6 +28,13 @@ public class TokenProviderService : ITokenProviderService
 	}
 
 	#endregion
+
+	public Token GenerateToken(User user) =>
+		GenerateToken(new List<Claim>
+		{
+			new (ClaimTypes.Email, user.Email),
+			//new (ClaimTypes.Gender, user.Gender)
+		});
 
 	public Token GenerateToken(IEnumerable<Claim> claims)
 	{

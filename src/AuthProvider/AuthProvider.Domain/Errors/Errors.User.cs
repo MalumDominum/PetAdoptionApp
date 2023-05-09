@@ -6,12 +6,12 @@ public static partial class Errors
 {
 	public static class User
 	{
-		public static Error NoFurtherRecordsError = Error.NotFound(
-			code: "User.NoFurtherRecordsError",
-			description: "Starting from this date further no more Pet records");
+		public static Error NoSuchRecordsFoundError = Error.NotFound(
+			code: "User.NoRecordsFoundError",
+			description: "No User was found with matching search parameters");
 
 		public static Error NoSuchRecordFoundError = Error.NotFound(
 			code: "User.NoSuchRecordFoundError",
-			description: "Pet record with passed id didn't exist");
+			description: "User record with passed id didn't exist");
 	}
 }

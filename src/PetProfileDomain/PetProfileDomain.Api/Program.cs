@@ -13,7 +13,7 @@ builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Con
 builder.Services.AddPresentation(isDev)
 				.AddApplication(builder.Configuration)
 				.AddInfrastructure(builder.Configuration, isDev)
-				.AddSharedKernel();
+				.AddSharedKernel(builder.Configuration);
 
 var app = builder.Build();
 {
@@ -32,6 +32,8 @@ var app = builder.Build();
 		app.UseHsts();
 	}
 	app.UseRouting();
+	app.UseAuthentication();
+	app.UseAuthorization();
 	app.MapControllers();
 	app.MapHealthChecks("/-/healthy");
 

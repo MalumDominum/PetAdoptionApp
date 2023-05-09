@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using AuthProvider.Api.Mapping;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 

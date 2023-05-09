@@ -2,7 +2,7 @@
 
 namespace AuthProvider.Application.Commands.Users.Create;
 
-public class CreateUserCommandValidator : CreateUpdateUserCommandValidator<CreateUserCommand>
+public class RegisterCommandValidator : CreateUpdateUserCommandValidator<CreateUserCommand>
 {
-	public CreateUserCommandValidator() { }
+	public RegisterCommandValidator() { }
 }

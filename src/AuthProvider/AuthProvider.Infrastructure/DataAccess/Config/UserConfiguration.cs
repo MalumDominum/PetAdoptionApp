@@ -23,9 +23,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 		builder.Property(e => e.PasswordHash)
 			.IsRequired();
 
-		builder.Property(e => e.PasswordSalt)
-			.IsRequired();
-
 		builder.Property(e => e.FirstName)
 			.HasMaxLength(50)
 			.IsUnicode()
