@@ -32,6 +32,7 @@ public class TokenProviderService : ITokenProviderService
 	public Token GenerateToken(User user) =>
 		GenerateToken(new List<Claim>
 		{
+			new (ClaimTypes.NameIdentifier, $"{user.Id}"),
 			new (ClaimTypes.Email, user.Email),
 			//new (ClaimTypes.Gender, user.Gender)
 		});
