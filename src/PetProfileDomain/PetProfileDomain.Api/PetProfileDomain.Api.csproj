@@ -21,13 +21,6 @@
     </ItemGroup>
     
     <ItemGroup>
-      <None Remove="database.sqlite" />
-      <None Remove="database.sqlite-shm" />
-      <None Remove="database.sqlite-wal" />
-      <None Remove="log20230226.txt" />
-    </ItemGroup>
-    
-    <ItemGroup>
         <PackageReference Include="Ardalis.ListStartupServices" />
         <PackageReference Include="Mapster" />
         <PackageReference Include="Mapster.DependencyInjection" />

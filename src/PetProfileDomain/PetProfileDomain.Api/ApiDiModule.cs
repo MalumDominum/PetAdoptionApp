@@ -43,6 +43,15 @@ public static class ApiDiModule
 
 			c.ExampleFilters();
 			c.OperationFilter<AddResponseHeadersFilter>();
+
+			c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+			{
+				Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+				In = ParameterLocation.Header,
+				Name = "Authorization",
+				Type = SecuritySchemeType.ApiKey
+			});
+			c.OperationFilter<SecurityRequirementsOperationFilter>();
 		});
 		services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
 		return services;

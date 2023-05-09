@@ -29,11 +29,20 @@ public static class ApiDiModule
 				Version = "v1",
 				Description = "This is an API for Hand to Paw website",
 			});
-			//var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-			//c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+			var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+			c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 
 			c.ExampleFilters();
 			c.OperationFilter<AddResponseHeadersFilter>();
+
+			c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+			{
+				Description = "Standard Authorization header using the Bearer scheme. Example: \"bearer {token}\"",
+				In = ParameterLocation.Header,
+				Name = "Authorization",
+				Type = SecuritySchemeType.ApiKey
+			});
+			c.OperationFilter<SecurityRequirementsOperationFilter>();
 		});
 		services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
 		return services;

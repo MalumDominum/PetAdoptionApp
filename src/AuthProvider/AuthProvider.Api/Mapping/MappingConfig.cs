@@ -18,7 +18,6 @@ public class MappingConfig : IRegister
 		config.NewConfig<UpdateUserCommand, User>()
 			.Ignore(dest => dest.Email)
 			.Ignore(dest => dest.PasswordHash);
-
 	}
 
 	private static DateTime UtcNow() => MapContext.Current.GetService<IDateTimeProvider>().UtcNow;

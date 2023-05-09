@@ -7,6 +7,7 @@ using AuthProvider.Application.Queries.Users.ByIdUndetailed;
 using AuthProvider.Application.Queries.Users.Search;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
@@ -58,6 +59,7 @@ public class UsersController : ApiControllerBase
 		return result.Match(Ok, Problem);
 	}
 
+	[Authorize]
 	[HttpDelete("{id:guid}")]
 	public async Task<IActionResult> DeleteUser(
 		Guid id, CancellationToken cancellationToken)
