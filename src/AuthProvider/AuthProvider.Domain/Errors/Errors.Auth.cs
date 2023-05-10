@@ -17,5 +17,9 @@ public static partial class Errors
 		public static Error UserAlreadyHasRoleError = Error.Conflict(
 			code: "Auth.UserAlreadyHasRoleError",
 			description: "User with provided id already has that role");
+
+		public static Error UserHasNoSuchRoleError = Error.NotFound(
+			code: "Auth.UserHasNoSuchRoleError",
+			description: "User with provided id already don't have such role");
 	}
 }
