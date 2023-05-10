@@ -9,4 +9,4 @@ public record CreateUserCommand(
 	string Password,
 	string FirstName,
 	string LastName
-	/*Gender Gender*/) : IRequest<ErrorOr<RegisterCommandResult>>, ICreateUpdateUserCommand;
+	/*Gender Gender*/) : IRequest<ErrorOr<CreateUserCommandResult>>, ICreateUpdateUserCommand;

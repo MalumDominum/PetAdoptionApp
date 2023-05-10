@@ -1,7 +1,8 @@
-﻿using AuthProvider.Api.Models;
-using AuthProvider.Application.Commands.Users.Create;
+﻿using AuthProvider.Application.Commands.Users.Create;
+using AuthProvider.Application.Commands.Users.GrantRole;
 using AuthProvider.Application.Commands.Users.Update;
 using AuthProvider.Domain.Aggregates.UserAggregate;
+using AuthProvider.Domain.Aggregates.UserAggregate.Entities;
 using AuthProvider.Domain.Aggregates.UserAggregate.Enums;
 using Mapster;
 using PetAdoptionApp.SharedKernel.Providers;
@@ -20,7 +21,12 @@ public class MappingConfig : IRegister
 		config.NewConfig<UpdateUserCommand, User>()
 			.Map(dest => dest, src => src.User)
 			.Ignore(dest => dest.Email)
-			.Ignore(dest => dest.PasswordHash);
+			.Ignore(dest => dest.PasswordHash)
+			.Ignore(dest => dest.Permissions);
+
+		config.NewConfig<GrantRoleCommand, Permission>()
+			.Map(dest => dest.GrantedBy, src => src.GranterUserId)
+			.AfterMapping(p => p.GrantedTime = UtcNow());
 
 
 		config.NewConfig<Role, int>()

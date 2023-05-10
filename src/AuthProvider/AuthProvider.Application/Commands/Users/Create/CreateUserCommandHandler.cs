@@ -9,7 +9,7 @@ using PetAdoptionApp.SharedKernel.DataAccess;
 
 namespace AuthProvider.Application.Commands.Users.Create;
 
-public class RegisterCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<RegisterCommandResult>>
+public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr<CreateUserCommandResult>>
 {
 	private readonly IMapper _mapper;
 	private readonly IRepository<User> _userRepository;
@@ -17,7 +17,7 @@ public class RegisterCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr
 
 	#region Constructor
 
-	public RegisterCommandHandler(IMapper mapper, IRepository<User> userRepository, ITokenProviderService tokenProvider)
+	public CreateUserCommandHandler(IMapper mapper, IRepository<User> userRepository, ITokenProviderService tokenProvider)
 	{
 		_mapper = mapper;
 		_userRepository = userRepository;
@@ -26,7 +26,7 @@ public class RegisterCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr
 
 	#endregion
 
-	public async Task<ErrorOr<RegisterCommandResult>> Handle(
+	public async Task<ErrorOr<CreateUserCommandResult>> Handle(
 		CreateUserCommand command, CancellationToken cancellationToken)
 	{
 		var previousUser = await _userRepository.SingleOrDefaultAsync(new UserByEmailSpec(command.Email), cancellationToken);
@@ -34,6 +34,6 @@ public class RegisterCommandHandler : IRequestHandler<CreateUserCommand, ErrorOr
 
 		var user = _mapper.Map<User>(command);
 		var createdUser = await _userRepository.AddAsync(user, cancellationToken);
-		return new RegisterCommandResult(createdUser.Id, _tokenProvider.GenerateToken(createdUser));
+		return new CreateUserCommandResult(createdUser.Id, _tokenProvider.GenerateToken(createdUser));
 	}
 }

@@ -13,5 +13,9 @@ public static partial class Errors
 		public static Error WrongCredentialsError = Error.NotFound(
 			code: "Auth.WrongCredentialsError",
 			description: "User with provided email and password don't exists");
+
+		public static Error UserAlreadyHasRoleError = Error.Conflict(
+			code: "Auth.UserAlreadyHasRoleError",
+			description: "User with provided id already has that role");
 	}
 }

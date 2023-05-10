@@ -1,5 +1,7 @@
-﻿using AuthProvider.Api.Models;
+﻿using System.Security.Claims;
+using AuthProvider.Api.Models;
 using AuthProvider.Application.Commands.Users.Delete;
+using AuthProvider.Application.Commands.Users.GrantRole;
 using AuthProvider.Application.Commands.Users.Update;
 using AuthProvider.Application.Models;
 using MapsterMapper;
@@ -27,6 +29,16 @@ public class UsersAdminController : ApiControllerBase
 
 	#endregion
 
+	[HttpPost("GrantRole/{acceptorUserId:guid}")]
+	public async Task<IActionResult> GrantRole(Guid acceptorUserId,
+		[FromBody] int role, CancellationToken cancellationToken)
+	{
+		var result = await _mediator.Send(
+			new GrantRoleCommand(GetId(User), acceptorUserId, role),
+			cancellationToken);
+		return result.Match(Ok, Problem);
+	}
+
 	[HttpPut]
 	public async Task<IActionResult> PutUser(
 		UpdateUserRequest request, CancellationToken cancellationToken)
@@ -43,10 +55,6 @@ public class UsersAdminController : ApiControllerBase
 		var result = await _mediator.Send(new DeleteUserCommand(id), cancellationToken);
 		return result.Match(Ok, Problem);
 	}
-	
-	//[HttpDelete("{id:guid}")]
-	//public async Task<IActionResult> GrantRole(Guid userId,
-	//	[FromQuery] Role role, CancellationToken cancellationToken)
-	//{
-	//}
+
+	private static Guid GetId(ClaimsPrincipal user) => Guid.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier)!);
 }

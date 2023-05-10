@@ -61,7 +61,19 @@ public static class SeedData
 
 	private static void InsertUsersForTesting(AppDbContext context)
 	{
+		var guidList = Enumerable.Range(0, 1).Select(_ => Guid.NewGuid()).ToList();
+		var insert = new List<User>
+		{
+			new()
+			{ Id = guidList[0], Email = "string", FirstName = "Root2", LastName = "Admin2",
+				Gender = Gender.Other, PasswordHash = HashPassword("string"), RegistrationTime = DateTime.UtcNow,
+				Permissions = new List<Permission>
+					{ new() { GrantedBy = guidList[0], GrantedTime = DateTime.UtcNow, Role = Role.RootAdmin } }}
+		};
+		foreach (var row in insert)
+			context.Users.Add(row);
 
+		context.SaveChanges();
 	}
 
 	#endregion
