@@ -8,6 +8,5 @@ namespace PetProfileDomain.Api.Controllers;
 public class StatesController : ApiControllerBase
 {
 	[HttpGet]
-	public Task<IActionResult> GetList() => Task.FromResult<IActionResult>(Ok(
-		Status.List.OrderBy(s => s.Value)));
+	public IActionResult GetList() => Ok(Status.List.OrderBy(s => s.Value));
 }

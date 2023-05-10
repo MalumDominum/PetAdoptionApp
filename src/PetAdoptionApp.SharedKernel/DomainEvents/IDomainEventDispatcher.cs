@@ -1,4 +1,4 @@
-﻿namespace PetAdoptionApp.SharedKernel.Events;
+﻿namespace PetAdoptionApp.SharedKernel.DomainEvents;
 
 public interface IDomainEventDispatcher
 {

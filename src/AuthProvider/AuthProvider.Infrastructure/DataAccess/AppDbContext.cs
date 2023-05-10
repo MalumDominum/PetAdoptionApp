@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using AuthProvider.Domain.Aggregates.UserAggregate;
 using Microsoft.EntityFrameworkCore;
-using PetAdoptionApp.SharedKernel.Events;
+using PetAdoptionApp.SharedKernel.DomainEvents;
 
 namespace AuthProvider.Infrastructure.DataAccess;
 

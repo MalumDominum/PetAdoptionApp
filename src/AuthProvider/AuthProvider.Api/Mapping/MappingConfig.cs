@@ -5,6 +5,7 @@ using AuthProvider.Domain.Aggregates.UserAggregate;
 using AuthProvider.Domain.Aggregates.UserAggregate.Entities;
 using AuthProvider.Domain.Aggregates.UserAggregate.Enums;
 using Mapster;
+using PetAdoptionApp.SharedKernel.Authorization.Enums;
 using PetAdoptionApp.SharedKernel.Providers;
 using static BCrypt.Net.BCrypt;
 

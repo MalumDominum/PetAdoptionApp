@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using PetAdoptionApp.SharedKernel.DomainEvents;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
-using PetAdoptionApp.SharedKernel.Events;
 using PetAdoptionApp.SharedKernel.Validation;
 
 namespace PetAdoptionApp.SharedKernel;

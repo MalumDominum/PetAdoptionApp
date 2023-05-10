@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\PetAdoptionApp.SharedKernel\PetAdoptionApp.SharedKernel.csproj" />
-    <ProjectReference Include="..\..\PetProfileDomain\PetProfileDomain.Application\PetProfileDomain.Application.csproj" />
     <ProjectReference Include="..\AuthProvider.Domain\AuthProvider.Domain.csproj" />
   </ItemGroup>
 

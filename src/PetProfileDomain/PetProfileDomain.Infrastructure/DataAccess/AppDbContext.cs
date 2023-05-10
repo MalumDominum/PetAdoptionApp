@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using PetAdoptionApp.SharedKernel.Events;
+using PetAdoptionApp.SharedKernel.DomainEvents;
 using PetProfileDomain.Domain.Aggregates.BreedAggregate;
 using PetProfileDomain.Domain.Aggregates.ColorAggregate;
 using PetProfileDomain.Domain.Aggregates.PetAggregate;

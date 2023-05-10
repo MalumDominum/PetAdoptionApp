@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+﻿using AuthProvider.Api.Extensions;
 using AuthProvider.Api.Models;
 using AuthProvider.Application.Commands.Users.Delete;
 using AuthProvider.Application.Commands.Users.Update;
@@ -57,7 +57,7 @@ public class UsersController : ApiControllerBase
 		UpdateUserByOwnerRequest request, CancellationToken cancellationToken)
 	{
 		var user = _mapper.Map<DetailedUserDto>(request);
-		user.Id = GetId(User);
+		user.Id = User.GetId();
 		var result = await _mediator.Send(new UpdateUserCommand(user, true), cancellationToken);
 		return result.Match(Ok, Problem);
 	}
@@ -66,9 +66,7 @@ public class UsersController : ApiControllerBase
 	[HttpDelete]
 	public async Task<IActionResult> DeleteUserByOwner(CancellationToken cancellationToken)
 	{
-		var result = await _mediator.Send(new DeleteUserCommand(GetId(User), true), cancellationToken);
+		var result = await _mediator.Send(new DeleteUserCommand(User.GetId(), true), cancellationToken);
 		return result.Match(Ok, Problem);
 	}
-
-	private static Guid GetId(ClaimsPrincipal user) => Guid.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier)!);
 }

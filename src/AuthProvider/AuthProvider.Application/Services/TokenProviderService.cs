@@ -8,7 +8,6 @@ using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using PetAdoptionApp.SharedKernel.Providers;
-using static System.String;
 
 namespace AuthProvider.Application.Services;
 

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace PetAdoptionApp.SharedKernel.Events;
+namespace PetAdoptionApp.SharedKernel.DomainEvents;
 
 public class DomainEventSender
 {

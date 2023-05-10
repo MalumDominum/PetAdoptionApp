@@ -2,6 +2,7 @@
 using AuthProvider.Domain.Aggregates.UserAggregate.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PetAdoptionApp.SharedKernel.Authorization.Enums;
 
 namespace AuthProvider.Infrastructure.DataAccess.Config;
 

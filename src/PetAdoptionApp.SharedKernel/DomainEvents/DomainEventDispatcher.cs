@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace PetAdoptionApp.SharedKernel.Events;
+namespace PetAdoptionApp.SharedKernel.DomainEvents;
 public class DomainEventDispatcher : IDomainEventDispatcher
 {
 	private readonly IMediator _mediator;

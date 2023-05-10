@@ -1,4 +1,4 @@
-﻿using PetAdoptionApp.SharedKernel.Events;
+﻿using PetAdoptionApp.SharedKernel.DomainEvents;
 
 namespace PetAdoptionApp.SharedKernel.DddModelsDefinition;
 

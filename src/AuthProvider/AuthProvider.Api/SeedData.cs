@@ -1,10 +1,9 @@
-﻿using System.Runtime.CompilerServices;
-using AuthProvider.Domain.Aggregates.UserAggregate;
+﻿using AuthProvider.Domain.Aggregates.UserAggregate;
 using AuthProvider.Domain.Aggregates.UserAggregate.Entities;
 using AuthProvider.Domain.Aggregates.UserAggregate.Enums;
 using AuthProvider.Infrastructure.DataAccess;
 using Microsoft.EntityFrameworkCore;
-using PetAdoptionApp.SharedKernel.Providers;
+using PetAdoptionApp.SharedKernel.Authorization.Enums;
 using static BCrypt.Net.BCrypt;
 
 namespace AuthProvider.Api;
@@ -65,7 +64,7 @@ public static class SeedData
 		var insert = new List<User>
 		{
 			new()
-			{ Id = guidList[0], Email = "string", FirstName = "Root2", LastName = "Admin2",
+			{ Id = guidList[0], Email = "string", FirstName = "String", LastName = "SomeString",
 				Gender = Gender.Other, PasswordHash = HashPassword("string"), RegistrationTime = DateTime.UtcNow,
 				Permissions = new List<Permission>
 					{ new() { GrantedBy = guidList[0], GrantedTime = DateTime.UtcNow, Role = Role.RootAdmin } }}

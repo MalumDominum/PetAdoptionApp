@@ -1,4 +1,4 @@
-﻿using AuthProvider.Domain.Aggregates.UserAggregate.Enums;
+﻿using PetAdoptionApp.SharedKernel.Authorization.Enums;
 using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
 namespace AuthProvider.Domain.Aggregates.UserAggregate.Entities;

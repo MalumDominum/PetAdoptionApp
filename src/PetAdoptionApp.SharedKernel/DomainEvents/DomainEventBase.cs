@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace PetAdoptionApp.SharedKernel.Events;
+namespace PetAdoptionApp.SharedKernel.DomainEvents;
 
 public abstract class DomainEventBase : INotification
 {

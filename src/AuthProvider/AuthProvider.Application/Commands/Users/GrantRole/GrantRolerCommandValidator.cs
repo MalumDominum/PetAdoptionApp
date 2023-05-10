@@ -1,5 +1,5 @@
-﻿using AuthProvider.Domain.Aggregates.UserAggregate.Enums;
-using FluentValidation;
+﻿using FluentValidation;
+using PetAdoptionApp.SharedKernel.Authorization.Enums;
 
 namespace AuthProvider.Application.Commands.Users.GrantRole;
 
