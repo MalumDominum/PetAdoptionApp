@@ -1,4 +1,5 @@
 ﻿using Ardalis.Specification;
+using PetAdoptionApp.SharedKernel.Specifications.Extensions;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Specifications.Extensions;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Specifications.Models;
 

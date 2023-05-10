@@ -2,6 +2,7 @@
 using AuthProvider.Application.Commands.Users.Delete;
 using AuthProvider.Application.Commands.Users.Update;
 using AuthProvider.Application.Models;
+using AuthProvider.Application.Queries.Users.Page;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,13 @@ public class UsersAdminController : ApiControllerBase
 	}
 
 	#endregion
+	
+	[HttpGet]
+	public async Task<IActionResult> SearchUsers(int? pageNumber, CancellationToken cancellationToken)
+	{
+		var result = await _mediator.Send(new PageUsersQuery(pageNumber), cancellationToken);
+		return result.Match(Ok, Problem);
+	}
 
 	[HttpPut]
 	public async Task<IActionResult> PutUser(

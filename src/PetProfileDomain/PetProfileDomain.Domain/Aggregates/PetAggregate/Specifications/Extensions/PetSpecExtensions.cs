@@ -32,15 +32,6 @@ public static class PetSpecExtensions
 					.ThenByDescending(p => p.CreatedAt);
 	}
 
-	public static ISpecificationBuilder<Pet> Paginate(
-		this ISpecificationBuilder<Pet> query, int? pageNumber, int pageLimit)
-	{
-		return pageNumber != null 
-			? query.Skip((pageNumber.Value - 1) * pageLimit)
-				   .Take(pageLimit)
-			: query.Take(pageLimit);
-	}
-
 	public static ISpecificationBuilder<Pet> Filter(
 		this ISpecificationBuilder<Pet> query, PetFilteringValues filter)
 	{

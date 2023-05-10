@@ -16,6 +16,7 @@ public class RolesController : ApiControllerBase
 	
 	public RolesController(ISender mediator) => _mediator = mediator;
 
+	// TODO Add check ranking
 	[HttpPost("Grant/{acceptorUserId:guid}")]
 	public async Task<IActionResult> GrantRole(Guid acceptorUserId,
 		[FromBody] int role, CancellationToken cancellationToken)
