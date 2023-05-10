@@ -1,4 +1,4 @@
-﻿using PetProfileDomain.Application.Queries.Pets.Commands.Models;
+﻿using PetProfileDomain.Application.Models.Pets;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Enums;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.ValueObjects;
 

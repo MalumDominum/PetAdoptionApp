@@ -6,7 +6,7 @@ public sealed class UserByEmailSpec : Specification<User>, ISingleResultSpecific
 {
 	public UserByEmailSpec(string email)
 	{
-		Query.Where(p => p.Email == email)
+		Query.Where(p => p.Email == email.ToLower())
 			 .AsNoTracking();
 	}
 }

@@ -8,6 +8,7 @@ using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using PetAdoptionApp.SharedKernel.Providers;
+using static System.String;
 
 namespace AuthProvider.Application.Services;
 
@@ -29,13 +30,14 @@ public class TokenProviderService : ITokenProviderService
 
 	#endregion
 
-	public Token GenerateToken(User user) =>
-		GenerateToken(new List<Claim>
-		{
-			new (ClaimTypes.NameIdentifier, $"{user.Id}"),
-			new (ClaimTypes.Email, user.Email),
-			//new (ClaimTypes.Gender, user.Gender)
+	public Token GenerateToken(User user)
+	{
+		return GenerateToken(new List<Claim>(
+			user.Permissions.Select(p => new Claim(ClaimTypes.Role, $"{p}"))) {
+			new(ClaimTypes.NameIdentifier, $"{user.Id}"),
+			new(ClaimTypes.Email, user.Email)
 		});
+	}
 
 	public Token GenerateToken(IEnumerable<Claim> claims)
 	{
