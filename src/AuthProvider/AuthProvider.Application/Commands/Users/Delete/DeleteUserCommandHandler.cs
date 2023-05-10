@@ -20,17 +20,17 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, Error
 
 	public async Task<ErrorOr<DeleteUserCommandResult>> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
 	{
-		var pet = await _userRepository.GetByIdAsync(command.PetId, cancellationToken);
+		var user = await _userRepository.GetByIdAsync(command.UserId, cancellationToken);
 
-		if (pet == null) return Errors.User.NoSuchRecordFoundError;
-
-		//await _publishEndpoint.Publish(
-		//	new UserDeletingEvent(command.PetId), cancellationToken);
-
-		await _userRepository.DeleteAsync(pet, cancellationToken);
+		if (user == null) return Errors.User.NoSuchRecordFoundError;
 
 		//await _publishEndpoint.Publish(
-		//	new UserDeletedEvent(command.PetId), cancellationToken);
+		//	new UserDeletingEvent(command.UserId), cancellationToken);
+
+		await _userRepository.DeleteAsync(user, cancellationToken);
+
+		//await _publishEndpoint.Publish(
+		//	new UserDeletedEvent(command.UserId), cancellationToken);
 
 		return new DeleteUserCommandResult();
 	}

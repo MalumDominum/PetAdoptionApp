@@ -28,7 +28,7 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, Error
 		UpdateUserCommand command, CancellationToken cancellationToken)
 	{
 		var user = await _userRepository.SingleOrDefaultAsync(
-			new UserForUpdateSpec(command.Id), cancellationToken);
+			new UserForUpdateSpec(command.User.Id), cancellationToken);
 
 		if (user == null)
 			return Errors.User.NoSuchRecordFoundError;

@@ -1,14 +1,10 @@
 ﻿using AuthProvider.Application.Commands.Users.Common;
+using AuthProvider.Application.Models;
 using ErrorOr;
 using MediatR;
 
 namespace AuthProvider.Application.Commands.Users.Update;
 
 public record UpdateUserCommand(
-	Guid Id,
-	string Email,
-	byte[] PasswordHash,
-	byte[] PasswordSalt,
-	string FirstName,
-	string LastName
-	/*Gender Gender*/) : IRequest<ErrorOr<UpdateUserCommandResult>>, ICreateUpdateUserCommand;
+	DetailedUserDto User,
+	bool ActionByOwner = false) : IRequest<ErrorOr<UpdateUserCommandResult>>, ICreateUpdateUserCommand;

@@ -1,6 +1,7 @@
 ﻿using AuthProvider.Api.Models;
 using AuthProvider.Application.Commands.Users.Delete;
 using AuthProvider.Application.Commands.Users.Update;
+using AuthProvider.Application.Models;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -30,7 +31,7 @@ public class UsersAdminController : ApiControllerBase
 	public async Task<IActionResult> PutUser(
 		UpdateUserRequest request, CancellationToken cancellationToken)
 	{
-		var command = _mapper.Map<UpdateUserCommand>(request);
+		var command = new UpdateUserCommand(_mapper.Map<DetailedUserDto>(request));
 		var result = await _mediator.Send(command, cancellationToken);
 		return result.Match(Ok, Problem);
 	}

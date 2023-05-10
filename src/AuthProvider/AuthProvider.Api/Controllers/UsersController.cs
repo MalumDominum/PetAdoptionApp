@@ -1,8 +1,14 @@
-﻿using AuthProvider.Application.Queries.Users.ById;
+﻿using System.Security.Claims;
+using AuthProvider.Api.Models;
+using AuthProvider.Application.Commands.Users.Delete;
+using AuthProvider.Application.Commands.Users.Update;
+using AuthProvider.Application.Models;
+using AuthProvider.Application.Queries.Users.ById;
 using AuthProvider.Application.Queries.Users.ByIdUndetailed;
 using AuthProvider.Application.Queries.Users.Search;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
@@ -44,4 +50,25 @@ public class UsersController : ApiControllerBase
 		var result = await _mediator.Send(new SearchUsersQuery(searchValue), cancellationToken);
 		return result.Match(Ok, Problem);
 	}
+
+	[Authorize]
+	[HttpPut]
+	public async Task<IActionResult> PutUserByOwner(
+		UpdateUserByOwnerRequest request, CancellationToken cancellationToken)
+	{
+		var user = _mapper.Map<DetailedUserDto>(request);
+		user.Id = GetId(User);
+		var result = await _mediator.Send(new UpdateUserCommand(user, true), cancellationToken);
+		return result.Match(Ok, Problem);
+	}
+
+	[Authorize]
+	[HttpDelete]
+	public async Task<IActionResult> DeleteUserByOwner(CancellationToken cancellationToken)
+	{
+		var result = await _mediator.Send(new DeleteUserCommand(GetId(User), true), cancellationToken);
+		return result.Match(Ok, Problem);
+	}
+
+	private static Guid GetId(ClaimsPrincipal user) => Guid.Parse(user.FindFirstValue(ClaimTypes.NameIdentifier)!);
 }

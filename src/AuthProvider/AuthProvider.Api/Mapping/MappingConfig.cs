@@ -1,4 +1,5 @@
-﻿using AuthProvider.Application.Commands.Users.Create;
+﻿using AuthProvider.Api.Models;
+using AuthProvider.Application.Commands.Users.Create;
 using AuthProvider.Application.Commands.Users.Update;
 using AuthProvider.Domain.Aggregates.UserAggregate;
 using AuthProvider.Domain.Aggregates.UserAggregate.Enums;
@@ -17,6 +18,7 @@ public class MappingConfig : IRegister
 			.AfterMapping(p => p.RegistrationTime = UtcNow());
 
 		config.NewConfig<UpdateUserCommand, User>()
+			.Map(dest => dest, src => src.User)
 			.Ignore(dest => dest.Email)
 			.Ignore(dest => dest.PasswordHash);
 

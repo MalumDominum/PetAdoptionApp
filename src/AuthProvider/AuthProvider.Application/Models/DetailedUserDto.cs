@@ -2,8 +2,13 @@
 
 namespace AuthProvider.Application.Models;
 
-public record DetailedUserDto(
-	Guid Id,
-	string FirstName,
-	string LastName,
-	Gender Gender);
+public class DetailedUserDto
+{
+	public Guid Id { get; set; }
+	
+	public string FirstName { get; set; } = null!;
+	
+	public string LastName { get; set; } = null!;
+	
+	public Gender Gender { get; set; } = null!;
+}
