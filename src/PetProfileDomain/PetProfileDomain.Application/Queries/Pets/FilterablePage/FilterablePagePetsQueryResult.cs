@@ -1,4 +1,4 @@
-﻿using PetProfileDomain.Application.Models.Common;
+﻿using PetAdoptionApp.SharedKernel.Pagination;
 using PetProfileDomain.Application.Models.Pets;
 
 namespace PetProfileDomain.Application.Queries.Pets.FilterablePage;

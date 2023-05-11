@@ -6,7 +6,7 @@ using PetProfileDomain.Domain.Aggregates.PetAggregate.Specifications.Models;
 namespace PetProfileDomain.Application.Queries.Pets.FilterablePage;
 
 public record FilterablePagePetsQuery(
-		int? Page,
+		int? PageNumber,
 		PetFilteringValues Filtering
 	) : IRequest<ErrorOr<FilterablePagePetsQueryResult>>
 {

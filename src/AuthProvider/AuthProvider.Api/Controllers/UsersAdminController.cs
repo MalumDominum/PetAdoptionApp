@@ -28,11 +28,12 @@ public class UsersAdminController : ApiControllerBase
 	}
 
 	#endregion
-	
+
+	[AuthorizeRoles(nameof(Role.Manager))]
 	[HttpGet]
-	public async Task<IActionResult> SearchUsers(int? pageNumber, CancellationToken cancellationToken)
+	public async Task<IActionResult> PageUsers(int? pageNumber, CancellationToken cancellationToken)
 	{
-		var result = await _mediator.Send(new PageUsersQuery(pageNumber), cancellationToken);
+		var result = await _mediator.Send(new PageUsersQuery(pageNumber, Request), cancellationToken);
 		return result.Match(Ok, Problem);
 	}
 

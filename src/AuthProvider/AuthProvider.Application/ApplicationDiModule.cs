@@ -6,8 +6,8 @@ using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PetAdoptionApp.SharedKernel.Providers;
-using PetProfileDomain.Application.Configuration;
-using PetProfileDomain.Application.Exceptions;
+using PetAdoptionApp.SharedKernel.RabbitMq.Configuration;
+using PetAdoptionApp.SharedKernel.RabbitMq.Exceptions;
 
 namespace AuthProvider.Application;
 

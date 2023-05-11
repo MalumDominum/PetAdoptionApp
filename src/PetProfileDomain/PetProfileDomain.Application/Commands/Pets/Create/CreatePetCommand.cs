@@ -16,4 +16,5 @@ public record CreatePetCommand(
 	int? SizeId,
 	List<int>? ColorIds,
 	PetDetailsCommandDto Details,
-	List<int>? States) : IRequest<ErrorOr<CreatePetCommandResult>>, ICreateUpdatePetCommand;
+	List<int>? States) : IRequest<ErrorOr<CreatePetCommandResult>>, ICreateUpdatePetCommand
+  { public Guid OwnerId { get; set; } }

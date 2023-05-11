@@ -1,7 +1,7 @@
 ﻿namespace PetProfileDomain.Api.Models;
 
 public record PagePetRequest(
-	int? Page,
+	int? PageNumber,
 
 	//Guid? UserId,
 	string? NameLike,

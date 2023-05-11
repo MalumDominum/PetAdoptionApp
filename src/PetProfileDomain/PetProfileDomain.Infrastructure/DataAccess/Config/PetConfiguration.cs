@@ -80,6 +80,9 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 					.HasForeignKey(d => d.BreedId);
 		});
 
+		builder.Property(p => p.OwnerId)
+			   .IsRequired();
+
 		builder.Property(p => p.CreatedAt)
 			   .HasDefaultValueSql("NOW()");
 

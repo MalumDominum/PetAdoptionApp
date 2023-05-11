@@ -16,4 +16,5 @@ public record DetailedPetDto(
 	SeparatedStates States,
 	string Description,
 	DateTime CreatedAt,
-	DateTime? EditedAt);
+	DateTime? EditedAt,
+	Guid OwnerId);

@@ -32,6 +32,7 @@ public class MappingConfig : IRegister
 
         config.NewConfig<UpdatePetCommand, Pet>()
 	        .Map(dest => dest.PetColors, src => src.ColorIds)
+	        .Ignore(dest => dest.OwnerId)
 	        .AfterMapping(p => p.EditedAt = UtcNow());
 
 		config.NewConfig<Pet, PetInListDto>()

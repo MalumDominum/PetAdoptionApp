@@ -1,4 +1,4 @@
-﻿namespace PetProfileDomain.Application.Configuration;
+﻿namespace PetAdoptionApp.SharedKernel.RabbitMq.Configuration;
 
 public class RabbitMqConfig
 {

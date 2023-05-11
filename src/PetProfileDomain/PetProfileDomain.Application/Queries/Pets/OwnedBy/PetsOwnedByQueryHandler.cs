@@ -1,6 +1,4 @@
-﻿using System.Collections.Specialized;
-using System.Web;
-using ErrorOr;
+﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -11,35 +9,37 @@ using PetProfileDomain.Domain.Aggregates.PetAggregate;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Specifications;
 using PetProfileDomain.Domain.Errors;
 
-namespace PetProfileDomain.Application.Queries.Pets.FilterablePage;
+namespace PetProfileDomain.Application.Queries.Pets.OwnedBy;
 
-public class FilterablePagePetsQueryHandler
-	: IRequestHandler<FilterablePagePetsQuery, ErrorOr<FilterablePagePetsQueryResult>>
+public class PetsOwnedByQueryHandler
+	: IRequestHandler<PetsOwnedByQuery, ErrorOr<PetsOwnedByQueryResult>>
 {
+	private readonly IMapper _mapper;
+	private readonly IConfiguration _configuration;
 	private readonly IRepository<Pet> _petRepository;
 
-	private readonly IMapper _mapper;
+	#region Constructor
 
-	private readonly IConfiguration _configuration;
-
-	public FilterablePagePetsQueryHandler(IRepository<Pet> petRepository,
-		IMapper mapper, IConfiguration configuration)
+	public PetsOwnedByQueryHandler(IRepository<Pet> petRepository, IMapper mapper, IConfiguration configuration)
 	{
 		_petRepository = petRepository;
 		_mapper = mapper;
 		_configuration = configuration;
 	}
 
-	public async Task<ErrorOr<FilterablePagePetsQueryResult>> Handle(
-		FilterablePagePetsQuery query, CancellationToken cancellationToken)
+	#endregion
+
+	public async Task<ErrorOr<PetsOwnedByQueryResult>> Handle(
+		PetsOwnedByQuery query, CancellationToken cancellationToken)
 	{
 		var pageLimit = _configuration.GetValue<int>("Pagination:PageLimit");
-		var specification = new PetFilterPaginationSpec(query.Filtering, query.PageNumber, pageLimit);
+		var specification = new PetsByOwnerWithPaginationIdSpec(
+			query.PageNumber, pageLimit, query.OwnerId);
 		var result = await _petRepository.ListAsync(specification, cancellationToken);
 
-		var rowsCount = await _petRepository.CountAsync(new PetFilterSpec(query.Filtering), cancellationToken);
+		var rowsCount = await _petRepository.CountAsync(specification, cancellationToken);
 		return result.Count > 0
-			? new FilterablePagePetsQueryResult(
+			? new PetsOwnedByQueryResult(
 				_mapper.Map<List<PetInListDto>>(result),
 				PaginationExtensions.GetPaginationDetails(query.PageNumber, pageLimit, rowsCount, query.Request))
 			: Errors.Pet.NoFurtherRecordsError;

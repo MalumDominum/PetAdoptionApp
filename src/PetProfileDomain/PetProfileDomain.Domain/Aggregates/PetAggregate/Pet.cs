@@ -54,7 +54,7 @@ public class Pet : EntityBase<Guid>, IAggregateRoot
 	//private readonly List<string>? _photoAndVideoUrls;
 	//public ReadOnlyCollection<string>? PhotoAndVideoUrls => _photoAndVideoUrls?.AsReadOnly();
 
-	//public User Owner { get; set; }
+	public Guid OwnerId { get; set; }
 	
 	public DateTime CreatedAt { get; set; }
 	public DateTime? EditedAt { get; set; }

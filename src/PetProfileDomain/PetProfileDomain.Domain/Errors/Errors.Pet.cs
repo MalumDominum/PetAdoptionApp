@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using Microsoft.AspNetCore.Http;
 
 namespace PetProfileDomain.Domain.Errors;
 
@@ -17,5 +18,10 @@ public static partial class Errors
 		public static Error BreedNotBelongToSpeciesError = Error.Validation(
 			code: "Pet.BreedNotBelongToSpeciesError",
 			description: "The Breed not belong to specified Species. Please refetch Species again - maybe it outdated");
+
+		public static Error NotPetOwnerError = Error.Custom(
+			type: StatusCodes.Status403Forbidden,
+			code: "Pet.NotPetOwnerError",
+			description: "Youre not owner of the pet, since you can't transfer it to new owner");
 	}
 }

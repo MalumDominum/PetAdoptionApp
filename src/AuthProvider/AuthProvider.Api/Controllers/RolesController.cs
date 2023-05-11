@@ -1,9 +1,9 @@
-﻿using AuthProvider.Api.Extensions;
-using AuthProvider.Application.Commands.Users.GrantRole;
+﻿using AuthProvider.Application.Commands.Users.GrantRole;
 using AuthProvider.Application.Commands.Users.RevokeRole;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PetAdoptionApp.SharedKernel.Authorization.Extensions;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
 namespace AuthProvider.Api.Controllers;

@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using PetAdoptionApp.SharedKernel.Authorization.Enums;
 
-namespace AuthProvider.Api.Extensions;
+namespace PetAdoptionApp.SharedKernel.Authorization.Extensions;
 
 public static class ClaimsPrincipalExtensions
 {

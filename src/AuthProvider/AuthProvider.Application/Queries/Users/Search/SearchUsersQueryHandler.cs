@@ -29,6 +29,6 @@ public class SearchUsersQueryHandler
 		
 		return result is { Count: > 0 }
 			? new SearchUsersQueryResult(_mapper.Map<List<InListUserDto>>(result))
-			: Errors.User.NoSuchRecordsFoundError;
+			: Errors.User.NoFurtherRecordsError;
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace PetProfileDomain.Application.Models.Common;
+﻿namespace PetAdoptionApp.SharedKernel.Pagination;
 
 public record PaginationDetails(
 	int CurrentPageNumber,

@@ -1,5 +1,4 @@
-﻿using AuthProvider.Api.Extensions;
-using AuthProvider.Api.Models;
+﻿using AuthProvider.Api.Models;
 using AuthProvider.Application.Commands.Users.Delete;
 using AuthProvider.Application.Commands.Users.Update;
 using AuthProvider.Application.Models;
@@ -10,6 +9,7 @@ using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PetAdoptionApp.SharedKernel.Authorization.Extensions;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
 
 namespace AuthProvider.Api.Controllers;

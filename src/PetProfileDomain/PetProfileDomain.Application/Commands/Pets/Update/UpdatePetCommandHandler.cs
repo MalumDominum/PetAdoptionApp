@@ -53,6 +53,8 @@ public class UpdatePetCommandHandler : IRequestHandler<UpdatePetCommand, ErrorOr
 		if (pet == null)
 			return Errors.Pet.NoSuchRecordFoundError;
 
+		if (pet.OwnerId != command.OwnerId) return Errors.Pet.NotPetOwnerError;
+
 		var existingColors = pet.PetColors?.ToList();
 		var newColors = command.ColorIds?.Select(cId => new PetColor(cId)).ToList();
 		var colorsToAdd = newColors?.Except(existingColors ?? new()).ToList();

@@ -25,6 +25,8 @@ public class DeletePetCommandHandler : IRequestHandler<DeletePetCommand, ErrorOr
 
 		if (pet == null) return Errors.Pet.NoSuchRecordFoundError;
 
+		if (pet.OwnerId != command.SenderId) return Errors.Pet.NotPetOwnerError;
+
 		await _publishEndpoint.Publish(
 			new PetDeletingEvent(command.PetId), cancellationToken);
 
