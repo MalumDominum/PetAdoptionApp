@@ -5,6 +5,7 @@ using AuthProvider.Domain.Errors;
 using ErrorOr;
 using MapsterMapper;
 using MediatR;
+using PetAdoptionApp.SharedKernel.Authorization.Enums;
 using PetAdoptionApp.SharedKernel.DataAccess;
 
 namespace AuthProvider.Application.Commands.Users.GrantRole;
@@ -27,6 +28,9 @@ public class GrantRoleCommandHandler : IRequestHandler<GrantRoleCommand, ErrorOr
 	public async Task<ErrorOr<GrantRoleCommandResult>> Handle(
 		GrantRoleCommand command, CancellationToken cancellationToken)
 	{
+		if (!command.GranterRoles.Any(r => r.HasHigherRank(Role.FromValue(command.Role))))
+			return Errors.Auth.HasNoPermissionToGrantRoleError;
+
 		var user = await _userRepository.SingleOrDefaultAsync(
 			new UserByIdSpec(command.AcceptorUserId), cancellationToken);
 		if (user == null) return Errors.User.NoSuchRecordFoundError;

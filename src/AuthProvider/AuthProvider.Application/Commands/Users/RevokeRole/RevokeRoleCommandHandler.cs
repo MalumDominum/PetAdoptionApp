@@ -1,24 +1,22 @@
 ﻿using AuthProvider.Domain.Aggregates.UserAggregate;
-using AuthProvider.Domain.Aggregates.UserAggregate.Entities;
 using AuthProvider.Domain.Aggregates.UserAggregate.Specifications;
 using AuthProvider.Domain.Errors;
 using ErrorOr;
 using MapsterMapper;
 using MediatR;
+using PetAdoptionApp.SharedKernel.Authorization.Enums;
 using PetAdoptionApp.SharedKernel.DataAccess;
 
 namespace AuthProvider.Application.Commands.Users.RevokeRole;
 
 public class RevokeRoleCommandHandler : IRequestHandler<RevokeRoleCommand, ErrorOr<RevokeRoleCommandResult>>
 {
-	private readonly IMapper _mapper;
 	private readonly IRepository<User> _userRepository;
 
 	#region Constructor
 
 	public RevokeRoleCommandHandler(IMapper mapper, IRepository<User> userRepository)
 	{
-		_mapper = mapper;
 		_userRepository = userRepository;
 	}
 
@@ -27,6 +25,9 @@ public class RevokeRoleCommandHandler : IRequestHandler<RevokeRoleCommand, Error
 	public async Task<ErrorOr<RevokeRoleCommandResult>> Handle(
 		RevokeRoleCommand command, CancellationToken cancellationToken)
 	{
+		if (!command.RevokerRoles.Any(r => r.HasHigherRank(Role.FromValue(command.Role))))
+			return Errors.Auth.HasNoPermissionToRevokeRoleError;
+
 		var user = await _userRepository.SingleOrDefaultAsync(
 			new UserByIdSpec(command.TargetUserId), cancellationToken);
 		if (user == null) return Errors.User.NoSuchRecordFoundError;

@@ -23,13 +23,13 @@ public abstract class ApiControllerBase : ControllerBase
 
     private IActionResult Problem(Error firstError)
     {
-        // Implement switch by firstError.Code if necessary
-        var statusCode = firstError.Type switch
+        var statusCode = firstError.NumericType switch
         {
-            ErrorType.Conflict => StatusCodes.Status409Conflict,
-            ErrorType.Validation => StatusCodes.Status400BadRequest,
-            ErrorType.NotFound => StatusCodes.Status404NotFound,
-            _ => StatusCodes.Status500InternalServerError
+	        (int)ErrorType.Conflict => StatusCodes.Status409Conflict,
+	        (int)ErrorType.Validation => StatusCodes.Status400BadRequest,
+	        (int)ErrorType.NotFound => StatusCodes.Status404NotFound,
+			(int)ErrorType.Failure => StatusCodes.Status500InternalServerError,
+	        _ => firstError.NumericType
         };
 
         return Problem(statusCode: statusCode, title: firstError.Description);
