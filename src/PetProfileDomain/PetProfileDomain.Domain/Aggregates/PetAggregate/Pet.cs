@@ -1,5 +1,6 @@
 ﻿using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 using PetProfileDomain.Domain.Aggregates.ColorAggregate;
+using PetProfileDomain.Domain.Aggregates.PetAggregate.Entities;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Enums;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Linkers;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Nesting;
@@ -56,6 +57,8 @@ public class Pet : EntityBase<Guid>, IAggregateRoot
 
 	public Guid OwnerId { get; set; }
 	
+	public List<TransferFact> TransferHistory { get; set; } = null!;
+
 	public DateTime CreatedAt { get; set; }
 	public DateTime? EditedAt { get; set; }
 	public DateTime? NewStatesAddedAt { get; set; } // Hidden property for ordering

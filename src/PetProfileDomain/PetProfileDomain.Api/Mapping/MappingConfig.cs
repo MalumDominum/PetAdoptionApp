@@ -2,11 +2,13 @@
 using PetAdoptionApp.SharedKernel.Providers;
 using PetProfileDomain.Api.Models;
 using PetProfileDomain.Application.Commands.Pets.Create;
+using PetProfileDomain.Application.Commands.Pets.Transfer;
 using PetProfileDomain.Application.Commands.Pets.Update;
 using PetProfileDomain.Application.Models.Pets;
 using PetProfileDomain.Application.Models.Pets.Nesting;
 using PetProfileDomain.Application.Queries.Pets.FilterablePage;
 using PetProfileDomain.Domain.Aggregates.PetAggregate;
+using PetProfileDomain.Domain.Aggregates.PetAggregate.Entities;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Enums;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Linkers;
 using PetProfileDomain.Domain.Aggregates.StateAggregate;
@@ -37,6 +39,9 @@ public class MappingConfig : IRegister
 
 		config.NewConfig<Pet, PetInListDto>()
 	        .Map(dest => dest.ActiveStates, src => src.States);
+
+		config.NewConfig<TransferPetCommand, TransferFact>()
+			.AfterMapping(p => p.TransferDateTime = UtcNow());
 
 		config.NewConfig<List<int>?, List<PetColor>?>()
 			.MapWith(src => src != null

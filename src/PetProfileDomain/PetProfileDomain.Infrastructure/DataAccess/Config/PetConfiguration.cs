@@ -71,17 +71,32 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 
 		builder.OwnsOne(p => p.BirthDate).WithOwner();
 		builder.Property(p => p.BackfieldBirthDate).IsRequired();
-		
-		builder.OwnsOne(p => p.Details, dBuilder =>
-		{
-			dBuilder.WithOwner();
-			dBuilder.HasOne(d => d.Breed)
-					.WithMany()
-					.HasForeignKey(d => d.BreedId);
-		});
 
 		builder.Property(p => p.OwnerId)
 			   .IsRequired();
+
+		builder.OwnsOne(p => p.Details, dBuilder =>
+			{
+				dBuilder.WithOwner();
+				dBuilder.HasOne(d => d.Breed)
+					.WithMany()
+					.HasForeignKey(d => d.BreedId);
+			});
+
+		builder.OwnsMany(p => p.TransferHistory,
+			tBuilder =>
+			{
+				tBuilder.ToTable("TranferFacts");
+
+				tBuilder.Property(t => t.OldOwnerId)
+						.IsRequired();
+
+				tBuilder.Property(t => t.NewOwnerId)
+						.IsRequired();
+
+				tBuilder.Property(t => t.TransferDateTime)
+						.IsRequired();
+			});
 
 		builder.Property(p => p.CreatedAt)
 			   .HasDefaultValueSql("NOW()");
