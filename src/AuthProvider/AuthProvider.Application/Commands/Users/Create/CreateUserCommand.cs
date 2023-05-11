@@ -8,5 +8,5 @@ public record CreateUserCommand(
 	string Email,
 	string Password,
 	string FirstName,
-	string LastName
-	/*Gender Gender*/) : IRequest<ErrorOr<CreateUserCommandResult>>, ICreateUpdateUserCommand;
+	string LastName,
+	string Gender) : IRequest<ErrorOr<CreateUserCommandResult>>, ICreateUpdateUserCommand;
