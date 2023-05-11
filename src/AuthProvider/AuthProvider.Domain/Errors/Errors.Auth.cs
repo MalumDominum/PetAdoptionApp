@@ -32,5 +32,9 @@ public static partial class Errors
 		public static Error UserHasNoSuchRoleError = Error.NotFound(
 			code: "Auth.UserHasNoSuchRoleError",
 			description: "User with provided id already don't have such role");
+
+		public static Error DeletingLastRootAdminError = Error.NotFound(
+			code: "Auth.DeletingLastRootAdminError",
+			description: "Deleting last root admin role is not allowed");
 	}
 }

@@ -23,7 +23,7 @@ public class Role : SmartEnum<Role, int>
 	public bool HasLowerRank(Role anotherRole) => anotherRole.HasHigherRank(this);
 
 	public bool HasHigherRank(Role anotherRole) =>
-		this != anotherRole && HasHigherRankHelper(anotherRole);
+		this == RootAdmin || (this != anotherRole && HasHigherRankHelper(anotherRole));
 
 	private bool HasHigherRankHelper(Role role) =>
 		role.Parent != null && (role.Parent == this || HasHigherRankHelper(role.Parent));

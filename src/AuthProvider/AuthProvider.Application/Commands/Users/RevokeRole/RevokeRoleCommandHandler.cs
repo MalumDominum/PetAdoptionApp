@@ -39,6 +39,11 @@ public class RevokeRoleCommandHandler : IRequestHandler<RevokeRoleCommand, Error
 		if (permissionIndex == -1)
 			return Errors.Auth.UserHasNoSuchRoleError;
 
+		if (command.Role == Role.RootAdmin
+		    && await _userRepository.CountAsync(
+			    new UsersByRoleSpec(Role.RootAdmin), cancellationToken) <= 1)
+			return Errors.Auth.DeletingLastRootAdminError;
+
 		user.Permissions.RemoveAt(permissionIndex);
 		await _userRepository.UpdateAsync(user, cancellationToken);
 		return new RevokeRoleCommandResult();
