@@ -45,9 +45,9 @@ public class UpdatePetCommandHandler : IRequestHandler<UpdatePetCommand, ErrorOr
 		if (command.Details.BreedId != null)
 			if (!await _breedRepository.AnyAsync(
 					new AnyBreedBySpeciesIdSpec(command.SpeciesId, command.Details.BreedId.Value), cancellationToken))
-				return Errors.Pet.BreedNotBelongToSpecies;
+				return Errors.Pet.BreedNotBelongToSpeciesError;
 
-		var pet = await _petRepository.FirstOrDefaultAsync(
+		var pet = await _petRepository.SingleOrDefaultAsync(
 			new PetForUpdateSpec(command.Id), cancellationToken);
 
 		if (pet == null)

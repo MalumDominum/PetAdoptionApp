@@ -26,7 +26,7 @@ public class PetByIdQueryHandler
 		PetByIdQuery query, CancellationToken cancellationToken)
 	{
 		var specification = new PetByIdSpec(query.Id);
-		var result = await _petRepository.FirstOrDefaultAsync(specification, cancellationToken);
+		var result = await _petRepository.SingleOrDefaultAsync(specification, cancellationToken);
 
 		return result != null
 			? new PetByIdQueryResult(_mapper.Map<DetailedPetDto>(result))

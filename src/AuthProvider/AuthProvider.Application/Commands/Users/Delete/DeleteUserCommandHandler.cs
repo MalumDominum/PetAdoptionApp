@@ -1,4 +1,5 @@
 ﻿using AuthProvider.Domain.Aggregates.UserAggregate;
+using AuthProvider.Domain.Aggregates.UserAggregate.Events;
 using AuthProvider.Domain.Errors;
 using ErrorOr;
 using MassTransit;
@@ -10,12 +11,12 @@ namespace AuthProvider.Application.Commands.Users.Delete;
 public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, ErrorOr<DeleteUserCommandResult>>
 {
 	private readonly IRepository<User> _userRepository;
-	//private readonly IPublishEndpoint _publishEndpoint;
+	private readonly IPublishEndpoint _publishEndpoint;
 
-	public DeleteUserCommandHandler(IRepository<User> userRepository) //, IPublishEndpoint publishEndpoint)
+	public DeleteUserCommandHandler(IRepository<User> userRepository, IPublishEndpoint publishEndpoint)
 	{
 		_userRepository = userRepository;
-		//_publishEndpoint = publishEndpoint;
+		_publishEndpoint = publishEndpoint;
 	}
 
 	public async Task<ErrorOr<DeleteUserCommandResult>> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
@@ -24,13 +25,13 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, Error
 
 		if (user == null) return Errors.User.NoSuchRecordFoundError;
 
-		//await _publishEndpoint.Publish(
-		//	new UserDeletingEvent(command.UserId), cancellationToken);
+		await _publishEndpoint.Publish(
+			new UserDeletingEvent(command.UserId), cancellationToken);
 
 		await _userRepository.DeleteAsync(user, cancellationToken);
 
-		//await _publishEndpoint.Publish(
-		//	new UserDeletedEvent(command.UserId), cancellationToken);
+		await _publishEndpoint.Publish(
+			new UserDeletedEvent(command.UserId), cancellationToken);
 
 		return new DeleteUserCommandResult();
 	}

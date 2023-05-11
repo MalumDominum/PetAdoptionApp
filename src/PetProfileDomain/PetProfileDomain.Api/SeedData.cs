@@ -131,22 +131,25 @@ public static class SeedData
 
 	private static void InsertPetsForTesting(AppDbContext context)
 	{
+		var ownerGuid = Guid.Parse("a0385d76-7f83-4016-bb5b-aa413959cf90");
 		var insert = new List<Pet>
 		{
 			new() { Name = "Alice", Gender = Gender.Female,
 				Description = "**A short story:**\nA kitten😻 - gray-haired beauty Alice...",
 				BirthDate = new PartialPossibleDate(2023, 2, 26, true), SpeciesId = 1, SizeId = 1,
-				Details = null },
+				Details = null, OwnerId = ownerGuid },
 			
 			new() { Name = "Fenrir", Gender = Gender.Male,
 				Description = "A god sibling! FEAR",
 				BirthDate = new PartialPossibleDate(2022, 9), SpeciesId = 2, SizeId = 4,
-				Details = new PetDetails { BreedId = 21, HasCollar = true, HasPassport = true, Healthy = true, Neutering = true, Vaccination = true } },
+				Details = new PetDetails { BreedId = 21, HasCollar = true, HasPassport = true, Healthy = true, Neutering = true, Vaccination = true },
+				OwnerId = ownerGuid },
 
 			new() { Name = "Cutie", Gender = Gender.Female,
 				Description = "Just cawai kitty",
 				BirthDate = new PartialPossibleDate(2023), SpeciesId = 1, SizeId = null,
-				Details = new PetDetails { BreedId = 1, HasPassport = false, Healthy = true, Neutering = true, Vaccination = false }}
+				Details = new PetDetails { BreedId = 1, HasPassport = false, Healthy = true, Neutering = true, Vaccination = false },
+				OwnerId = ownerGuid }
 		};
 		foreach (var row in insert)
 			context.Pets.Add(row);

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using PetProfileDomain.Domain.Aggregates.PetAggregate;
+using PetProfileDomain.Domain.Aggregates.StateAggregate;
 using PetProfileDomain.Domain.Aggregates.StateAggregate.Enums;
 
 namespace PetProfileDomain.Infrastructure.DataAccess.Config;

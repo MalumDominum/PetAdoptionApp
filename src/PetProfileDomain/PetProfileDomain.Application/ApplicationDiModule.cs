@@ -22,7 +22,7 @@ public static class ApplicationDiModule
 		services.AddMassTransit(config =>
 		{
 			config.SetKebabCaseEndpointNameFormatter();
-			config.UsingRabbitMq((context, cfg) =>
+			config.UsingRabbitMq((_, cfg) =>
 			{
 				var rabbitMqConfig = configuration.GetSection("RabbitMQ").Get<RabbitMqConfig>();
 				if (rabbitMqConfig == null) throw new RabbitMqInitException();

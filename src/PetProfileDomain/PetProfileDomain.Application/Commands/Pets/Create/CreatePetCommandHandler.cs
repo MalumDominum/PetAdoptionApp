@@ -34,7 +34,7 @@ public class CreatePetCommandHandler : IRequestHandler<CreatePetCommand, ErrorOr
 		if (command.Details.BreedId != null)
 			if (!await _breedRepository.AnyAsync(
 					new AnyBreedBySpeciesIdSpec(command.SpeciesId, command.Details.BreedId.Value), cancellationToken))
-				return Errors.Pet.BreedNotBelongToSpecies;
+				return Errors.Pet.BreedNotBelongToSpeciesError;
 
 		var pet = _mapper.Map<Pet>(command);
 

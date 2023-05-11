@@ -60,14 +60,14 @@ public static class SeedData
 
 	private static void InsertUsersForTesting(AppDbContext context)
 	{
-		var guidList = Enumerable.Range(0, 1).Select(_ => Guid.NewGuid()).ToList();
+		var ownerGuid = Guid.Parse("a0385d76-7f83-4016-bb5b-aa413959cf90");
 		var insert = new List<User>
 		{
 			new()
-			{ Id = guidList[0], Email = "string", FirstName = "String", LastName = "SomeString",
+			{ Id = ownerGuid, Email = "string", FirstName = "String", LastName = "SomeString",
 				Gender = Gender.Other, PasswordHash = HashPassword("string"), RegistrationTime = DateTime.UtcNow,
 				Permissions = new List<Permission>
-					{ new() { GrantedBy = guidList[0], GrantedTime = DateTime.UtcNow, Role = Role.RootAdmin } }}
+					{ new() { GrantedBy = ownerGuid, GrantedTime = DateTime.UtcNow, Role = Role.RootAdmin } }}
 		};
 		foreach (var row in insert)
 			context.Users.Add(row);

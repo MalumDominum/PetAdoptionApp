@@ -72,12 +72,12 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 		builder.OwnsOne(p => p.BirthDate).WithOwner();
 		builder.Property(p => p.BackfieldBirthDate).IsRequired();
 		
-		builder.OwnsOne(p => p.Details, db =>
+		builder.OwnsOne(p => p.Details, dBuilder =>
 		{
-			db.WithOwner();
-			db.HasOne(d => d.Breed)
-				.WithMany()
-				.HasForeignKey(d => d.BreedId);
+			dBuilder.WithOwner();
+			dBuilder.HasOne(d => d.Breed)
+					.WithMany()
+					.HasForeignKey(d => d.BreedId);
 		});
 
 		builder.Property(p => p.CreatedAt)

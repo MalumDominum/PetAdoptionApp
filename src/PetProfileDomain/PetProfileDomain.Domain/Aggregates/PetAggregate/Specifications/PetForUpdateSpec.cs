@@ -2,7 +2,7 @@
 
 namespace PetProfileDomain.Domain.Aggregates.PetAggregate.Specifications;
 
-public sealed class PetForUpdateSpec : Specification<Pet>
+public sealed class PetForUpdateSpec : Specification<Pet>, ISingleResultSpecification<Pet>
 {
 	public PetForUpdateSpec(Guid id)
 	{
