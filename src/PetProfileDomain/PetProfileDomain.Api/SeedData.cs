@@ -37,15 +37,15 @@ public static class SeedData
 	{
 		var insert = new List<Color>
 		{
-			new() { HexValue = "#ffffff", Name = "White" },
-			new() { HexValue = "#000000", Name = "Black" },
-			new() { HexValue = "#f6ead1", Name = "Apricot" },
-			new() { HexValue = "#613816", Name = "Brown"},
-			new() { HexValue = "#d4905b", Name = "Golden" },
-			new() { HexValue = "#a5aab2", Name = "Gray"},
-			new() { HexValue = "#fefee8", Name = "Cream" },
-			new() { HexValue = "#e2ca9a", Name = "Blond" },
-			new() { HexValue = "#c4672f", Name = "Chestnut" }
+			new() { HexValue = "#ffffff", Name = "Білий" },
+			new() { HexValue = "#000000", Name = "Чорний" },
+			new() { HexValue = "#f6ead1", Name = "Абрикосовий" },
+			new() { HexValue = "#613816", Name = "Коричневий"},
+			new() { HexValue = "#d4905b", Name = "Золотистий" },
+			new() { HexValue = "#a5aab2", Name = "Сірий" },
+			new() { HexValue = "#fefee8", Name = "Кремовий" },
+			new() { HexValue = "#e2ca9a", Name = "Русявий" },
+			new() { HexValue = "#c4672f", Name = "Каштановий" }
 		};
 		foreach (var row in insert)
 			context.Colors.Add(row);
@@ -57,18 +57,18 @@ public static class SeedData
 	{
 		var insert = new List<Species>
 		{
-			new() { Title = "Cat" },
-			new() { Title = "Dog" },
-			new() { Title = "Parrot" },
-			new() { Title = "Guinea Pig" },
-			new() { Title = "Ferret" },
-			new() { Title = "Rat" },
-			new() { Title = "Chinchilla" },
-			new() { Title = "Rabbit" },
-			new() { Title = "Lizard" },
-			new() { Title = "Snake" },
-			new() { Title = "Fox" },
-			new() { Title = "Exotic" }
+			new() { Title = "Кішка" },
+			new() { Title = "Собака" },
+			new() { Title = "Папуга" },
+			new() { Title = "Морська свинка" },
+			new() { Title = "Тхір" },
+			new() { Title = "Щур" },
+			new() { Title = "Шиншила" },
+			new() { Title = "Кролик" },
+			new() { Title = "Ящірка" },
+			new() { Title = "Змія" },
+			new() { Title = "Лис" },
+			new() { Title = "Екзотичний" }
 		};
 		foreach (var row in insert)
 			context.Species.Add(row);
@@ -80,29 +80,29 @@ public static class SeedData
 	{
 		var insert = new List<Breed>
 		{
-			new() { Title = "Unbred", SpeciesId = 1 },
-			new() { Title = "Hybrid", SpeciesId = 2 },
-			new() { Title = "Siamese", SpeciesId = 1 },
-			new() { Title = "Persian", SpeciesId = 1 },
-			new() { Title = "Maine Coon", SpeciesId = 1 },
-			new() { Title = "Ragdoll", SpeciesId = 1 },
-			new() { Title = "Bengal", SpeciesId = 1 },
-			new() { Title = "Abyssinian", SpeciesId = 1 },
-			new() { Title = "Birman", SpeciesId = 1 },
-			new() { Title = "Oriental Shorthair", SpeciesId = 1 },
-			new() { Title = "Sphynx", SpeciesId = 1 },
-			new() { Title = "American Shorthair", SpeciesId = 1 },
+			new() { Title = "Безпородний", SpeciesId = 1 },
+			new() { Title = "Гібрид", SpeciesId = 1 },
+			new() { Title = "Сіамський", SpeciesId = 1 },
+			new() { Title = "Персидська", SpeciesId = 1 },
+			new() { Title = "Мейн-кун", SpeciesId = 1 },
+			new() { Title = "Регдолл", SpeciesId = 1 },
+			new() { Title = "Бенгалський", SpeciesId = 1 },
+			new() { Title = "Абіссінський", SpeciesId = 1 },
+			new() { Title = "Бірман", SpeciesId = 1 },
+			new() { Title = "Східна короткошерста", SpeciesId = 1 },
+			new() { Title = "Сфінкс", SpeciesId = 1 },
+			new() { Title = "Американський короткошерстий", SpeciesId = 1 },
 
-			new() { Title = "Unbred", SpeciesId = 2 },
-			new() { Title = "Hybrid", SpeciesId = 2 },
-			new() { Title = "Labrador Retrievers", SpeciesId = 2 },
-			new() { Title = "Poodles", SpeciesId = 2 },
-			new() { Title = "Bulldogs", SpeciesId = 2 },
-			new() { Title = "Rottweilers", SpeciesId = 2 },
-			new() { Title = "Beagles", SpeciesId = 2 },
-			new() { Title = "Yorkshire Terriers", SpeciesId = 2 },
-			new() { Title = "Siberian Huskies", SpeciesId = 2 },
-			new() { Title = "Dalmatians", SpeciesId = 2 }
+			new() { Title = "Безпородний", SpeciesId = 2 },
+			new() { Title = "Гібрид", SpeciesId = 2 },
+			new() { Title = "Лабрадор-ретривер", SpeciesId = 2 },
+			new() { Title = "Пудель", SpeciesId = 2 },
+			new() { Title = "Бульдог", SpeciesId = 2 },
+			new() { Title = "Ротвейлер", SpeciesId = 2 },
+			new() { Title = "Бігль", SpeciesId = 2 },
+			new() { Title = "Йоркширський тер'єр", SpeciesId = 2 },
+			new() { Title = "Сибірська хаскі", SpeciesId = 2 },
+			new() { Title = "Далматинець", SpeciesId = 2 }
 		};
 		foreach (var row in insert)
 			context.Breeds.Add(row);
@@ -114,10 +114,10 @@ public static class SeedData
 	{
 		var insert = new List<Size>
 		{
-			new() { Title = "Small", From = 0, To = 10 },
-			new() { Title = "Medium", From = 10, To = 25 },
-			new() { Title = "Large", From = 25, To = 45 },
-			new() { Title = "Extra-Large", From = 25, To = 60 }
+			new() { Title = "Малий", From = 0, To = 10 },
+			new() { Title = "Середній", From = 10, To = 25 },
+			new() { Title = "Великий", From = 25, To = 45 },
+			new() { Title = "Дуже великий", From = 25, To = 60 }
 		};
 		foreach (var row in insert)
 			context.Sizes.Add(row);
@@ -134,19 +134,19 @@ public static class SeedData
 		var ownerGuid = Guid.Parse("a0385d76-7f83-4016-bb5b-aa413959cf90");
 		var insert = new List<Pet>
 		{
-			new() { Name = "Alice", Gender = Gender.Female,
-				Description = "**A short story:**\nA kitten😻 - gray-haired beauty Alice...",
+			new() { Name = "Еліс", Gender = Gender.Female,
+				Description = "**Коротка історія:**\nКошеня😻 - сіра красуня Еліс...",
 				BirthDate = new PartialPossibleDate(2023, 2, 26, true), SpeciesId = 1, SizeId = 1,
 				Details = null, OwnerId = ownerGuid },
 			
-			new() { Name = "Fenrir", Gender = Gender.Male,
-				Description = "A god sibling! FEAR",
+			new() { Name = "Фенрір", Gender = Gender.Male,
+				Description = "Божий син! БІЙТЕСЯ",
 				BirthDate = new PartialPossibleDate(2022, 9), SpeciesId = 2, SizeId = 4,
 				Details = new PetDetails { BreedId = 21, HasCollar = true, HasPassport = true, Healthy = true, Neutering = true, Vaccination = true },
 				OwnerId = ownerGuid },
 
-			new() { Name = "Cutie", Gender = Gender.Female,
-				Description = "Just cawai kitty",
+			new() { Name = "Шура", Gender = Gender.Female,
+				Description = "Просто мила кішка",
 				BirthDate = new PartialPossibleDate(2023), SpeciesId = 1, SizeId = null,
 				Details = new PetDetails { BreedId = 1, HasPassport = false, Healthy = true, Neutering = true, Vaccination = false },
 				OwnerId = ownerGuid }
@@ -159,9 +159,9 @@ public static class SeedData
 
 	private static void InsertStatesForTesting(AppDbContext context)
 	{
-		var alice = context.Pets.FirstOrDefault(p => p.Name == "Alice")!;
-		var fenrir = context.Pets.FirstOrDefault(p => p.Name == "Fenrir")!;
-		var cutie = context.Pets.FirstOrDefault(p => p.Name == "Cutie")!;
+		var alice = context.Pets.FirstOrDefault(p => p.Name == "Еліс")!;
+		var fenrir = context.Pets.FirstOrDefault(p => p.Name == "Фенрір")!;
+		var cutie = context.Pets.FirstOrDefault(p => p.Name == "Шура")!;
 
 		var insert = new List<State>
 		{
