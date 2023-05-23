@@ -34,6 +34,7 @@ public class AuthenticateQueryHandler
 			return Errors.Auth.WrongCredentialsError;
 
 		var token = _tokenProvider.GenerateToken(user);
-		return new AuthenticateQueryResult(token);
+		return new AuthenticateQueryResult(user.Id, token,
+			user.FirstName, user.LastName, user.Permissions);
 	}
 }

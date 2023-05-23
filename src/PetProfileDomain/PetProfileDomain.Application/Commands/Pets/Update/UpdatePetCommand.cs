@@ -18,4 +18,8 @@ public record UpdatePetCommand(
 	List<int>? ColorIds,
 	PetDetailsCommandDto Details,
 	List<int>? States) : IRequest<ErrorOr<UpdatePetCommandResult>>, ICreateUpdatePetCommand
-  { public Guid OwnerId { get; set; } }
+{
+	public Guid OwnerId { get; set; }
+
+	public UpdatePetCommand() : this(Guid.Empty, null!, null!, null!, null!, 0, null, null!, null!, null) { }
+}

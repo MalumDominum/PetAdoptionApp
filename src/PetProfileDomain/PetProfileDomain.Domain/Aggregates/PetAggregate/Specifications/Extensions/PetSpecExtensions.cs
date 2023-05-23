@@ -52,7 +52,7 @@ public static class PetSpecExtensions
 
 		if (filter.StateIds != null)
 			query.Where(p => p.States!.Any(state =>
-				filter.StateIds.Any(id => state.Status == id)));
+				filter.StateIds.Any(id => state.Status == id) && state.ResolvedDate == null));
 
 		if (filter.ColorIds != null)
 			query.Where(p => p.PetColors!.Count > 0 &&

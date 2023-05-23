@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using static System.String;
 
 namespace AuthProvider.Application.Commands.Users.Common;
 

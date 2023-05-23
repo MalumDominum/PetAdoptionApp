@@ -2,6 +2,7 @@
 using PetProfileDomain.Application.Models.Pets;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Enums;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.ValueObjects;
+using PetProfileDomain.Domain.Aggregates.StateAggregate.Enums;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace PetProfileDomain.Api.Controllers.ExampleProviders;
@@ -24,6 +25,6 @@ public class PutPetExampleProvider : IExamplesProvider<PutPetRequest>
 				Vaccination: false,
 				HasPassport: false,
 				HasCollar: null),
-			States: new List<int> { 2 }
+			States: new List<int> { Status.Found.Value }
 		);
 }

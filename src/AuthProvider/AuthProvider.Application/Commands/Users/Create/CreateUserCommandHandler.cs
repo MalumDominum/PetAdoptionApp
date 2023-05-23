@@ -34,6 +34,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Error
 
 		var user = _mapper.Map<User>(command);
 		var createdUser = await _userRepository.AddAsync(user, cancellationToken);
-		return new CreateUserCommandResult(createdUser.Id, _tokenProvider.GenerateToken(createdUser));
+		return new CreateUserCommandResult(createdUser.Id,
+			_tokenProvider.GenerateToken(createdUser), user.FirstName, user.LastName);
 	}
 }

@@ -8,7 +8,7 @@ public static class UserValidationExtensions
 	public static IRuleBuilder<TCommand, string> Name<TCommand>(
 		this IRuleBuilder<TCommand, string> rule) =>
 		rule.Length(2, 50)
-			.Matches(new Regex("^[-`'a-zA-Zа-яА-ЯіІїЇёЁ]+$"))
+			.Matches(new Regex("^[-`'a-zA-Zа-яА-ЯіІїЇёЁєЄ]+$"))
 			.WithMessage("Name must be given without whitespaces and only with cyrillic or latin symbols");
 
 	public static IRuleBuilder<TCommand, string> Password<TCommand>(

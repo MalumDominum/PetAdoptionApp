@@ -37,15 +37,15 @@ public static class SeedData
 	{
 		var insert = new List<Color>
 		{
-			new() { HexValue = "#ffffff", Name = "Білий" },
-			new() { HexValue = "#000000", Name = "Чорний" },
-			new() { HexValue = "#f6ead1", Name = "Абрикосовий" },
-			new() { HexValue = "#613816", Name = "Коричневий"},
-			new() { HexValue = "#d4905b", Name = "Золотистий" },
-			new() { HexValue = "#a5aab2", Name = "Сірий" },
-			new() { HexValue = "#fefee8", Name = "Кремовий" },
-			new() { HexValue = "#e2ca9a", Name = "Русявий" },
-			new() { HexValue = "#c4672f", Name = "Каштановий" }
+			new() { HexValue = "#ffffff", Title = "Білий" },
+			new() { HexValue = "#000000", Title = "Чорний" },
+			new() { HexValue = "#f6ead1", Title = "Абрикосовий" },
+			new() { HexValue = "#613816", Title = "Коричневий"},
+			new() { HexValue = "#d4905b", Title = "Золотистий" },
+			new() { HexValue = "#a5aab2", Title = "Сірий" },
+			new() { HexValue = "#fefee8", Title = "Кремовий" },
+			new() { HexValue = "#e2ca9a", Title = "Русявий" },
+			new() { HexValue = "#c4672f", Title = "Каштановий" }
 		};
 		foreach (var row in insert)
 			context.Colors.Add(row);

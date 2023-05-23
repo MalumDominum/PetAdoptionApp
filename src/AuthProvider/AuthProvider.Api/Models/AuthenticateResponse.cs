@@ -1,3 +1,9 @@
-﻿namespace AuthProvider.Api.Models;
+﻿using AuthProvider.Domain.Aggregates.UserAggregate.Entities;
 
-public record AuthenticateResponse(string Token);
+namespace AuthProvider.Api.Models;
+
+public record AuthenticateResponse(
+	Guid UserId,
+	string Token,
+	string FirstName,
+	List<Permission> Permissions);

@@ -33,6 +33,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthProvider.Domain", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthProvider.Application", "src\AuthProvider\AuthProvider.Application\AuthProvider.Application.csproj", "{6F333BB4-B271-41A3-A31C-9E8D4D657E20}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityProjectDomain.Api", "src\CityProjectDomain\CityProjectDomain.Api\CityProjectDomain.Api.csproj", "{95E39701-09EA-4421-8834-204A9FD6A7BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CityProjectDomain", "CityProjectDomain", "{DB35C60D-C6A2-4DD7-8F75-E4E654484AA6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityProjectDomain.Domain", "src\CityProjectDomain\CityProjectDomain.Domain\CityProjectDomain.Domain.csproj", "{162B13B2-258C-4D21-8656-48B5E5C39D80}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityProjectDomain.Infrastructure", "src\CityProjectDomain\CityProjectDomain.Infrastructure\CityProjectDomain.Infrastructure.csproj", "{F4EC38D1-CDFD-462A-8C63-B94BF4EB0952}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CityProjectDomain.Application", "src\CityProjectDomain\CityProjectDomain.Application\CityProjectDomain.Application.csproj", "{D9FBB95B-7D58-49B4-8D08-22B66FC4FA2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +97,22 @@ Global
 		{6F333BB4-B271-41A3-A31C-9E8D4D657E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F333BB4-B271-41A3-A31C-9E8D4D657E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F333BB4-B271-41A3-A31C-9E8D4D657E20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95E39701-09EA-4421-8834-204A9FD6A7BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95E39701-09EA-4421-8834-204A9FD6A7BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95E39701-09EA-4421-8834-204A9FD6A7BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95E39701-09EA-4421-8834-204A9FD6A7BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{162B13B2-258C-4D21-8656-48B5E5C39D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{162B13B2-258C-4D21-8656-48B5E5C39D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{162B13B2-258C-4D21-8656-48B5E5C39D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{162B13B2-258C-4D21-8656-48B5E5C39D80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4EC38D1-CDFD-462A-8C63-B94BF4EB0952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4EC38D1-CDFD-462A-8C63-B94BF4EB0952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4EC38D1-CDFD-462A-8C63-B94BF4EB0952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4EC38D1-CDFD-462A-8C63-B94BF4EB0952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9FBB95B-7D58-49B4-8D08-22B66FC4FA2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9FBB95B-7D58-49B4-8D08-22B66FC4FA2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9FBB95B-7D58-49B4-8D08-22B66FC4FA2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9FBB95B-7D58-49B4-8D08-22B66FC4FA2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +130,10 @@ Global
 		{F60348F8-59CF-4F23-9031-1E16D668991B} = {321BA70A-0E71-473C-ACEA-C5DE6B999437}
 		{91E8B666-C34A-4F2C-B020-3AFAA93E09DD} = {321BA70A-0E71-473C-ACEA-C5DE6B999437}
 		{6F333BB4-B271-41A3-A31C-9E8D4D657E20} = {321BA70A-0E71-473C-ACEA-C5DE6B999437}
+		{95E39701-09EA-4421-8834-204A9FD6A7BF} = {DB35C60D-C6A2-4DD7-8F75-E4E654484AA6}
+		{162B13B2-258C-4D21-8656-48B5E5C39D80} = {DB35C60D-C6A2-4DD7-8F75-E4E654484AA6}
+		{F4EC38D1-CDFD-462A-8C63-B94BF4EB0952} = {DB35C60D-C6A2-4DD7-8F75-E4E654484AA6}
+		{D9FBB95B-7D58-49B4-8D08-22B66FC4FA2F} = {DB35C60D-C6A2-4DD7-8F75-E4E654484AA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C2A6BEF-7DF4-4C43-BE59-523F9419E863}

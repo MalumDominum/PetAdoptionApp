@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetAdoptionApp.SharedKernel.ErrorHandling;
+using PetProfileDomain.Api.Models;
 using PetProfileDomain.Domain.Aggregates.StateAggregate.Enums;
 
 namespace PetProfileDomain.Api.Controllers;
@@ -8,5 +9,7 @@ namespace PetProfileDomain.Api.Controllers;
 public class StatesController : ApiControllerBase
 {
 	[HttpGet]
-	public IActionResult GetList() => Ok(Status.List.OrderBy(s => s.Value));
+	public IActionResult GetList() =>
+		Ok(new { Results = Status.List.Select(s => 
+			new StatusDto(s.Value, s.Name)).OrderBy(s => s.Id) });
 }

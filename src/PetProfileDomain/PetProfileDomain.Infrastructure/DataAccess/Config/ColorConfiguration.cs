@@ -14,7 +14,7 @@ public class ColorConfiguration : IEntityTypeConfiguration<Color>
 		builder.Property(p => p.Id)
 			   .HasColumnName("ColorId");
 
-		builder.Property(c => c.Name)
+		builder.Property(c => c.Title)
 			   .HasMaxLength(50)
 			   .IsRequired();
 

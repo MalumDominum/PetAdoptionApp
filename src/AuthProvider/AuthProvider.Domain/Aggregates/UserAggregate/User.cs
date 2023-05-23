@@ -16,7 +16,7 @@ public class User : EntityBase<Guid>, IAggregateRoot
 
 	public Gender Gender { get; set; } = null!;
 
-	public List<Permission> Permissions { get; set; } = null!;
+	public List<Permission> Permissions { get; set; } = new();
 
 	public DateTime RegistrationTime { get; set; }
 }

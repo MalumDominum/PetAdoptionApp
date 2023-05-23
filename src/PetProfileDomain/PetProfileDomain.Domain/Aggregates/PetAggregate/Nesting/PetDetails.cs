@@ -13,6 +13,8 @@ public class PetDetails
 
 	public bool? Vaccination { get; set; }
 
+	public bool? LitterBoxTrained { get; set; }
+
 	public bool? HasPassport { get; set; }
 
 	public bool? HasCollar { get; set; }

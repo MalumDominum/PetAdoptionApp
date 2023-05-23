@@ -6,6 +6,9 @@ using PetProfileDomain.Application;
 using PetProfileDomain.Infrastructure;
 using PetProfileDomain.Infrastructure.DataAccess;
 
+var allowedOrigins = new[] { "http://localhost:3000" };
+const string allowSpecificOrigins = "_AllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
 var isDev = builder.Environment.IsDevelopment();
 
@@ -13,7 +16,18 @@ builder.Host.UseSerilog((_, config) => config.ReadFrom.Configuration(builder.Con
 builder.Services.AddPresentation(isDev)
 				.AddApplication(builder.Configuration)
 				.AddInfrastructure(builder.Configuration, isDev)
-				.AddSharedKernel(builder.Configuration);
+				.AddSharedKernel(builder.Configuration)
+				.AddCors(options =>
+				{
+					options.AddPolicy(allowSpecificOrigins,
+						corsPolicyBuilder =>
+						{
+							corsPolicyBuilder.WithOrigins(allowedOrigins)
+								.AllowCredentials()
+								.AllowAnyHeader()
+								.AllowAnyMethod();
+						});
+				});
 
 var app = builder.Build();
 {
@@ -31,6 +45,7 @@ var app = builder.Build();
 		app.UseHttpsRedirection();
 		app.UseHsts();
 	}
+	app.UseCors(allowSpecificOrigins);
 	app.UseRouting();
 	app.UseAuthentication();
 	app.UseAuthorization();

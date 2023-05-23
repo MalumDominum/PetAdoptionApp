@@ -2,4 +2,8 @@
 
 namespace AuthProvider.Application.Commands.Users.Create;
 
-public record CreateUserCommandResult(Guid Id, Token Token);
+public record CreateUserCommandResult(
+	Guid Id,
+	Token Token,
+	string LastName,
+	string FirstName);
