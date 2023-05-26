@@ -1,6 +1,6 @@
 ﻿using ErrorOr;
 
-namespace PetProfileDomain.Domain.Errors;
+namespace CityProjectDomain.Domain.Errors;
 
 public static partial class Errors
 {

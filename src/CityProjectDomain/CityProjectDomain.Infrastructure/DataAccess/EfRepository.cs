@@ -2,7 +2,7 @@
 using PetAdoptionApp.SharedKernel.DataAccess;
 using PetAdoptionApp.SharedKernel.DddModelsDefinition;
 
-namespace PetProfileDomain.Infrastructure.DataAccess;
+namespace CityProjectDomain.Infrastructure.DataAccess;
 
 public class EfRepository<T> : RepositoryBase<T>, IReadRepository<T>, IRepository<T>
 	where T : class, IAggregateRoot

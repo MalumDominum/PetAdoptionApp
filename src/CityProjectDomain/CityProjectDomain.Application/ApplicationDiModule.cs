@@ -7,7 +7,7 @@ using PetAdoptionApp.SharedKernel.Providers;
 using PetAdoptionApp.SharedKernel.RabbitMq.Configuration;
 using PetAdoptionApp.SharedKernel.RabbitMq.Exceptions;
 
-namespace PetProfileDomain.Application;
+namespace CityProjectDomain.Application;
 
 public static class ApplicationDiModule
 {

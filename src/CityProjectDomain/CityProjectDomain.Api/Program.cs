@@ -1,6 +1,10 @@
 ﻿using Ardalis.ListStartupServices;
+using CityProjectDomain.Api;
+using CityProjectDomain.Application;
+using CityProjectDomain.Infrastructure;
+using CityProjectDomain.Infrastructure.DataAccess;
+using PetAdoptionApp.SharedKernel;
 using Serilog;
-using PetProfileDomain.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 var isDev = builder.Environment.IsDevelopment();
@@ -42,7 +46,7 @@ var app = builder.Build();
 		{
 			var context = services.GetRequiredService<AppDbContext>();
 			//context.Database.Migrate();
-			//context.Database.EnsureDeleted();
+			context.Database.EnsureDeleted();
 			context.Database.EnsureCreated();
 			SeedData.Initialize(services, isDev);
 		}

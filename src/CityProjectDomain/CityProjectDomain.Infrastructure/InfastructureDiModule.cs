@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CityProjectDomain.Infrastructure.DataAccess;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PetAdoptionApp.SharedKernel.DataAccess;
-using PetProfileDomain.Infrastructure.DataAccess;
 
-namespace PetProfileDomain.Infrastructure;
+namespace CityProjectDomain.Infrastructure;
 
 public static class InfrastructureDiModule
 {

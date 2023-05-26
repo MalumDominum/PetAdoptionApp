@@ -37,8 +37,8 @@
     
     <ItemGroup>
         <ProjectReference Include="..\..\PetAdoptionApp.SharedKernel\PetAdoptionApp.SharedKernel.csproj" />
-        <ProjectReference Include="..\PetProfileDomain.Application\PetProfileDomain.Application.csproj" />
-        <ProjectReference Include="..\PetProfileDomain.Infrastructure\PetProfileDomain.Infrastructure.csproj" />
+        <ProjectReference Include="..\CityProjectDomain.Application\CityProjectDomain.Application.csproj" />
+        <ProjectReference Include="..\CityProjectDomain.Infrastructure\CityProjectDomain.Infrastructure.csproj" />
     </ItemGroup>
     
 </Project>

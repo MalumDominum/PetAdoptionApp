@@ -1,8 +1,9 @@
 ﻿using System.Reflection;
+using CityProjectDomain.Domain.Aggregates.ProjectAggregate;
 using Microsoft.EntityFrameworkCore;
 using PetAdoptionApp.SharedKernel.DomainEvents;
 
-namespace PetProfileDomain.Infrastructure.DataAccess;
+namespace CityProjectDomain.Infrastructure.DataAccess;
 
 public class AppDbContext : DbContext
 {
@@ -14,19 +15,7 @@ public class AppDbContext : DbContext
 		_dispatcher = dispatcher;
 	}
 
-	public DbSet<Pet> Pets => Set<Pet>();
-
-	public DbSet<PetColor> PetColors => Set<PetColor>();
-
-	public DbSet<Color> Colors => Set<Color>();
-
-	public DbSet<Size> Sizes => Set<Size>();
-
-	public DbSet<Species> Species => Set<Species>();
-
-	public DbSet<Breed> Breeds => Set<Breed>();
-
-	public DbSet<State> States => Set<State>();
+	public DbSet<Project> Projects => Set<Project>();
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{

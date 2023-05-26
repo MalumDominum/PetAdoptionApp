@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using Ardalis.ListStartupServices;
+using CityProjectDomain.Api.Mapping;
 using Microsoft.OpenApi.Models;
-using PetProfileDomain.Api.Mapping;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace PetProfileDomain.Api;
+namespace CityProjectDomain.Api;
 
 public static class ApiDiModule
 {
@@ -34,7 +34,7 @@ public static class ApiDiModule
 		{
 			c.SwaggerDoc("v1", new OpenApiInfo
 			{
-				Title = "Pet Adoption - PetProfile API",
+				Title = "Pet Adoption - CityProjects API",
 				Version = "v1",
 				Description = "This is an API for Hand to Paw website",
 			});

@@ -2,7 +2,7 @@
 using Mapster;
 using MapsterMapper;
 
-namespace PetProfileDomain.Api.Mapping;
+namespace CityProjectDomain.Api.Mapping;
 
 public static class MappingDiModule
 {

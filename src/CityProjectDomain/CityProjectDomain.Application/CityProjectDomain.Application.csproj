@@ -27,7 +27,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\..\PetAdoptionApp.SharedKernel\PetAdoptionApp.SharedKernel.csproj" />
-        <ProjectReference Include="..\PetProfileDomain.Domain\PetProfileDomain.Domain.csproj" />
+        <ProjectReference Include="..\CityProjectDomain.Domain\CityProjectDomain.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
