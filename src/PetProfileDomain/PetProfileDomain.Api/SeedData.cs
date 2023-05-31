@@ -20,7 +20,8 @@ public static class SeedData
 	    using var dbContext = new AppDbContext(
 		    serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null);
 
-		if (!dbContext.Colors.Any()) InsertColors(dbContext);
+		if (!dbContext.Colors.Any())
+			InsertColors(dbContext);
 		if (!dbContext.Species.Any()) InsertSpecies(dbContext);
 		if (!dbContext.Breeds.Any()) InsertBreeds(dbContext);
 		if (!dbContext.Sizes.Any()) InsertSizes(dbContext);

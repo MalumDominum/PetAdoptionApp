@@ -12,4 +12,5 @@ public record PostPetRequest(
 	int? SizeId,
 	List<int>? ColorIds,
 	PetDetailsCommandDto Details,
+	List<byte[]>? Images,
 	List<int>? States);

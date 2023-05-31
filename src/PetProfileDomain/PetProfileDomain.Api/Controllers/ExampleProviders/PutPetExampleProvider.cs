@@ -25,6 +25,7 @@ public class PutPetExampleProvider : IExamplesProvider<PutPetRequest>
 				Vaccination: false,
 				HasPassport: false,
 				HasCollar: null),
+			Images: null,
 			States: new List<int> { Status.Found.Value }
 		);
 }

@@ -83,6 +83,8 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
 					.HasForeignKey(d => d.BreedId);
 			});
 
+		builder.OwnsMany(p => p.Images, tBuilder => tBuilder.ToTable("Images"));
+
 		builder.OwnsMany(p => p.TransferHistory,
 			tBuilder =>
 			{

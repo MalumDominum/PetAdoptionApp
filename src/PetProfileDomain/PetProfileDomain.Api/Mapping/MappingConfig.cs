@@ -11,6 +11,7 @@ using PetProfileDomain.Domain.Aggregates.PetAggregate;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Entities;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Enums;
 using PetProfileDomain.Domain.Aggregates.PetAggregate.Linkers;
+using PetProfileDomain.Domain.Aggregates.PetAggregate.ValueObjects;
 using PetProfileDomain.Domain.Aggregates.StateAggregate;
 using static System.String;
 
@@ -61,6 +62,9 @@ public class MappingConfig : IRegister
 					src.Where(s => s.ResolvedDate != null)
 						.Select(s => new HistoryStateDto(s.Status, s.AssignedTime, s.ResolvedDate!.Value)).ToList())
 				: new SeparatedStates());
+		
+		config.NewConfig<Pet, PetInListDto>()
+			.Map(dest => dest.Image, src => src.Images);
 
 		config.NewConfig<Gender, string>()
 	        .Map(dest => dest, src => src.Value);
@@ -76,6 +80,15 @@ public class MappingConfig : IRegister
 			        ? Gender.FromValue(src)
 			        : Gender.Unknown)
 		        : null);
+
+		config.NewConfig<byte[], Image>()
+			.Map(dest => dest.Source, src => src);
+
+		config.NewConfig<Image, byte[]>()
+			.Map(dest => dest, src => src.Source);
+
+		config.NewConfig<List<Image>?, byte[]?>()
+			.MapWith(src => src != null && src.Count > 0 ? src[0].Source : null);
 	}
 
 	private static DateTime UtcNow() => MapContext.Current.GetService<IDateTimeProvider>().UtcNow;

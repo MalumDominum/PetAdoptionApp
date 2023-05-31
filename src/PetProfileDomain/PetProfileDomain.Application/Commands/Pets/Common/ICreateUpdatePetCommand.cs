@@ -13,6 +13,7 @@ public interface ICreateUpdatePetCommand
 	public int SpeciesId { get; init; }
 	public int? SizeId { get; init; }
 	public List<int>? ColorIds { get; init; }
+	public List<Image>? Images { get; init; }
 	public PetDetailsCommandDto Details { get; init; }
 	public List<int>? States { get; init; }
 }

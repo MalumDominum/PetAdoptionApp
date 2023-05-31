@@ -14,4 +14,5 @@ public record PetInListDto(
 	SpeciesWithoutNestingDto Species,
 	Size Size,
 	List<Color> Colors,
-	List<ActiveStateDto>? ActiveStates);
+	List<ActiveStateDto>? ActiveStates,
+	byte[]? Image);

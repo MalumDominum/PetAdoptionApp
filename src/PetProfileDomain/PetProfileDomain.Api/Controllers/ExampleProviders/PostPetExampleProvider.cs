@@ -23,6 +23,7 @@ public class PostPetExampleProvider : IExamplesProvider<PostPetRequest>
 				Vaccination: true,
 				HasPassport: false,
 				HasCollar: true),
+			Images: null,
 			States: new List<int> { 1, 6 }
 		);
 }

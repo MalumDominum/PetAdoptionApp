@@ -52,6 +52,7 @@ public class Pet : EntityBase<Guid>, IAggregateRoot
 
 	public List<State>? States { get; set; } = null!;
 
+	public List<Image>? Images { get; set; }
 	//private readonly List<string>? _photoAndVideoUrls;
 	//public ReadOnlyCollection<string>? PhotoAndVideoUrls => _photoAndVideoUrls?.AsReadOnly();
 
